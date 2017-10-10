@@ -1,6 +1,4 @@
 
-
-
 \documentclass[12pt]{article}%
 \usepackage{amsmath}%
 \usepackage{amsfonts}%
@@ -446,16 +444,11 @@ Esta sección, describe cómo las señales de cada \textit{dataset} son cargadas
 \paragraph{}
 La idea de utilizar este mínimo es de aplicarlo como tamaño fijo para todas las señales y así evitar el sesgo, por una señal que tenga más muestras, en el aprendizaje del clasificador. Una vez que todas las señales son cargadas y ordenadas como matrices, es momento de concatenarlas para formar una gran matriz cuyas filas son la cantidad de muestras y las columnas son el tamaño del segmento. Posterior a la unión de las señales, continúa el proceso de aplicar la transformada rápida de Fourier y obtener el espectro de energía como se detalla en la siguiente sección.
 
-\subsubsection{FFT y energy spectrum}
+\subsubsection{FFT y energía de las componentes de frecuencia}
 \paragraph{}
-Una vez obtenida la matriz con las señales de determinado \textit{dataset}, se aplica la transformada rápida de Fourier (FFT) con una eficiente función de MATLAB. Calculados los componentes de frecuencia de las señales, se les aplica valor absoluto y elevan al cuadrado (Ecc. \ref{energia}) para conseguir la energía del espectro de Fourier. Dado que la transformada de Fourier tiene la propiedad de simetría, es posible tomar la primera parte de la energía del espectro, resultando en 1024 puntos por muestra.
+Una vez obtenida la matriz con las señales de un determinado \textit{dataset}, se aplica la transformada rápida de Fourier (FFT) de manera que se consiguen las componentes de frecuencias de dichas señales. A estas componentes se les aplica valor absoluto y elevan al cuadrado (Ecc. \ref{energia}) para conseguir la energía del espectro de Fourier. Dado que la transformada de Fourier tiene la propiedad de simetría, es posible tomar la primera parte de la energía del espectro, resultando en 1024 puntos por muestra.
 
-\begin{equation}
-\label{energia}
-E=\frac{1}{2\pi}\int_{-\infty}^{\infty}|F(\omega)|^{2}d\omega
-\end{equation}
-
-\subsubsection{Naturaleza de la señal de vibración}
+\subsubsection{Señal de vibración}
 \paragraph{}
 Como se explicó en la introducción, los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o instalación, corrosión, poca lubricación y sobrecarga son algunos de ellos. Durante la operación del rodamiento se generan impulsos de banda ancha cuando la bola pasa por el defecto a una frecuencia determinada por la velocidad del eje, la geometría del rodamiento y la ubicación del defecto. La dificultad de diagnosticar la salud de los rodamientos reside en el hecho de que los patrones de un rodamiento defectuoso se extienden a través de una amplia banda de frecuencias, por lo que pueden ser fácilmente enmascarados por ruido y efectos de baja frecuencia.
 
