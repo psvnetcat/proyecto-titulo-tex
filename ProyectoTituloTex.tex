@@ -377,7 +377,7 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \subsection{Datos experimentales}
 \label{sec:datos}
 \paragraph{}
-La base de datos de vibraciones de rodamientos que será utilizada para entrenar y probar a la red neuronal profunda fue creada por el Bearing Data Center of Case Western Reserve University \cite{case}, una reconocida Universidad de Estados Unidos de América. Los datos fueron recolectados de un sistema mecánico con un motor bajo cuatro diferentes cargas con una frecuencia de muestreo de 12 y 48 kHz, sin embargo, esta investigación solo utilizará la de 12 kHz. Los instrumentos empleados en este laboratorio de vibraciones corresponden a: un motor de 2 hp a la izquierda del banco de pruebas (Fig. \ref{fig:bearing}), un transductor/codificador de torque en el centro y un dinamómetro a la derecha.
+Los datos utilizados en este trabajo corresponden a señales de vibración de un rodamiento de bolas, obtenidos de un experimento realizado por el Bearing Data Center of Case Western Reserve University \cite{case}. Los aparatos empleados en este laboratorio de vibraciones corresponden a: un motor de 2 hp a la izquierda del banco de pruebas (como se aprecia en la Figura \ref{fig:bearing}), un transductor/codificador de torque en el centro y un dinamómetro a la derecha. Un acelerómetro es el encargado de registrar las señales de vibración emitidas por el rodamiento que soporta el eje del motor.
 
 \begin{figure}[ht]
   \centering
@@ -387,7 +387,7 @@ La base de datos de vibraciones de rodamientos que será utilizada para entrenar
 \end{figure}
 
 \paragraph{}
-Las mediciones fueron realizadas tanto en el \textit{drive end} (DE) como en el \textit{fan end} (FE) bajo cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). Los tres tipos de fallas fueron inducidas a través de descargas eléctricas, generando piquetes de 0.007 in, 0.014 in y 0.021 in (pulgadas) en cada tipo de falla. Además, el rodamiento observado fue sometido a 4 velocidades con sus cargas correspondientes: 1797 - 0 hp, 1772 - 1 hp, 1750 - 2 hp y 1730 - 3 hp, por lo que los datos pueden ser organizados en conjuntos de datos separados por velocidad/carga como se detallará en la siguiente sección.
+El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctricas que generaron defectos en un sólo punto, con tres diámetros de falla: 0.007, 0.014 y 0.021 pulgadas. Estos defectos son inducidos bajo velocidades de rotación variables de 1730, 1750 1772 y 1792 RPM y 4 diferentes cargas de 0, 1, 2 y 3 caballos de fuerza respectivamente. Por lo que los datos pueden ser organizados en conjuntos de datos separados por velocidad/carga como se detallará en la siguiente sección. La frecuencia de muestreo es de 12 kHz para las cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). 
 
 \paragraph{}
 El motivo para utilizar esta base de datos es que sirve como punto de comparación con investigaciones que realizan diagnóstico de fallas a rodamientos. Permitiendo sacar conclusiones acerca de los tiempos de entrenamiento, desempeño del diagnóstico y ventajas y desventajas del modelo propuesto. Además, al tener tipos de fallas con severidades, es posible diagnosticar un problema de mayor complejidad y llevar al límite la capacidad de diagnóstico del modelo.
@@ -446,7 +446,7 @@ La idea de utilizar este mínimo es de aplicarlo como tamaño fijo para todas la
 
 \subsubsection{FFT y energía de las componentes de frecuencia}
 \paragraph{}
-Una vez obtenida la matriz con las señales de un determinado \textit{dataset}, se aplica la transformada rápida de Fourier (FFT) de manera que se consiguen las componentes de frecuencias de dichas señales. A estas componentes se les aplica valor absoluto y elevan al cuadrado (Ecc. \ref{energia}) para conseguir la energía del espectro de Fourier. Dado que la transformada de Fourier tiene la propiedad de simetría, es posible tomar la primera parte de la energía del espectro, resultando en 1024 puntos por muestra.
+Una vez obtenida la matriz con las señales de un determinado \textit{dataset}, se aplica la transformada rápida de Fourier (FFT) de manera que se consiguen las componentes de frecuencias de dichas señales. A estas componentes se les aplica valor absoluto y elevan al cuadrado para conseguir la energía del espectro de Fourier. Dado que la transformada de Fourier tiene la propiedad de simetría, es posible tomar la primera parte de la energía del espectro, resultando en 1024 puntos por muestra.
 
 \subsubsection{Señal de vibración}
 \paragraph{}
@@ -472,7 +472,7 @@ En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descri
 En esta sección se dará detalle al proceso de entrenamiento de la red neuronal profunda (DNN) y los elementos que la componen. La red utilizada en este modelo, posee una capa de entrada, dos capas ocultas y una capa de salida con la función de transferencia softmax. Las dos capas ocultas son pre entrenadas con dos \textit{sparse} autoencoder (SAE) respectivamente. Estas redes de tres capas permiten encontrar los parámetros de entrenamiento a la vez que reducen la dimensión de los datos de entrada codificandolos en un espacio de menor dimensión. 
 
 \paragraph{}
-Una vez que el primer SAE termina de aprender su representación de los datos mediante el algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus parámetros óptimos $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. Luego el segundo SAE, constituido por la primera y la segunda capa oculta de la DNN, aprende un conjunto de parámetros que inicializa a la segunda capa oculta y los códigos de la segunda capa oculta alimentan a la regresión softmax para que sea entrenada.
+Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus parámetros óptimos $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. Luego el segundo SAE, constituido por la primera y la segunda capa oculta de la DNN, aprende un conjunto de parámetros que inicializa a la segunda capa oculta y los códigos de la segunda capa oculta alimentan a la regresión softmax para que sea entrenada.
 
 \paragraph{}
 Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \textit{fine tuning} que básicamente es aplicar el algoritmo \textit{backpropagation} a la red entera para mejorar los pesos y \textit{biases} en conjunto. Se utiliza el descenso del gradiente en vez del gradiente conjugado porque los parámetros se encuentran cerca del mínimo global de la función de costos, por lo que no son necesarias demasiadas iteraciones en el proceso.
@@ -617,9 +617,9 @@ aid of hypothesis tests and simulation analysis}, Mechanical Systems and Signal 
 
 \bibitem {guo}Hong Guo, Lindsay B. Jack, y Asoke K. Nandi, \textit{Feature Generation Using Genetic Programming With Application to Fault Classification}, IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics), Vol 35, No. 1, 2005.
 
-\bibitem {jia}Yang Yu, YuDejie y Cheng Junsheng, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015
+\bibitem {yu}Yang Yu, YuDejie y Cheng Junsheng, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015
 
-\bibitem {yu}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{A roller bearing fault diagnosis method based
+\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{A roller bearing fault diagnosis method based
 on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006
 
 \bibitem {rai}V.K. Rai y A.R. Mohanty, \textit{Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform}, Mechanical Systems and Signal Processing 21 2607–2615, 2007
