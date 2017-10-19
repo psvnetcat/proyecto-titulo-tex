@@ -205,7 +205,7 @@ X(\tau,\omega)=\int_{-\infty}^{\infty}x(t)w(t-\tau)e^{-j\omega{t}}dt
 Esta transformada mapea la señal desde el dominio del tiempo en un plano de tiempo-frecuencia conjunto $(\tau,f)$. Para la implementación, la versión discreta de la Ecc. \ref{stft} debe utilizarse como:
 
 \begin{equation}
-X(k)=\sum_{i=n-\frac{N}{2}}^{i=n+\frac{N}{2}}x(i)w(i-n)e^{-j\frac{2{\pi}i}{N}}
+X_{n}(e^{jw_{k}})=\sum_{m=-\infty}^{\infty}w(n-m)x(m)e^{-jw_{k}m}
 \end{equation}
 
 \paragraph{}
@@ -370,7 +370,7 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \label{parcial}
 \frac{\partial{\phi_{SAE}}}{\partial{\theta}} = \left(\frac{\partial{\phi_{SAE}}}{\partial{\textbf{w}^{(1)}}},\frac{\partial{\phi_{SAE}}}{\partial{\textbf{b}^{(1)}}}\right)
 \end{equation}  
-\subsection{Método de diagnóstico basado en Deep Neuronal Networks}
+\subsection{Método de diagnóstico basado en DNN}
 \label{sec:training}
 
 \paragraph{}
@@ -618,10 +618,10 @@ aid of hypothesis tests and simulation analysis}, Mechanical Systems and Signal 
 
 \bibitem {guo}Hong Guo, Lindsay B. Jack, y Asoke K. Nandi, \textit{Feature Generation Using Genetic Programming With Application to Fault Classification}, IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics), Vol 35, No. 1, 2005.
 
-\bibitem {yu}Yang Yu, YuDejie y Cheng Junsheng, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015
+\bibitem {yu}Yang Yu, YuDejie y Cheng Junsheng, \textit{A roller bearing fault diagnosis method based
+on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006 
 
-\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{A roller bearing fault diagnosis method based
-on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006
+\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015
 
 \bibitem {rai}V.K. Rai y A.R. Mohanty, \textit{Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform}, Mechanical Systems and Signal Processing 21 2607–2615, 2007
 
@@ -661,6 +661,10 @@ Enhanced Feature Extraction}, IEEE Instrumentation and Measurement Technology Co
 \bibitem {du}Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng y Meiqin Che, \textit{Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification}, IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens. 10 1068–1081, 2017
 
 \bibitem {case}Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 30-08-2017).
+
+\bibitem {allen}Jont B. Allen y Lawrence R. Rabiner, \textit{A Unified Approach to Short-Time Fourier Analysis
+and Synthesis}, Proceedings Of The IEEE, VOL. 65, NO. 11, 1977
+
 
 
 \end{thebibliography}
