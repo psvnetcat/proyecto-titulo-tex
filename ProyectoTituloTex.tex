@@ -76,22 +76,22 @@ Septiembre, 2017
 \section{Introducción}
 
 \paragraph{}
-La maquinaria rotativa es ampliamente utilizada en muchos campos industriales y en los últimos años el monitoreo de condiciones de estas máquinas ha cobrado especial importancia en el mantenimiento moderno. Esto se explica porque existe la necesidad de reducir los tiempos de inactividad no programados y los costos asociados al mantenimiento, de manera que se pueda mantener la competitividad corporativa \cite{seeraa}. Con el monitoreo de condiciones se pueden detectar tempranamente fallas potencialmente desastrosas, reduciendo el tiempo de inactividad total de la máquina y de operaciones enteras.
+La maquinaria rotativa es ampliamente utilizada en muchos campos industriales y en los últimos años, el monitoreo de condiciones de estas máquinas ha cobrado especial importancia en el mantenimiento moderno. La explicación para esto es que, existe la necesidad de reducir los tiempos de inactividad no programados y los costos asociados al mantenimiento, de manera que se pueda mantener la competitividad corporativa \cite{seeraa}. Con el monitoreo de condiciones se pueden detectar tempranamente fallas potencialmente desastrosas, reduciendo el tiempo de inactividad total de la máquina y de operaciones enteras.
 
 \paragraph{}
-Las técnicas de mantenimiento predictivo han demostrado ser estrategias eficaces para reducir fallas inesperadas en la maquinaria. El monitoreo de vibraciones es la tecnología de mantenimiento predictivo más utilizada debido a la cantidad significativa de información que porta la señal sobre la salud de la maquinaria \cite{zhan}. Considerando que los rodamientos son un componente frecuentemente encontrado en la maquinaria rotativa y que pueden causar alrededor del 40-50\% \cite{issam} de todos los desperfectos, muchas investigaciones se centran en el monitoreo de vibraciones para estos componentes.
+Las técnicas de mantenimiento predictivo han demostrado ser estrategias eficaces para reducir fallas inesperadas en la maquinaria. El monitoreo de vibraciones es la tecnología de mantenimiento predictivo más utilizada \cite{zhan}, debido a la cantidad significativa de información que porta la señal sobre el estado salud de la maquinaria. Considerando que los rodamientos son un componente frecuentemente encontrado en la maquinaria rotativa y que pueden causar alrededor del 40-50\% \cite{issam} de todos los desperfectos, muchas investigaciones se centran en el monitoreo de vibraciones para estos componentes.
 
 \paragraph{}
-Los rodamientos giran constantemente en condiciones ambientales severas tales como alta temperatura, velocidad de rotación variable y grandes cargas, por lo que presentan una alta frecuencia de rotura \cite{fu}. Realizar un diagnóstico temprano en estos elementos es difícil, la señal de vibración tiene un comportamiento no lineal, no estacionario y además presenta ruido \cite{li}. Este comportamiento de la señal es consecuencia de la compleja estructura mecánica del rodamiento y sus duras condiciones de trabajo.
+Los rodamientos giran constantemente en condiciones ambientales severas tales como alta temperatura, velocidad de rotación variable y grandes cargas, por lo que presentan una alta frecuencia de rotura \cite{fu}. Realizar un diagnostico efectivo para los rodamientos es complejo, porque usualmente la señal de vibración tiene un comportamiento no lineal y no estacionario \cite{li}. Este comportamiento de la señal es consecuencia de la compleja estructura mecánica del rodamiento y sus duras condiciones de trabajo.
 
 \paragraph{}
-En general el diagnóstico de fallas está compuesto por dos etapas: la primera etapa consiste en extraer características útiles desde los datos recolectados con alguna herramienta de procesamiento de señales, y la segunda etapa es la clasificación de fallas basado en las características obtenidas en el paso anterior. Obtener las características es la etapa clave en el diagnóstico de fallas para maquinaria rotativa \cite{guo} porque reduce la dimensión de los datos, afecta directamente el reconocimiento de patrones y por lo tanto el desempeño del clasificador. Los métodos convencionales de extracción de características incluyen técnicas en el dominio del tiempo, dominio de la frecuencia y tiempo frecuencia.
+En general, el diagnóstico de fallas está compuesto por dos etapas: la primera etapa consiste en extraer características útiles desde los datos recolectados con alguna herramienta de procesamiento de señales, y la segunda etapa es la clasificación de fallas basada en las características obtenidas en el paso anterior. Obtener las características es la etapa clave en el diagnóstico de fallas para maquinaria rotativa \cite{guo}, porque reduce la dimensión de los datos, afecta directamente el reconocimiento de patrones y por lo tanto la calidad del diagnóstico. Los métodos convencionales de extracción de características incluyen técnicas en el dominio del tiempo, dominio de la frecuencia y tiempo frecuencia.
  
 \paragraph{}
-Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis, la asimetría y la entropía \cite{ran}. Los principales métodos en el dominio del tiempo corresponden a: el calculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo-frecuencia suelen ser utilizadas la transformada de Fourier de tiempo corto, la distribución Wigner-Ville y la transformada de paquetes wavelet. También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
+Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis, la asimetría \cite{zhu}. Los principales métodos en el dominio del tiempo corresponden a: el cálculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo-frecuencia, suelen ser utilizadas la transformada de Fourier de tiempo corto, la distribución Wigner-Ville y la transformada de paquetes wavelet. También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
 
 \paragraph{}
-Respecto a los clasificadores inteligentes utilizados en estas investigaciones, podemos encontrar redes neuronales artificiales (ANN), máquinas de vectores de soporte (SVM) \cite{konar}, sistemas adaptativos de inferencia neurodifusa \cite{issam} y otros. Estas herramientas reciben un entrenamiento con las características obtenidas de la señal, que ajusta diversos parámetros de sus algoritmos, y que hace posible que aprenda patrones ocultos en los datos. Una vez realizado el entrenamiento, el clasificador está listo para que, con un nuevo conjunto de atributos de la señal sea capaz de distinguir si el componente analizado tiene desperfectos o no.
+Respecto a los clasificadores inteligentes utilizados en estas investigaciones, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, redes neuronales profundas (DNN) \cite{ran}, sistemas Adaptativos de inferencia neurodifusa (ANFIS) \cite{issam}, redes neuronales wavelet,  y otros. Estas herramientas reciben un entrenamiento con las características obtenidas de la señal, que ajusta diversos parámetros de sus algoritmos, y que hace posible que aprenda patrones ocultos en los datos. Una vez realizado el entrenamiento, el clasificador está listo para que, con un nuevo conjunto de atributos de la señal sea capaz de distinguir si el componente analizado tiene desperfectos o no.
 
 \paragraph{}
 Una de las principales limitaciones que poseen los trabajos previamente descritos, es que sus clasificadores están limitados al problema de estimación de parámetros y cuando son muchos, se requiere de un mayor volumen de datos para el entrenamiento, empeorando el desempeño del algoritmo. Además, estas investigaciones solo clasifican la señal en 4 estados, que corresponden a desperfectos en el anillo interno, anillo externo, bola y saludable. Como consecuencia de esto, se deja de lado en la clasificación la severidad de las fallas en los componentes del rodamiento.
@@ -339,7 +339,7 @@ Una vez que hemos definido el término de dispersión y lo hemos incorporado a l
 \phi_{SAE}(\theta,\theta')=\frac{1}{2n}\sum_{i=1}^{n}{\|x_{i}-\hat{x}_{i}\|}^2 + \frac{\lambda}{2}\sum_{l=1}^{2}\sum_{i=1}^{s_l}\sum_{j=1}^{s_{l+1}}({w^{(l)}_{ji}})^2 + \beta\sum_{j=1}^{d}KL(\rho||\hat{\rho_{j}})
 \end{equation} 
 
-Para simplificar la notación del método definiremos $\Theta$ (Ecc. \ref{param}) como un arreglo que contiene los parámetros de la función de costos. Según la Ecc. \ref{gconjugado}, este método toma los parámetros iniciales y los actualiza sumándoles una dirección multiplicada por una tasa de aprendizaje denominada $\eta$. El arreglo que contiene las direcciones (Ecc. \ref{direcciones}) se obtiene utilizando la dirección previa multiplicada por el parámetro conjugado $\gamma$ más el residuo (Ecc. \ref{residuo}). El arreglo gradiente (Ecc. \ref{gradiente}) está compuesto por las derivadas parciales de la función de costos, a la vez que la derivada parcial $\frac{\partial{\phi_{SAE}}}{\partial{\theta}}$ se compone de las derivadas parciales de pesos y \textit{biases} (Ecc. \ref{parcial}).
+Para simplificar la notación del método, definiremos $\Theta$ (Ecc. \ref{param}) como un arreglo que contiene los parámetros de la función de costos. Según la Ecc. \ref{gconjugado}, este método toma los parámetros iniciales y los actualiza sumándoles una dirección multiplicada por una tasa de aprendizaje denominada $\eta$. El arreglo que contiene las direcciones (Ecc. \ref{direcciones}) se obtiene utilizando la dirección previa multiplicada por el parámetro conjugado $\gamma$ más el residuo (Ecc. \ref{residuo}). El arreglo gradiente (Ecc. \ref{gradiente}) está compuesto por las derivadas parciales de la función de costos, a la vez que la derivada parcial $\frac{\partial{\phi_{SAE}}}{\partial{\theta}}$ se compone de las derivadas parciales de pesos y \textit{biases} (Ecc. \ref{parcial}).
 
 \begin{equation}
 \label{param}
@@ -472,7 +472,7 @@ Una vez obtenida la matriz con las señales de un determinado \textit{dataset}, 
 Como se explicó en la introducción, los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o instalación, corrosión, poca lubricación y sobrecarga son algunos de ellos. Durante la operación del rodamiento se generan impulsos de banda ancha cuando la bola pasa por el defecto a una frecuencia determinada por la velocidad del eje, la geometría del rodamiento y la ubicación del defecto. La dificultad de diagnosticar la salud de los rodamientos reside en el hecho de que los patrones de un rodamiento defectuoso se extienden a través de una amplia banda de frecuencias, por lo que pueden ser fácilmente enmascarados por ruido y efectos de baja frecuencia.
 
 \paragraph{}
-La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede llevar la señal original al dominio de la frecuencia. Sin embargo tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Fig. \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente para defectos en el anillo interno (IF), los cuales emiten señales de vibración muy tenues durante la etapa incipiente de falla ya que tienen un mayor número de segmentos de transferencia \cite{rai}. 
+La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede llevar la señal original al dominio de la frecuencia. Sin embargo, tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Fig. \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente para defectos en el anillo interno (IF), los cuales emiten señales de vibración muy tenues durante la etapa incipiente de falla ya que tienen un mayor número de segmentos de transferencia \cite{rai}. 
 
 \paragraph{}
 En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentaran a la capa de entrada del clasificador.
@@ -612,22 +612,31 @@ Como conclusión, la red neuronal profunda compuesta por \textit{sparse} autoenc
 autoregressive modeling and Kolmogorov–Smirnov test statistic—Part I: Compromised autoregressive modeling with the
 aid of hypothesis tests and simulation analysis}, Mechanical Systems and Signal Processing, 2007.
 
+\bibitem {issam}Issam Attoui, Nadir Fergani, Nadir Boutasseta, Brahim Oudjani y Adel Deliou, \textit{A new time–frequency method for identification and classification of ball bearing faults}, Journal of Sound and Vibration, 2017.
+
 \bibitem {fu}Yunxiao Fu, Limin Jia, Yong Qin y Jie Yang, \textit{Product Function Correntropy and Its Application in Rolling bearing Fault Identification}, Measurement, 2016.
 
 \bibitem {li}Wei Li, Zhencai Zhu, Fan Jiang, Gongbo Zhou y Guoan Chen, \textit{Fault diagnosis of rotating machinery with a novel statistical feature extraction and evaluation method}, Mechanical Systems and Signal Processing, 2014.
 
 \bibitem {guo}Hong Guo, Lindsay B. Jack, y Asoke K. Nandi, \textit{Feature Generation Using Genetic Programming With Application to Fault Classification}, IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics), Vol 35, No. 1, 2005.
 
+\bibitem {zhu}Xiaoran Zhu, Youyun Zhang y Yongsheng Zhu, \textit{Intelligent fault diagnosis of rolling bearing based on kernel neighborhood rough sets and statistical features}, Journal of Mechanical Science and Technology 26 (9) 2649~2657, 2012.
+
+\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015.
+
+
+
 \bibitem {yu}Yang Yu, YuDejie y Cheng Junsheng, \textit{A roller bearing fault diagnosis method based
-on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006 
+on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006. 
 
-\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015
-
-\bibitem {rai}V.K. Rai y A.R. Mohanty, \textit{Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform}, Mechanical Systems and Signal Processing 21 2607–2615, 2007
+\bibitem {chang}Changting Wang y Robert X. Gao, \textit{Wavelet Transform with Spectral Post-Processing for
+Enhanced Feature Extraction}, IEEE Instrumentation and Measurement Technology Conference, 2002.
 
 \bibitem {ran}Ran Zhang, Zhen Peng, Lifeng Wu, Beibei Yao y Yong Guan, \textit{Fault Diagnosis from Raw Sensor Data Using Deep Neural Networks Considering Temporal Coherence}, Sensors, 2017.
 
-\bibitem {issam}Issam Attoui, Nadir Fergani, Nadir Boutasseta, Brahim Oudjani y Adel Deliou, \textit{A new time–frequency method for identification and classification of ball bearing faults}, Journal of Sound and Vibration, 2017.
+\bibitem {ali}Jaouher Ben Ali, Nader Fnaiech, Lotfi Saidi, Brigitte Chebel-Morello y Farhat Fnaiech, \textit{Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals}, Applied Acoustics 89 (2015) 16–27.
+
+\bibitem {rai}V.K. Rai y A.R. Mohanty, \textit{Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform}, Mechanical Systems and Signal Processing 21 2607–2615, 2007
 
 \bibitem {anthony}Anthony J. Wheeler y Ahmad R. Ganji, \textit{Introduction to Engineering Experimentation}, Págs. 107-117, tercera edición, Prentice Hall, 2009.
 
@@ -639,8 +648,7 @@ on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 20
 
 \bibitem {yufeng}Yufeng Zhang, Zhenyu Guo, Weilian Wang, Side He, Ting Lee y Murray Loew, \textit{A comparison of the wavelet and short-time fourier transforms for Doppler spectral analysis}, Medical Engineering \& Physics, 2003.
 
-\bibitem {chang}Changting Wang y Robert X. Gao, \textit{Wavelet Transform with Spectral Post-Processing for
-Enhanced Feature Extraction}, IEEE Instrumentation and Measurement Technology Conference, 2002.
+
 
 \bibitem {aure}Aurelien Prudhom, Jose Antonino-Daviu, Hubert Razik y Vicente Climente-Alarcon, \textit{Time-frequency vibration analysis for the detection of motor damages caused by bearing currents}, Mechanical Systems and Signal Processing, 2015.
 
@@ -664,7 +672,6 @@ Enhanced Feature Extraction}, IEEE Instrumentation and Measurement Technology Co
 
 \bibitem {allen}Jont B. Allen y Lawrence R. Rabiner, \textit{A Unified Approach to Short-Time Fourier Analysis
 and Synthesis}, Proceedings Of The IEEE, VOL. 65, NO. 11, 1977
-
 
 
 \end{thebibliography}

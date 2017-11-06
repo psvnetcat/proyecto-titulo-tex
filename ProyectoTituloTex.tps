@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=1104
+NormalPos.right=1100
 NormalPos.bottom=432
 Class=LaTeXView
 Document=ProyectoTituloTex.tex
 
 [Frame0_View0,0]
-TopLine=97
-Cursor=4046
+TopLine=121
+Cursor=7122
 
 [SessionInfo]
 FrameCount=1
