@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=ProyectoTituloTex.tex
 
 [Frame0_View0,0]
-TopLine=121
-Cursor=7122
+TopLine=233
+Cursor=13835
 
 [SessionInfo]
 FrameCount=1

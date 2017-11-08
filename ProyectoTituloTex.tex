@@ -36,7 +36,7 @@ Profesor co-referente: \textbf{Guillermo Cabrera Guerrero}
 \end{center}
 \vspace{1cm}
 \begin{center} 
-Septiembre, 2017
+Noviembre, 2017
 \end{center}
 \newpage
 \pagenumbering{roman}
@@ -88,10 +88,10 @@ Los rodamientos giran constantemente en condiciones ambientales severas tales co
 En general, el diagnóstico de fallas está compuesto por dos etapas: la primera etapa consiste en extraer características útiles desde los datos recolectados con alguna herramienta de procesamiento de señales, y la segunda etapa es la clasificación de fallas basada en las características obtenidas en el paso anterior. Obtener las características es la etapa clave en el diagnóstico de fallas para maquinaria rotativa \cite{guo}, porque reduce la dimensión de los datos, afecta directamente el reconocimiento de patrones y por lo tanto la calidad del diagnóstico. Los métodos convencionales de extracción de características incluyen técnicas en el dominio del tiempo, dominio de la frecuencia y tiempo frecuencia.
  
 \paragraph{}
-Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis, la asimetría \cite{zhu}. Los principales métodos en el dominio del tiempo corresponden a: el cálculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo-frecuencia, suelen ser utilizadas la transformada de Fourier de tiempo corto, la distribución Wigner-Ville y la transformada de paquetes wavelet. También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
+Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis, la asimetría \cite{zhu}. Los principales métodos en el dominio del tiempo corresponden a: el cálculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo-frecuencia, suelen ser utilizadas la transformada de Fourier de tiempo corto (STFT), la distribución Wigner-Ville (WVD) y la transformada de paquetes wavelet (WPT). También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
 
 \paragraph{}
-Respecto a los clasificadores inteligentes utilizados en estas investigaciones, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, redes neuronales profundas (DNN) \cite{ran}, sistemas Adaptativos de inferencia neurodifusa (ANFIS) \cite{issam}, redes neuronales wavelet,  y otros. Estas herramientas reciben un entrenamiento con las características obtenidas de la señal, que ajusta diversos parámetros de sus algoritmos, y que hace posible que aprenda patrones ocultos en los datos. Una vez realizado el entrenamiento, el clasificador está listo para que, con un nuevo conjunto de atributos de la señal sea capaz de distinguir si el componente analizado tiene desperfectos o no.
+Respecto a los clasificadores inteligentes utilizados en estas investigaciones, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, redes neuronales profundas (DNN) \cite{ran}, sistemas Adaptativos de inferencia neuro difusa (ANFIS) \cite{issam}, redes neuronales wavelet (WNN) \cite{wu},  y otros. Estas herramientas reciben un entrenamiento con las características obtenidas de la señal, que ajusta diversos parámetros de sus algoritmos, y que hace posible que aprenda patrones ocultos en los datos. Una vez realizado el entrenamiento, el clasificador está listo para que, con un nuevo conjunto de atributos de la señal sea capaz de distinguir si el componente analizado tiene desperfectos o no.
 
 \paragraph{}
 Una de las principales limitaciones que poseen los trabajos previamente descritos, es que sus clasificadores están limitados al problema de estimación de parámetros y cuando son muchos, se requiere de un mayor volumen de datos para el entrenamiento, empeorando el desempeño del algoritmo. Además, estas investigaciones solo clasifican la señal en 4 estados, que corresponden a desperfectos en el anillo interno, anillo externo, bola y saludable. Como consecuencia de esto, se deja de lado en la clasificación la severidad de las fallas en los componentes del rodamiento.
@@ -140,7 +140,7 @@ A continuación se encuentran los conceptos y definiciones matemáticas de las h
 
 \subsection{Transformada de Fourier}
 \paragraph{}
-La transformada de Fourier es una herramienta matemática extremadamente poderosa, por lo que es utilizada en diversos campos de la ciencia y la ingeniería. Puede ser vista como la transformación de una señal en un dominio (típicamente tiempo o espacio) a otro dominio, el dominio de la frecuencia. Al aplicar la transformada de Fourier a una señal se obtienen sus componentes fundamentales en frecuencia que a menudo revelan estructuras ocultas, que en el dominio del tiempo, no son posibles de observar.
+La transformada de Fourier es una herramienta matemática poderosa, por lo que es utilizada en diversos campos de la ciencia y la ingeniería. Puede ser vista como la transformación de una señal en un dominio (típicamente tiempo o espacio) a otro dominio, el dominio de la frecuencia. Al aplicar la transformada de Fourier a una señal, se obtienen sus componentes fundamentales en frecuencia que a menudo revelan estructuras ocultas, que en el dominio del tiempo, no son posibles de observar.
 
 \paragraph{}
 Como consecuencia de lo anterior, el análisis de Fourier está en la base de muchas teorías de la ciencia y juega un papel fundamental en el diseño práctico de la ingeniería. El alcance actual de la influencia del análisis de Fourier está indicado por una lista parcial de científicos e ingenieros que la utilizan \cite{robert}:
@@ -606,65 +606,63 @@ Como conclusión, la red neuronal profunda compuesta por \textit{sparse} autoenc
 \clearpage
 
 \begin{thebibliography}{9}
-\bibitem {seeraa}Manjeevan Seeraa, M.L. Dennis Wonga y Asoke K. Nandic, \textit{Classification of ball bearing faults using a hybrid intelligent model}, Applied Soft Computing, 2017.
+\bibitem{seeraa} Manjeevan Seeraa, M.L. Dennis Wonga \& Asoke K. Nandic (2017). Classification of ball bearing faults using a hybrid intelligent model. \textit{Applied Soft Computing}, \textit{57}, 427–435.
 
-\bibitem {zhan}Yimin Zhan y Chris K. Mechefske, \textit{Robust detection of gearbox deterioration using compromised
+\bibitem{zhan} Yimin Zhan \& Chris K. Mechefske (2007). Robust detection of gearbox deterioration using compromised
 autoregressive modeling and Kolmogorov–Smirnov test statistic—Part I: Compromised autoregressive modeling with the
-aid of hypothesis tests and simulation analysis}, Mechanical Systems and Signal Processing, 2007.
+aid of hypothesis tests and simulation analysis. \textit{Mechanical Systems and Signal Processing}, \textit{21}, 1953–1982.
 
-\bibitem {issam}Issam Attoui, Nadir Fergani, Nadir Boutasseta, Brahim Oudjani y Adel Deliou, \textit{A new time–frequency method for identification and classification of ball bearing faults}, Journal of Sound and Vibration, 2017.
+\bibitem{issam} Issam Attoui, Nadir Fergani, Nadir Boutasseta, Brahim Oudjani \& Adel Deliou (2017). A new time–frequency method for identification and classification of ball bearing faults. \textit{Journal of Sound and Vibration}, \textit{397}, 241-265.
 
-\bibitem {fu}Yunxiao Fu, Limin Jia, Yong Qin y Jie Yang, \textit{Product Function Correntropy and Its Application in Rolling bearing Fault Identification}, Measurement, 2016.
+\bibitem{fu} Yunxiao Fu, Limin Jia, Yong Qin \& Jie Yang (2016). Product Function Correntropy and Its Application in Rolling bearing Fault Identification. \textit{Measurement}, 88-99.
 
-\bibitem {li}Wei Li, Zhencai Zhu, Fan Jiang, Gongbo Zhou y Guoan Chen, \textit{Fault diagnosis of rotating machinery with a novel statistical feature extraction and evaluation method}, Mechanical Systems and Signal Processing, 2014.
+\bibitem{li} Wei Li, Zhencai Zhu, Fan Jiang, Gongbo Zhou \& Guoan Chen (2015). Fault diagnosis of rotating machinery with a novel statistical feature extraction and evaluation method. \textit{Mechanical Systems and Signal Processing}, \textit{50-51}, 414-426.
 
-\bibitem {guo}Hong Guo, Lindsay B. Jack, y Asoke K. Nandi, \textit{Feature Generation Using Genetic Programming With Application to Fault Classification}, IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics), Vol 35, No. 1, 2005.
+\bibitem{guo} Hong Guo, Lindsay B. Jack \& Asoke K. Nandi (2005). Feature Generation Using Genetic Programming With Application to Fault Classification. \textit{IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics)}, \textit{35}(1), 89-99.
 
-\bibitem {zhu}Xiaoran Zhu, Youyun Zhang y Yongsheng Zhu, \textit{Intelligent fault diagnosis of rolling bearing based on kernel neighborhood rough sets and statistical features}, Journal of Mechanical Science and Technology 26 (9) 2649~2657, 2012.
+\bibitem{zhu} Xiaoran Zhu, Youyun Zhang \& Yongsheng Zhu (2012). Intelligent fault diagnosis of rolling bearing based on kernel neighborhood rough sets and statistical features. \textit{Journal of Mechanical Science and Technology}, \textit{26}(9), 2649-2657.
 
-\bibitem {jia}Feng Jia, YaguoLei, Jing Lin, Xin Zhou y Na Lu, \textit{Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data}, Mechanical Systems and Signal Processing, 2015.
+\bibitem{jia} Feng Jia, YaguoLei, Jing Lin, Xin Zhou \& Na Lu (2015). Deep neural networks: A promising tool for fault characteristic mining and intelligent diagnosis of rotating machinery with massive data. \textit{Mechanical Systems and Signal Processing}, \textit{72-73}, 303-315.
 
+\bibitem{yu} Yang Yu, YuDejie \& Cheng Junsheng (2006). A roller bearing fault diagnosis method based
+on EMD energy entropy and ANN. \textit{Journal of Sound and Vibration}, \textit{294}, 269–277. 
 
+\bibitem{chang} Changting Wang \& Robert X. Gao (2002). Wavelet Transform with Spectral Post-Processing for
+Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Technology Conference}, \textit{52}(4), 1296-1301.
 
-\bibitem {yu}Yang Yu, YuDejie y Cheng Junsheng, \textit{A roller bearing fault diagnosis method based
-on EMD energy entropy and ANN}, Journal of Sound and Vibration 294 269–277, 2006. 
+\bibitem{ran} Ran Zhang, Zhen Peng, Lifeng Wu, Beibei Yao \& Yong Guan (2017). Fault Diagnosis from Raw Sensor Data Using Deep Neural Networks Considering Temporal Coherence. \textit{Sensors}, \textit{17}(3), 549-566.
 
-\bibitem {chang}Changting Wang y Robert X. Gao, \textit{Wavelet Transform with Spectral Post-Processing for
-Enhanced Feature Extraction}, IEEE Instrumentation and Measurement Technology Conference, 2002.
+\bibitem{ali} Jaouher Ben Ali, Nader Fnaiech, Lotfi Saidi, Brigitte Chebel-Morello \& Farhat Fnaiech (2015). Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals. \textit{Applied Acoustics}, \textit{89}, 16–27.
 
-\bibitem {ran}Ran Zhang, Zhen Peng, Lifeng Wu, Beibei Yao y Yong Guan, \textit{Fault Diagnosis from Raw Sensor Data Using Deep Neural Networks Considering Temporal Coherence}, Sensors, 2017.
+\bibitem{wu} Lifeng Wu, Beibei Yao, Zhen Peng \& Yong Guan (2017). Fault Diagnosis of Roller Bearings Based on a Wavelet Neural Network and Manifold Learning. \textit{Applied Science}, \textit{7}, 158-168. 
 
-\bibitem {ali}Jaouher Ben Ali, Nader Fnaiech, Lotfi Saidi, Brigitte Chebel-Morello y Farhat Fnaiech, \textit{Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals}, Applied Acoustics 89 (2015) 16–27.
+\bibitem{rai} V.K. Rai \& A.R. Mohanty (2007). Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform. \textit{Mechanical Systems and Signal Processing}, \textit{21}, 2607–2615.
 
-\bibitem {rai}V.K. Rai y A.R. Mohanty, \textit{Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform}, Mechanical Systems and Signal Processing 21 2607–2615, 2007
+\bibitem{anthony} Wheeler, Anthony J. \& Ganji, Ahmad R. (2009). \textit{Introduction to Engineering Experimentation} (3rd ed., pp. 107-117). New Jersey: Prentice Hall.
 
-\bibitem {anthony}Anthony J. Wheeler y Ahmad R. Ganji, \textit{Introduction to Engineering Experimentation}, Págs. 107-117, tercera edición, Prentice Hall, 2009.
+\bibitem{robert} Gray, Robert M. \& Goodman, Joseph W. (1995). \textit{Fourier Transforms: An Introduction for Engineers} (1st ed., pp. 53-57). New York: Springer.
 
-\bibitem {robert}Robert M. Gray y Joseph W. Goodman, \textit{Fourier Transforms: An Introduction for Engineers}, Págs. 53-57, primera edición, Springer, 1995.
+\bibitem{shao} Shao Haidong, Jiang Hongkai, Zhao Huiwei \& Wang Fuan (2017). A novel deep autoencoder feature learning method for rotating machinery fault diagnosis. \textit{Mechanical Systems and Signal Processing}, \textit{95}, 187-204. 
 
-\bibitem {shao}Shao Haidong, Jiang Hongkai, Zhao Huiwei y Wang Fuan, \textit{A novel deep autoencoder feature learning method for rotating machinery fault diagnosis}, Mechanical Systems and Signal Processing volumen 95, 2017. 
+\bibitem{song} Song-Zhi Su, Zhi-Hui Liu, Su-Ping Xu, Shao-Zi Li \& Rongrong Ji (2014). Sparse auto-encoder based feature learning for humanbody detection in depth image. \textit{Signal Processing}, \textit{112}, 43-52.
 
-\bibitem {song}Song-Zhi Su, Zhi-Hui Liu, Su-Ping Xu, Shao-Zi Li y Rongrong Ji, \textit{Sparse auto-encoder based feature learning for humanbody detection in depth image}, Signal Processing, 2014.
+\bibitem{yufeng} Yufeng Zhang, Zhenyu Guo, Weilian Wang, Side He, Ting Lee \& Murray Loew (2003). A comparison of the wavelet and short-time fourier transforms for Doppler spectral analysis. \textit{Medical Engineering \& Physics}, \textit{25}, 547-557.
 
-\bibitem {yufeng}Yufeng Zhang, Zhenyu Guo, Weilian Wang, Side He, Ting Lee y Murray Loew, \textit{A comparison of the wavelet and short-time fourier transforms for Doppler spectral analysis}, Medical Engineering \& Physics, 2003.
+\bibitem{aure} Aurelien Prudhom, Jose Antonino-Daviu, Hubert Razik \& Vicente Climente-Alarcon (2015). Time-frequency vibration analysis for the detection of motor damages caused by bearing currents. \textit{Mechanical Systems and Signal Processing}, \textit{84}, 747-762.
 
+\bibitem{chen} Zhiqiang Chen, Shengcai Deng, Xudong Chen, Chuan Li, René-Vinicio Sanchez \& Huafeng Qin (2017). Deep neural networks-based rolling bearing fault diagnosis. \textit{Microelectronics Reliability}, \textit{75}, 327-333.
 
+\bibitem{konar} P. Konar \& P. Chattopadhyay (2011). Bearing fault detection of induction motor using wavelet and Support Vector Machines (SVMs). \textit{Applied Soft Computing}, \textit{11}, 4203-4211.
 
-\bibitem {aure}Aurelien Prudhom, Jose Antonino-Daviu, Hubert Razik y Vicente Climente-Alarcon, \textit{Time-frequency vibration analysis for the detection of motor damages caused by bearing currents}, Mechanical Systems and Signal Processing, 2015.
+\bibitem{mao} Wentao Mao, Jianliang He, Yuan Li \& Yunju Yan (2017). Bearing fault diagnosis with auto-encoder extreme learning machine: A comparative study. \textit{Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science}, \textit{231}(8), 1560-1578.
 
-\bibitem {chen}Zhiqiang Chen, Shengcai Deng, Xudong Chen, Chuan Li, René-Vinicio Sanchez y Huafeng Qin, \textit{Deep neural networks-based rolling bearing fault diagnosis}, Microelectronics Reliability, 2017.
+\bibitem{kanpaj} Kanpaj Gupta \& M.K. Pradhan (2017). Fault detection analysis in rolling element bearing: A review, \textit{Materials Today: Proceedings}, \textit{4}, 2085-2094.
 
-\bibitem {konar}P. Konar y P. Chattopadhyay, \textit{Bearing fault detection of induction motor using wavelet and Support Vector Machines (SVMs)}, Applied Soft Computing, 2011.
+\bibitem{mining} Witten, Ian H. \& Frank, Eibe \& Hall, Mark A. \& Pal, Christopher J. (2016). \textit{Data Mining: Practical Machine Learning Tools and Techniques-Morgan Kaufmann} (4th ed., pp. ), Morgan Kaufmann.
 
-\bibitem {mao}Wentao Mao, Jianliang He, Yuan Li y Yunju Yan, \textit{Bearing fault diagnosis with auto-encoder extreme learning machine: A comparative study}, Journal of Mechanical Engineering Cience, 2016.
+\bibitem{haykin} Haykin, Simon. (2009). \textit{Neural Networks and Learning Machines} (3rd ed., pp.), Pearson.
 
-\bibitem {kanpaj}Kanpaj Gupta y M.K. Pradhan, \textit{Fault detection analysis in rolling element bearing: A review}, 5th International Conference of Materials Processing and Characterization, 2016.
-
-\bibitem {mining}Ian H. Witten, Eibe Frank, Mark A. Hall y Christopher J. Pal, \textit{Data Mining: Practical Machine Learning Tools and Techniques-Morgan Kaufmann}, cuarta edición, Morgan Kaufmann, 2016.
-
-\bibitem {haykin}Simon Haykin, \textit{Neural Networks and Learning Machines}, tercera edición, Pearson, 2009.
-
-\bibitem {ranzato}Marc’Aurelio Ranzato, Y-Lan Boureau y Yann LeCun, \textit{Sparse feature learning for deep belief networks}, Adv.NeuralInf.Process.Sys. 1185–1192, 2008.
+\bibitem{ranzato} Marc’Aurelio Ranzato, Y-Lan Boureau \& Yann LeCun (2008). Sparse feature learning for deep belief networks. Adv.NeuralInf.Process.Sys. 1185–1192.
 
 \bibitem {du}Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng y Meiqin Che, \textit{Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification}, IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens. 10 1068–1081, 2017
 
