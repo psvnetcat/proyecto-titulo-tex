@@ -76,34 +76,37 @@ Noviembre, 2017
 \section{Introducción}
 
 \paragraph{}
-La maquinaria rotativa es ampliamente utilizada en muchos campos industriales y en los últimos años, el monitoreo de condiciones de estas máquinas ha cobrado especial importancia en el mantenimiento moderno. La explicación para esto es que, existe la necesidad de reducir los tiempos de inactividad no programados y los costos asociados al mantenimiento, de manera que se pueda mantener la competitividad corporativa \cite{seeraa}. Con el monitoreo de condiciones se pueden detectar tempranamente fallas potencialmente desastrosas, reduciendo el tiempo de inactividad total de la máquina y de operaciones enteras.
+La maquinaria rotativa es ampliamente utilizada en muchos campos industriales y en los últimos años, el monitoreo de condiciones de estas máquinas ha cobrado especial importancia en el mantenimiento moderno. Lo anterior se ha debido, principalmente a la necesidad de reducir los tiempos de inactividad no programados y los costos asociados al mantenimiento, de manera que se pueda mantener la competitividad corporativa \cite{seeraa}. Así, con el monitoreo de condiciones se pueden detectar tempranamente fallas potencialmente desastrosas, reduciendo el tiempo de inactividad total de la máquina y de operaciones enteras.
 
 \paragraph{}
-Las técnicas de mantenimiento predictivo han demostrado ser estrategias eficaces para reducir fallas inesperadas en la maquinaria. El monitoreo de vibraciones es la tecnología de mantenimiento predictivo más utilizada \cite{zhan}, debido a la cantidad significativa de información que porta la señal sobre el estado salud de la maquinaria. Considerando que los rodamientos son un componente frecuentemente encontrado en la maquinaria rotativa y que pueden causar alrededor del 40-50\% \cite{issam} de todos los desperfectos, muchas investigaciones se centran en el monitoreo de vibraciones para estos componentes.
+Las técnicas de mantenimiento predictivo han demostrado ser estrategias eficaces para reducir fallas inesperadas en la maquinaria. El monitoreo de vibraciones es la tecnología de mantenimiento predictivo más utilizada \cite{zhan}, debido a la cantidad significativa de información que porta la señal sobre el estado salud de la maquinaria. Considerando que los rodamientos son un componente encontrado frecuentemente en la maquinaria rotativa y que pueden causar alrededor del 40-50\% \cite{issam} de todos los desperfectos, muchas investigaciones se centran en el monitoreo de vibraciones para estos componentes.
 
 \paragraph{}
 Los rodamientos giran constantemente en condiciones ambientales severas tales como alta temperatura, velocidad de rotación variable y grandes cargas, por lo que presentan una alta frecuencia de rotura \cite{fu}. Realizar un diagnóstico efectivo para los rodamientos es complejo, porque usualmente la señal de vibración tiene un comportamiento no lineal y no estacionario \cite{li}. Este comportamiento de la señal es consecuencia de la compleja estructura mecánica del rodamiento y sus duras condiciones de trabajo.
 
 \paragraph{}
-Los sistemas de monitoreo de condiciones son usados para obtener datos en tiempo real de las máquinas. Por lo tanto, enormes colecciones de datos son adquiridas después de un prolongado funcionamiento de estas máquinas. Como los datos generalmente se recopilan más rápido de lo que se tarda en analizarlos, existe la necesidad de un método de diagnóstico que sea capaz de analizar grandes volúmenes de datos y de realizar automáticamente un diagnostico preciso.
+Los sistemas de monitoreo de condiciones son usados para obtener datos en tiempo real de las máquinas. Por lo tanto, enormes colecciones de datos son adquiridas después de un prolongado funcionamiento de estas máquinas. Como los datos generalmente se recopilan más rápido de lo que se tarda en analizarlos, existe la necesidad de un método de diagnóstico que sea capaz de analizar grandes volúmenes de datos y de realizar automáticamente un diagnóstico preciso.
 
 \paragraph{}
-Este tipo de métodos se denominan \textit{métodos inteligentes de diagnóstico de fallas} y en general, estos están compuestos por dos etapas. La primera etapa consiste en extraer características útiles desde los datos recolectados con alguna herramienta de procesamiento de señales. La segunda etapa utiliza técnicas de inteligencia artificial para distinguir el estado de salud de la maquinaria en base a las características obtenidas en el paso anterior.
+Este tipo de métodos se denominan \textit{métodos inteligentes de diagnóstico de fallas} y en general, están compuestos por dos etapas. La primera consiste en extraer características útiles desde los datos recolectados con alguna herramienta de procesamiento de señales. La segunda utiliza técnicas de inteligencia artificial para distinguir el estado de salud de la maquinaria en base a las características obtenidas en el paso anterior.
 
 \paragraph{}
-La primera de estas etapas resulta clave en el diagnóstico de fallas para maquinaria rotativa \cite{guo}, porque reduce la dimensión de los datos, afecta directamente el reconocimiento de patrones y por lo tanto la calidad del diagnóstico. Los métodos convencionales de extracción de características incluyen técnicas en el dominio del tiempo, dominio de la frecuencia y tiempo frecuencia. Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis, la asimetría \cite{zhu}.
+La primera de estas etapas resulta clave en el diagnóstico de fallas para maquinaria rotativa \cite{guo}, porque reduce la dimensión de los datos, afecta directamente el reconocimiento de patrones y, por lo tanto, la calidad del diagnóstico. Los métodos convencionales de extracción de características incluyen técnicas en el dominio del tiempo, dominio de la frecuencia y tiempo frecuencia. Diversos autores utilizan estadísticos basados en la forma de la onda en el dominio del tiempo, tales como el valor pico, la media cuadrática, el factor de cresta, el índice de curtosis y la asimetría \cite{zhu}.
  
 \paragraph{}
 Los principales métodos en el dominio de la frecuencia corresponden a: el cálculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo frecuencia, suelen ser utilizadas la transformada de Fourier de tiempo corto (STFT), la distribución Wigner-Ville (WVD) y la transformada de paquetes wavelet (WPT). También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
 
 \paragraph{}
-Respecto a las técnicas de inteligencia artificial, aplicadas como clasificador en este contexto, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, sistemas Adaptativos de inferencia neuro difusa (ANFIS) \cite{issam}, redes neuronales wavelet (WNN) \cite{wu} y otros. Estas herramientas reciben un entrenamiento con las características obtenidas de la señal de vibración, que ajusta diversos parámetros de sus algoritmos y que hace posible el aprendizaje de patrones ocultos en los datos. Una vez realizado el entrenamiento el clasificador está listo para que, con un nuevo conjunto de atributos de la señal, sea capaz de distinguir si el componente analizado tiene desperfectos o no.
+Respecto a las técnicas de inteligencia artificial, aplicadas como clasificador en este contexto, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, sistemas Adaptativos de inferencia neuro difusa (ANFIS) \cite{issam}, redes neuronales wavelet (WNN) \cite{wu} y otros. En la actualidad existe una tendencia en el uso de técnicas de \textit{deep learning}.
 
 \paragraph{}
-De acuerdo a Jia et al. \cite{jia}, los métodos inteligentes de diagnóstico de fallas más comunes emplean ANN's en el segundo paso, dando lugar a dos grandes desventajas. La primera es que la extracción de características depende de la experiencia en procesamiento de señales de los investigadores y se seleccionan según un problema de diagnóstico específico, por lo que probablemente no sean aptas para otros problemas. Y la segunda es que las ANN's utilizadas en estos métodos carecen de arquitecturas profundas, limitando la capacidad de estas para aprender las complejas relaciones no lineales en los problemas de diagnostico de fallas.
+De acuerdo a Jia et al. (2016) \cite{jia}, los métodos inteligentes de diagnóstico de fallas más comunes emplean ANN's en el segundo paso, dando lugar a dos grandes desventajas. La primera es que la extracción de características depende de la experiencia en procesamiento de señales de los investigadores y se seleccionan según un problema de diagnóstico específico, por lo que probablemente no sean aptas para otros problemas. Y la segunda es que las ANN's utilizadas en estos métodos carecen de arquitecturas profundas, limitando la capacidad de estas para aprender las complejas relaciones no lineales en los problemas de diagnóstico de fallas.
 
 \paragraph{}
-En función de las investigaciones anteriormente descritas, es que se propone un modelo de diagnóstico de fallas para rodamientos con la transformada de Fourier como técnica de extracción de caracterizaras de la señal, y una red neuronal profunda como clasificador. A diferencia de los instrumentos de clasificación mencionados previamente, la red neuronal profunda utiliza \textit{sparse} autoencoders que reducen la dimensión de las características a la vez que realizan un pre entrenamiento para la capa que realiza la clasificación, lo que mejora el tiempo de entrenamiento y la exactitud de los resultados. Además, se propone la importante adición de las severidades de falla a cada componente del rodamiento, mejorando el nivel de detalle en el que la red neuronal profunda diagnostica las fallas.
+Por lo tanto, es necesario extraer de forma adaptativa características ocultas en las señales de vibración que reflejen las diferentes condiciones de salud de la maquinaria, en lugar de extraer y seleccionar las características de forma manual. Las técnicas de \textit{deep learning} tienen el potencial de superar las deficiencias previamente mencionadas que poseen los métodos inteligentes de diagnóstico de fallas. Gracias a las arquitecturas profundas, las redes neuronales profundas (DNN) pueden capturar de forma adaptativa la información representativa de datos brutos a través de múltiples transformaciones no lineales y aproximar complejas funciones no lineales con un pequeño error.
+
+\paragraph{}
+En función de lo anterior, es que en el presente trabajo se propone un método inteligente de diagnóstico de fallas para rodamientos con la transformada de Fourier como técnica de extracción de características, y una DNN como clasificador. La red neuronal profunda utilizará \textit{sparse} autoencoders apilados para reducir la dimensión de las características a la vez que realizan un pre entrenamiento de las capas ocultas de la red. Además, se propone construir conjuntos de datos separados por velocidad, su respectiva carga, 3 severidades de falla para cada componente y un conjunto con todas las velocidades y cargas juntas.
 
 \newpage
 \section{Definición de objetivos}
@@ -130,16 +133,16 @@ Este plan de trabajo utiliza los objetivos específicos como una base, debido a 
 \section{Marco Teórico}
 
 \paragraph{}
-Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las herramientas y técnicas que se utilizarán en el desarrollo de esta investigación. Comenzando por los antecedentes de la utilización de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y finalmente el sustento matemático de ambos.
+Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las técnicas y herramientas que se utilizarán en el desarrollo de esta investigación. Comenzando por el empleo de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y finalmente el sustento matemático de ambos. Finalmente se encuentran la descripción del método inteligente de diagnóstico propuesto en esta investigación y todo lo relacionado al funcionamiento de la DNN como clasificador.
 
 \paragraph{}
-En la literatura especializada existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es \cite{mao}, donde se utiliza la transformada de Fourier para extraer características de una señal y usar la energía contenida en el espectro de frecuencias como entrada a 3 clasificadores: una red neuronal artificial, autoencoders apilados y una red con \textit{extreme learning machine}. Este ejemplo corresponde a un excelente antecedente debido a que implementa la misma técnica de extracción de características y clasificador que este trabajo, con la salvedad que sus autoencoders no incluyen la dispersión de los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que si se usa en esta investigación.
+En la literatura especializada existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al.(2017) \cite{mao}, que utiliza la transformada de Fourier para extraer características de una señal y usar la energía contenida en el espectro de frecuencias como entrada a 3 clasificadores: una ANN,  una DNN con autoencoders apilados y una máquina de aprendizaje extremo (ELM). Este ejemplo corresponde a un excelente antecedente debido a que implementa la misma técnica de extracción de características y clasificador que este trabajo, con la salvedad que sus autoencoders no incluyen la dispersión de los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
 
 \paragraph{}
-Otro ejemplo de un antecedente es \cite{kanpaj} en donde se postula que el análisis espectral o dominio de la frecuencia, es el enfoque más utilizado para detectar fallas en los rodamientos. Dado que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral además puede determinar en qué componente del rodamiento se encuentra el desperfecto. También se explica que la transformada rápida de Fourier es el algoritmo computacionalmente eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
+Otro ejemplo de un antecedente es Gupta et al.(2017) \cite{kanpaj}, en donde se postula que el análisis espectral es el enfoque más utilizado para detectar fallas en los rodamientos. El principal motivo es que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral además puede determinar en qué componente del rodamiento se encuentra el desperfecto. El autor también aclara que la transformada rápida de Fourier (FFT) es el algoritmo computacionalmente eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
 
 \paragraph{}
-En cuanto a los antecedentes de redes neuronales profundas podemos encontrar a \cite{ran}, donde proponen la utilización de una red neuronal profunda sin autoencoders para diagnosticar una señal de vibración de un rodamiento. Los autores no utilizan métodos de extracción de características, y solo dividen en segmentos la señal original para entregársela a la red neuronal profunda. El argumento de los autores es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y una gran capacidad de cómputo.
+En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al.(2017) \cite{ran}, que propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características, y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. El argumento de los autores es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y una gran capacidad de cómputo.
 
 \paragraph{}
 A continuación se encuentran los conceptos y definiciones matemáticas de las herramientas que se utilizarán en esta investigación, comenzando por la transformada de Fourier y sus variantes, seguido del \textit{deep learning} (o aprendizaje profundo), los autoencoders y su variante \textit{sparse} autoencoder.
@@ -217,23 +220,40 @@ X_{n}(e^{jw_{k}})=\sum_{m=-\infty}^{\infty}w(n-m)x(m)e^{-jw_{k}m}
 \paragraph{}
 Donde $n$ y $k$ $(1{\leq}k{\leq}N)$ son el tiempo discreto y la frecuencia respectivamente, y $N$ es la longitud de la ventana
 
+\subsection{Señal de vibración}
+\paragraph{}
+Los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o instalación, corrosión, poca lubricación y sobrecarga son algunos de ellos. Durante la operación del rodamiento se generan impulsos de banda ancha cuando la bola pasa por el defecto a una frecuencia determinada por la velocidad del eje, la geometría del rodamiento y la ubicación del defecto. La dificultad de diagnosticar la salud de los rodamientos reside en el hecho de que los patrones de un rodamiento defectuoso se extienden a través de una amplia banda de frecuencias, por lo que pueden ser fácilmente enmascarados por ruido y efectos de baja frecuencia.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.9]{./signalOF.eps}
+  \caption{4 tipos de señal de vibración de un rodamiento, con una carga de 3 hp y 0,54 mm de diámetro de falla.}
+  \label{fig:senales}
+\end{figure}
+
+\paragraph{}
+La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede trasladar la señal original al dominio de la frecuencia. Sin embargo, tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Figura \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente cuando las fallas son distribuidas y la señal tiene un comportamiento no lineal, el espectro de frecuencias varia en el tiempo y la técnica no es capaz de realzar las componentes impulsivas características de la falla.
+
+\paragraph{}
+En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentaran a la capa de entrada del clasificador.
+
 \subsection{Deep learning}
 \paragraph{}
 
-En los años recientes un nuevo enfoque de \textit{machine learning} denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. El \textit{deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, debido a la efectividad empírica de este respecto a enfoques alternativos en este ámbito. El desarrollo de esta tecnología fue potenciado en gran medida por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
+En los años recientes, un nuevo enfoque de \textit{machine learning} denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. El \textit{deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, debido a la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado en gran medida por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
 
 \paragraph{}
-Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) de acuerdo a Witten (2016) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. El \textit{deep learning} formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
+Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. El \textit{deep learning} formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
 
 \paragraph{}
-El desarrollo del \textit{deep learning} está relacionado con el uso de técnicas de aprendizaje no supervisado como los diferentes tipos de autoencoder que existen para realizar un pre entrenamiento de las capas ocultas. Y es que uno de los principales propósitos del aprendizaje no supervisado es producir buenas representaciones de los datos \cite{ranzato} que puedan ser usadas para la detección, reconocimiento, predicción o visualización. Las buenas representaciones eliminan variaciones irrelevantes de los datos de entrada, mientras que se preserva la información que es útil para la tarea a realizar.
+El desarrollo del \textit{deep learning} está relacionado con el uso de técnicas de aprendizaje no supervisado como los diferentes tipos de autoencoder que existen para realizar un pre entrenamiento de las capas ocultas. De acuerdo a Ranzato et al. (2008) \cite{ranzato}, uno de los principales propósitos del aprendizaje no supervisado es producir buenas representaciones de los datos que puedan ser usadas para la detección, reconocimiento, predicción o visualización. Las buenas representaciones eliminan variaciones irrelevantes de los datos de entrada, mientras que se preserva la información que es útil para la tarea a realizar.
 
 \paragraph{}
 El aprendizaje no supervisado tiene la habilidad de crear jerarquías de características profundas (deep features hierarchies) mediante el apilado de módulos no supervisados uno encima de otro, habilidad que es frecuentemente utilizada en el \textit{deep learning}. Un módulo no supervisado de un nivel en la jerarquía se alimenta con los vectores de representación producidos por el nivel inferior. Las representaciones de nivel superior captan las dependencias de alto nivel entre las variables de entrada, mejorando así la capacidad del sistema para capturar las regularidades subyacentes en los datos.
 
 \subsubsection{Autoencoders}
 \paragraph{}
-Un autoencoder (AE) es una red neuronal artificial no supervisada de tres capas que es entrenada para replicar los datos de entrada en la salida. El entrenamiento de los autoencoder es no supervisado en el sentido de que no requiere datos etiquetados para aprender a replicarlos en la salida. Este tipo especial de red neuronal es utilizada para pre entrenar las capas ocultas de las redes neuronales profundas, de manera que encuentran pesos sinápticos que agilizan la búsqueda de mínimos globales para la función de costos. Los AE mejoran la capacidad de generalización en la tarea de clasificar y reducen la dimensión de los datos de entrada a medida que se transforman en las capas ocultas.
+Un autoencoder (AE) es una red neuronal artificial no supervisada de tres capas que es entrenada para replicar los datos de entrada en la salida. El entrenamiento de los AE es no supervisado en el sentido de que no requiere datos etiquetados para aprender a replicarlos en la salida. Este tipo especial de red neuronal es utilizada para pre entrenar las capas ocultas de las redes neuronales profundas, de manera que encuentran los mejores pesos sinápticos posibles que agilizan la búsqueda de mínimos globales para la función de costos. 
 
 \begin{figure}[ht]
   \centering
@@ -243,7 +263,7 @@ Un autoencoder (AE) es una red neuronal artificial no supervisada de tres capas 
 \end{figure}
 
 \paragraph{}
-Es posible identificar dos estructuras en la red autoencoder, por una parte el codificador en el lado izquierdo de la Fig. \ref{fig:ae}, que mapea los datos de entrada desde un espacio de alta dimensión en códigos de un espacio de baja dimensión. Por otra parte, que se encuentra al lado derecho de la Fig. \ref{fig:ae}, reconstruye los datos de entrada a partir de los códigos obtenidos por la capa oculta llevándolos a su dimensión original \cite{shao}. Ahora que está claro cuál es el encoder y el decoder, podemos definir matemáticamente ambas estructuras.
+Es posible identificar dos estructuras en la red autoencoder, por una parte el codificador en el lado izquierdo de la Figura \ref{fig:ae}, que mapea los datos de entrada desde un espacio de alta dimensión en códigos de un espacio de baja dimensión. Por otra parte, que se encuentra al lado derecho de la Figura \ref{fig:ae}, reconstruye los datos de entrada a partir de los códigos obtenidos por la capa oculta llevándolos a su dimensión original \cite{shao}. Ahora que está claro cuál es el encoder y el decoder, podemos definir matemáticamente ambas estructuras.
 
 \paragraph{}
 Dadas las muestras de entrenamiento $\textbf{x}=(x_{1},x_{2},...,x_{n})$, donde la muestra $x_{n}\in \mathbb{R}^{m}$, se define la red encoder como una función codificadora $f_{\theta}$ (Ecc. \ref{f}) cuya tarea es representar estas muestras en un vector con códigos de menor dimensión denominado $\textbf{h}=(h_{1},h_{2},...,h_{n})$, en donde $h_{n} \in \mathbb{R}^{d}$ y $d<m$. La matriz de pesos sinápticos de la función encoder corresponde a $\textbf{w}^{(1)} = (w_{1}^{(1)},w_{2}^{(1)},...,w_{m}^{(1)})$ con $w_{m}^{(1)}\in \mathbb{R}^{d}$, mientras que $\textbf{b}^{(1)}=(b_{1}^{(1)},b_{2}^{(1)},...,b_{d}^{(1)})^T$ representa el arreglo de \textit{biases} pertenecientes a las neuronas de la capa oculta. Los pesos sinápticos y los \textit{biases} conforman $\theta$, el conjunto de parámetros a minimizar en la función de costos que será detallada más adelante.
@@ -264,7 +284,7 @@ f_{\theta}(\textbf{x})=s_{f}(\textbf{w}^{(1)}\textbf{x}+\textbf{b}^{(1)})
 \end{equation}
 
 \paragraph{}
-La red decoder se define como una función de reconstrucción denotada como $g_{\theta'}$ (Ecc. \ref{g}), dicha función mapea el vector $\textbf{h}$ desde el espacio de baja dimensión en el que se encuentra, de vuelta al espacio de alta dimensión original realizando así la reconstrucción. Los datos reconstruidos se denotan mediante $\hat{\textbf{x}}=(\hat{x}_{1},\hat{x}_{2},...,\hat{x}_{n})$ (Ecc. \ref{xhat}), en donde $\hat{x}_{n}\in \mathbb{R}^{m}$. El primer parámetro que compone a $\theta'$ perteneciente al decoder, es la matriz de pesos sinápticos de salida $\textbf{w}^{(2)} = (w_{1}^{(2)},w_{2}^{(2)},...,w_{m}^{(2)})$ con $w_{m}^{(2)}\in \mathbb{R}^{d}$. Mientras que el segundo, es el arreglo de \textit{biases} $\textbf{b}^{(2)}=(b_{1}^{(2)},b_{2}^{(2)},...,b_{d}^{(2)})^T$. 
+La red decoder se define como una función de reconstrucción denotada como $g_{\theta'}$ (Ecc. \ref{g}), dicha función mapea el vector $\textbf{h}$ desde el espacio de baja dimensión en el que se encuentra, de vuelta al espacio de alta dimensión original realizando así la reconstrucción. Los datos reconstruidos se denotan mediante $\hat{\textbf{x}}=(\hat{x}_{1},\hat{x}_{2},...,\hat{x}_{n})$ (Ecc. \ref{xhat}), en donde $\hat{x}_{n}\in \mathbb{R}^{m}$. El primer parámetro que compone a $\theta'$ (Ecc. \ref{teta2}) perteneciente al decoder, es la matriz de pesos sinápticos de salida $\textbf{w}^{(2)} = (w_{1}^{(2)},w_{2}^{(2)},...,w_{m}^{(2)})$ con $w_{m}^{(2)}\in \mathbb{R}^{d}$. Mientras que el segundo, es el arreglo de \textit{biases} $\textbf{b}^{(2)}=(b_{1}^{(2)},b_{2}^{(2)},...,b_{d}^{(2)})^T$. 
 \begin{equation}
 \label{xhat}
 \hat{\textbf{x}}=g_{\theta'}(\textbf{h})
@@ -289,7 +309,12 @@ J_{mse}(\theta,\theta')=\frac{1}{2n}\sum_{i=1}^{n}{\|x_{i}-\hat{x}_{i}\|}^2
 \end{equation}
 
 \paragraph{}
-El proceso de aprendizaje del autoencoder puede ser visto como un problema de optimización porque tiene como objetivo encontrar los conjuntos de parámetros $\theta$ y $\theta'$ que minimizan el error de reconstrucción. La función de costos que debemos optimizar (Ecc. \ref{fcost}), también llamada función de pérdida, se compone por el error de reconstrucción (Ecc. \ref{xi}) y otro término llamado \textit{weight decay} (Ecc. \ref{weight}), que penaliza los pesos de entrada y salida para evitar el sobre entrenamiento u \textit{overfitting}.
+El proceso de aprendizaje del autoencoder puede ser visto como un problema de optimización porque tiene como objetivo encontrar valores que se aproximan al mínimo global de la función de costos. La función que debemos optimizar (Ecc. \ref{fcost}), también llamada función de pérdida, se compone por el error de reconstrucción (Ecc. \ref{xi}) y otro término llamado \textit{weight decay} (Ecc. \ref{weight}). De acuerdo a \cite{haykin}, el término \textit{weight decay} fuerza a algunos de los pesos sinápticos que tienen una pobre capacidad de generalización a tomar valores cercanos a 0,  evitando el sobreentrenamiento de la red.
+
+\begin{equation}
+\label{fcost}
+\phi_{AE}(\theta,\theta')= J_{mse}(\theta,\theta') + J_{weight}(\theta,\theta')
+\end{equation} 
 
 \begin{equation}
 \label{weight}
@@ -297,20 +322,12 @@ J_{weight}(\theta,\theta')=\frac{\lambda}{2}\sum_{l=1}^{2}\sum_{i=1}^{s_l}\sum_{
 \end{equation}
 
 \paragraph{}
-El término \textit{weight decay} de acuerdo a \cite{haykin}, fuerza a algunos de los pesos sinápticos a tomar valores cercanos a 0, mientras que permite a otros pesos a mantener sus relativos grandes valores. Algunos pesos sinapticos tienen muy poca influencia en el desempeño de la red neuronal y debido a que tienen una pobre capacidad de generalización, provocan que la red se sobre entrene. En la Ecc. \ref{weight}, $\beta$ comúnmente parámetro de ajuste de pesos, es el encargado de penalizar a los pesos sinápticos.
-
-\begin{equation}
-\label{fcost}
-\phi_{AE}(\theta,\theta')= J_{mse}(\theta,\theta') + J_{weight}(\theta,\theta')
-\end{equation} 
-
-\paragraph{}
-Ahora que hemos definido la función de costo (Ecc. \ref{fcost}) de los autoencoder estándar, generalmente se utiliza el algoritmo \textit{backpropagation} como en muchas otras técnicas de \textit{machine learning} con el fin de actualizar sus pesos sinápticos y \textit{biases} y así disminuir en la mayor medida posible el error de reconstrucción. Este algoritmo calcula el gradiente a la función de costos para encontrar direcciones que permiten actualizar los pesos y \textit{biases} iniciales, de manera que con cada iteración se acerquen más al mínimo global de la función. Una vez hallados los parámetro óptimos, la capa oculta $\textbf{h}$ del autoencoder es capaz de representar a los datos de entrada en una dimensión menor que la original sin perder información relevante para el reconocimiento de patrones.
+Resulta común aplicar el algoritmo \textit{backpropagation}, ampliamente utilizado en \textit{machine learning}, a la función de costos de los autoencoder estándar para encontrar valores mínimos. Este algoritmo calcula el gradiente a la función de costos para encontrar direcciones, las cuales permiten actualizar los pesos y \textit{biases} iniciales, de manera que con cada iteración se acerquen más al mínimo global de la función. Obtenidos los mejores valores posibles, la capa oculta $\textbf{h}$ del autoencoder es capaz de representar a los datos de entrada en una dimensión menor que la original sin perder información relevante para el reconocimiento de patrones.
 
 \subsubsection{Sparse autoencoders}
 
 \paragraph{}
-Podemos definir al \textit{sparse} autoencoder, desde ahora denominado SAE, como una extensión del autoencoder estándar, que obliga a sus unidades de la capa oculta a mantener una baja activación media. Creando así características dispersas que logran una mejor generalización por parte del clasificador \cite{du}. El \textit{sparse} autoencoder impone un término de penalización a las unidades de la capa oculta, forzando a que la activación media de cada unidad sea cercana al parámetro de dispersión $\rho$ que generalmente toma un valor muy pequeño cercano a 0. 
+Podemos definir al \textit{sparse} autoencoder, desde ahora denominado SAE, como una extensión del autoencoder estándar que obliga a sus unidades de la capa oculta a mantener una baja activación media. Creando así, características dispersas que logran una mejor generalización en la tarea de clasificar\cite{du}. El SAE impone un término de penalización (Ecc. \ref{spterm}) a las unidades de la capa oculta, forzando a que la activación media de cada unidad sea cercana al parámetro de dispersión $\rho$ que generalmente toma un valor muy pequeño cercano a 0. 
 
 \begin{equation}
 \label{sparse}
@@ -320,6 +337,7 @@ Podemos definir al \textit{sparse} autoencoder, desde ahora denominado SAE, como
 La restricción se hace efectiva agregando el término de penalización a la función de costos del autoencoder estándar $\phi_{AE}$ (Ecc. \ref{fcost}), resultando en una nueva función de costos $\phi_{SAE}$ (Ecc. \ref{sparse}).
 
 \begin{equation}
+\label{spterm}
 J_{sparse}(\theta,\theta')=\beta\sum_{j=1}^{d}KL(\rho||\hat{\rho_{j}})
 \end{equation} 
 
@@ -334,11 +352,10 @@ KL(\rho||\hat{\rho_{j}})={\rho} \log\frac{\rho}{\hat{\rho_{j}}}+(1-\rho)\log\fra
 \end{equation} 
 
 \paragraph{}
-$J_{sparse}$ corresponde al término incorporado que impone la restricción de dispersión, en donde $\beta$ controla el peso de este nuevo término y $KL(\rho||\hat{\rho_{j}})$ (Ecc. \ref{kl}) es la divergencia Kullback-Leibler entre una variable aleatoria Bernoulli con media $\rho$ y una variable aleatoria Bernouilli media $\hat{\rho_{j}}$. La divergencia KL es una función estándar para medir la diferencia entre dos distribuciones de probabilidad diferentes. 
-Definiremos $\hat{\rho_{j}}$ (Ecc. \ref{rho}) como la probabilidad media de activación en la j-ésima unidad de la capa oculta $\textbf{h}$ a través las $n$ muestras, y $\rho$ la probabilidad de activación deseada ($\rho\ll1$) \cite{song}. 
+$J_{sparse}$ impone la restricción de dispersión, $\beta$ controla el peso de esta restricción y $KL(\rho||\hat{\rho_{j}})$ (Ecc. \ref{kl}) es la divergencia Kullback-Leibler entre una variable aleatoria Bernoulli con media $\rho$ y una variable aleatoria Bernouilli media $\hat{\rho_{j}}$. La divergencia KL es una función estándar para medir la diferencia entre dos distribuciones de probabilidad diferentes. Definiremos $\hat{\rho_{j}}$ (Ecc. \ref{rho}) como la probabilidad media de activación en la j-ésima unidad de la capa oculta $\textbf{h}$ a través las $n$ muestras, y $\rho$ la probabilidad de activación deseada ($\rho\ll1$) \cite{song}. 
 
 \paragraph{}
-Una vez que hemos definido el término de dispersión y lo hemos incorporado a la función de costos del autoencoder (Ecc. \ref{scost}), aplicaremos el método del gradiente conjugado para actualizar los pesos y \textit{biases}. El método del gradiente conjugado pertenece a una clase de métodos de optimización de segundo orden conocidos colectivamente como métodos de dirección conjugada \cite{haykin}. La motivación para utilizar este método es que converge mas rápido hacia un mínimo que el descenso del gradiente, y a la vez se evitan los requisitos de computación y almacenamiento del hessiano, como lo requiere el método de Newton.
+Una vez que hemos definido el término de dispersión y lo hemos incorporado a la función de costos del autoencoder (Ecc. \ref{scost}), aplicaremos el método del gradiente conjugado para actualizar los pesos y \textit{biases}. El método del gradiente conjugado pertenece a una clase de métodos de optimización de segundo orden conocidos colectivamente como métodos de dirección conjugada \cite{haykin}. La motivación para utilizar este método es que converge más rápido hacia un mínimo que el descenso del gradiente, y a la vez se evitan los requisitos de computación y almacenamiento del hessiano, como lo requiere el método de Newton.
 
 \begin{equation}
 \label{scost}
@@ -397,10 +414,8 @@ Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \texti
 \end{figure}
 
 \section{Experimento y resultados}
-\label{sec:exp}
 
-\subsection{Datos experimentales}
-\label{sec:datos}
+\subsection{Origen de los datos}
 \paragraph{}
 Los datos utilizados en este trabajo corresponden a señales de vibración de un rodamiento de bolas, obtenidos de un experimento realizado por el Bearing Data Center of Case Western Reserve University \cite{case}. Los aparatos empleados en este laboratorio de vibraciones corresponden a: un motor de 2 hp a la izquierda del banco de pruebas (como se aprecia en la Figura \ref{fig:bearing}), un transductor/codificador de torque en el centro y un dinamómetro a la derecha. Un acelerómetro es el encargado de registrar las señales de vibración emitidas por el rodamiento que soporta el eje del motor.
 
@@ -412,22 +427,19 @@ Los datos utilizados en este trabajo corresponden a señales de vibración de un
 \end{figure}
 
 \paragraph{}
-El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctricas que generaron defectos en un sólo punto, con tres diámetros de falla: 0.007, 0.014 y 0.021 pulgadas. Estos defectos son inducidos bajo velocidades de rotación variables de 1730, 1750 1772 y 1792 RPM y 4 diferentes cargas de 0, 1, 2 y 3 caballos de fuerza respectivamente. Por lo que los datos pueden ser organizados en conjuntos de datos separados por velocidad/carga como se detallará en la siguiente sección. La frecuencia de muestreo es de 12 kHz para las cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). 
+El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctricas que generaron defectos en un único punto, con tres diámetros de falla: 0,007, 0,014 y 0,021 pulgadas. Estos son inducidos bajo las velocidades de rotación 1.730, 1.750 1.772 y 1.792 rpm y 4 diferentes cargas de 0, 1, 2 y 3 hp respectivamente. Por lo que los datos pueden ser organizados en conjuntos de datos separados por velocidad/carga como se detallará en la siguiente sección. La frecuencia de muestreo es de 12 kHz para las cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). 
 
 \paragraph{}
-El motivo para utilizar esta base de datos es que sirve como punto de comparación con investigaciones que realizan diagnóstico de fallas a rodamientos. Permitiendo sacar conclusiones acerca de los tiempos de entrenamiento, desempeño del diagnóstico y ventajas y desventajas del modelo propuesto. Además, al tener tipos de fallas con severidades, es posible diagnosticar un problema de mayor complejidad y llevar al límite la capacidad de diagnóstico del modelo.
+El principal motivo para utilizar esta base de datos es que sirve como punto de comparación para este trabajo, permitiendo efectuar el contraste con investigaciones similares que realizan diagnóstico de fallas inteligente a rodamientos. De esta manera, es posible desarrollar conclusiones a cerca del desempeño de la configuración propuesta y de la aplicación del \textit{deep learning} a este tipo de problemas. Además, al tener tipos de fallas con severidades, es posible elevar el grado de complejidad del problema a la vez que se prueba la capacidad de reconocimiento del modelo propuesto.
 
-\subsection{Construcción de los datasets}
+\subsection{Extracción de características}
 \label{sec:datasets}
 
 \paragraph{}
-Con el objetivo de probar la capacidad de diagnósticos del modelo, se utilizarán 5 conjuntos de datos separados por velocidad/carga, tipo de falla y severidad. En su interior hay 10 carpetas con las señales de vibración, por ejemplo: para el tipo de falla anillo interno habrá 3 carpetas con las señales de vibración de las tres severidades de la falla. El \textit{dataset} E, es especial debido a que tiene las 4 velocidades juntas, por lo que en las 10 carpetas se encuentran las señales de vibración por tipo de falla y severidad para las 4 velocidades; resultando en el \textit{dataset} más grande y complejo de diagnosticar.
+Cinco conjuntos de datos, ilustrados en la Tabla \ref{table:tdatasets}, serán utilizados en este trabajo para probar el rendimiento del método propuesto. Los \textit{datasets} poseen 10 etiquetas de clasificación que corresponden a los 10 estados de salud del rodamiento, separados bajo las velocidades de eje de 1.797, 1.772, 1.750 y 1.720 rpm y las cargas 0, 1, 2 y 3 hp correspondientemente. El conjunto E es el de mayor tamaño porque reúne las 4 velocidades y es, por lo tanto, el que más se aproxima a una señal de vibración de un rodamiento sometido a carga y velocidad variables.
 
 \paragraph{}
-Las señales utilizadas para construir los conjuntos de datos corresponden a las que fueron medidas en el \textit{drive end} (DE) del sistema Fig. \ref{fig:bearing}. La principal razón para utilizar estas señales es que el acelerómetro con el que se tomaron las muestras se encontraba cerca del rodamiento observado, por lo que las señales son menos afectadas por la atenuación y el ruido. En la Tabla \ref{table:tdatasets} se aprecia cada uno de los 5 conjuntos de datos, con 58 muestras por señal consecuencia de un tamaño de segmentación igual a 2048 obtenido de un largo proceso de \textit{tunning}.
-
-\paragraph{}
-Como se explicaba en párrafos anteriores, el \textit{dataset} E es el más grande porque reúne las 5 cargas y es que mas nos interesa de las pruebas porque los rodamientos en un sistema real trabajan bajo velocidades y cargas variables. Lo que implica que la señal de vibración resultante es no lineal y no estacionaria, de manera que el diagnóstico de fallas se torna complejo como se explicaba en la introducción de este trabajo. Otro \textit{dataset} relevante es el A, porque tiene carga 0 y hace que la señal que es modulada en amplitud refleje en forma tenue los fallos incipientes en los componentes del rodamiento.
+El largo de la señal de vibración bruta es de 120.832 puntos, resultado de 10,06 segundos de medición, y el tamaño de segmentación de las subseñales es de 2.048 puntos (unos 170,6 ms). Este tamaño de segmentación corresponde entre 5,12 a 4,9 veces el periodo de rotación, considerando que este fluctúa entre 400 y 418 puntos de la señal. Con dicho tamaño de segmentación, tal como lo indica la Tabla \ref{table:tdatasets}, la cantidad de muestras que tienen los 4 primeros \textit{datasets} es de 590 y 2.360 en el caso del E.
 
 \begin{table}
 \scalebox{0.9}{
@@ -435,70 +447,33 @@ Como se explicaba en párrafos anteriores, el \textit{dataset} E es el más gran
 \toprule
 Dataset & Carga (hp) & Cantidad de muestras & Tipo de falla & Diámetro de falla (in) & Etiqueta\\
 \midrule
-A/B/C/D/E & 0/1/2/3/0-3 & 58/58/58/58/232 & RF & 0.007 & 1\\
+A/B/C/D/E & 0/1/2/3/0-3 & 59/59/59/59/236 & RF & 0,007 & 1\\
 \addlinespace
-& & 58/58/58/58/232 & RF & 0.014 & 2\\
+& & 59/59/59/59/236 & RF & 0,014 & 2\\
 \addlinespace
-& & 58/58/58/58/232 & RF & 0.021 & 3\\
+& & 59/59/59/59/236 & RF & 0,021 & 3\\
 \addlinespace
-& & 58/58/58/58/232 & IF & 0.007 & 4\\
+& & 59/59/59/59/236 & IF & 0,007 & 4\\
 \addlinespace
-& & 58/58/58/58/232 & IF & 0.014 & 5\\
+& & 59/59/59/59/236 & IF & 0,014 & 5\\
 \addlinespace
-& & 58/58/58/58/232 & IF & 0.021 & 6\\
+& & 59/59/59/59/236 & IF & 0,021 & 6\\
 \addlinespace
-& & 58/58/58/58/232 & OF & 0.007 & 7\\
+& & 59/59/59/59/236 & OF & 0,007 & 7\\
 \addlinespace
-& & 58/58/58/58/232 & OF & 0.014 & 8\\
+& & 59/59/59/59/236 & OF & 0,014 & 8\\
 \addlinespace
-& & 58/58/58/58/232 & OF & 0.021 & 9\\
+& & 59/59/59/59/236 & OF & 0,021 & 9\\
 \addlinespace
-& & 58/58/58/58/232 & N & N/A & 10\\
+& & 59/59/59/59/236 & N & N/A & 10\\
 \bottomrule
 \end{tabular}}
-\caption{Descripción de los data sets del experimento.}
+\caption{Descripción de los 5 \textit{datasets}.}
 \label{table:tdatasets}
 \end{table}
 
-\subsection{Preproceso de los datos}
-\label{sec:preproc}
-
 \paragraph{}
-Esta sección, describe cómo las señales de cada \textit{dataset} son cargadas, cortadas, concatenadas y transformadas para poder entrenar al clasificador. El primer paso que es cargar las señales, es realizado por una función en MATLAB que ingresa a cada carpeta del \textit{dataset} para leer las señales y ordenarlas en una matriz de dimensiones determinadas por el largo del segmento y la cantidad de muestras, por ejemplo $2048\times58$. El tamaño de las señales de vibración es variable en la base de datos original, por lo que es necesario tomar el mínimo de muestras por señal y que corresponde a 120.000 puntos.
-
-\paragraph{}
-La idea de utilizar este mínimo es de aplicarlo como tamaño fijo para todas las señales y así evitar el sesgo, por una señal que tenga más muestras, en el aprendizaje del clasificador. Una vez que todas las señales son cargadas y ordenadas como matrices, es momento de concatenarlas para formar una gran matriz cuyas filas son la cantidad de muestras y las columnas son el tamaño del segmento. Posterior a la unión de las señales, continúa el proceso de aplicar la transformada rápida de Fourier y obtener el espectro de energía como se detalla en la siguiente sección.
-
-\subsubsection{FFT y energía de las componentes de frecuencia}
-\paragraph{}
-Una vez obtenida la matriz con las señales de un determinado \textit{dataset}, se aplica la transformada rápida de Fourier (FFT) de manera que se consiguen las componentes de frecuencias de dichas señales. A estas componentes se les aplica valor absoluto y elevan al cuadrado para conseguir la energía del espectro de Fourier. Dado que la transformada de Fourier tiene la propiedad de simetría, es posible tomar la primera parte de la energía del espectro, resultando en 1024 puntos por muestra.
-
-\subsubsection{Señal de vibración}
-\paragraph{}
-Como se explicó en la introducción, los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o instalación, corrosión, poca lubricación y sobrecarga son algunos de ellos. Durante la operación del rodamiento se generan impulsos de banda ancha cuando la bola pasa por el defecto a una frecuencia determinada por la velocidad del eje, la geometría del rodamiento y la ubicación del defecto. La dificultad de diagnosticar la salud de los rodamientos reside en el hecho de que los patrones de un rodamiento defectuoso se extienden a través de una amplia banda de frecuencias, por lo que pueden ser fácilmente enmascarados por ruido y efectos de baja frecuencia.
-
-\paragraph{}
-La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede llevar la señal original al dominio de la frecuencia. Sin embargo, tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Fig. \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente para defectos en el anillo interno (IF), los cuales emiten señales de vibración muy tenues durante la etapa incipiente de falla ya que tienen un mayor número de segmentos de transferencia \cite{rai}. 
-
-\paragraph{}
-En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentaran a la capa de entrada del clasificador.
-
-\begin{figure}[ht]
-  \centering
-    \includegraphics[scale=0.9]{./signalOF.eps}
-  \caption{4 tipos de señal de vibración de un rodamiento, con una carga de 3 hp y 0,54 mm de diámetro de falla.}
-  \label{fig:senales}
-\end{figure}
-
-
-
-\subsubsection{Reordenamiento, muestras de entrenamiento y testing}
-\paragraph{}
-Tal como lo indica el nombre de la subsección, este apartado explica el funcionamiento del re ordenamiento de las muestras de un \textit{dataset} y la división de las muestras en datos de entrenamiento y de \textit{testing}. Una vez que el proceso de extracción de características termina, el algoritmo codificado en MATLAB procede a reordenar las muestras y separarlas datos de \textit{training} y \textit{testing} con sus respectivas etiquetas. Los porcentajes que serán probados, y que afectan significativamente al modelo son los siguientes: 0.5, 0.6, 0.7 , 0.75 y 0.8.
-
-\subsubsection{Ambiente de desarrollo}
-\paragraph{}
-La red neuronal profunda es construida con la \textit{toolkit} de MATLAB versión R2016a, y considera dos \textit{sparse} autoencoder apilados y una capa de neuronas con la función de transferencia softmax. La CPU utilizada para ejecutar estos algoritmos corresponde a un AMD(R) A10-5750M(TM) funcionando con el sistema operativo Windows 10(TM). 
+Luego de obtener las subseñales de 2.048 puntos, se les aplica la transformada rápida de Fourier (FFT) obteniéndose la misma cantidad de componentes de frecuencias. Dado que la transformada tiene la propiedad de simetría, es posible tomar los primeros 1.024 coeficientes de Fourier para cada muestra. A continuación se aplica valor absoluto a las componentes y se elevan al cuadrado para conseguir la energía del espectro de Fourier, dando lugar a las características.
 
 \begin{figure}[ht]
   \centering
@@ -507,13 +482,47 @@ La red neuronal profunda es construida con la \textit{toolkit} de MATLAB versió
   \label{fig:block}
 \end{figure}
 
-\subsection{Evaluando el desempeño}
+\subsection{Proceso de entrenamiento y testing}
+\paragraph{}
+Obtenidas las características, se reordenan de manera aleatoria las nuevas muestras contenidas en los conjuntos de datos y se divide cada uno estos en dos partes: un conjunto de entrenamiento con 413 (70\%) muestras y uno de testing con 177 (30\%) muestras. El conjunto de entrenamiento tiene como objetivo encontrar los mejores parámetros posibles de las capas ocultas de la DNN (pesos y biases). El de testing es usado para medir la exactitud (Ecc. \ref{acc}) del modelo propuesto en este trabajo.
+
+\begin{table}
+\centering
+\scalebox{0.9}{
+\begin{tabular}[c]{c c c c c c c}
+\toprule
+Nro & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & $\rho_{2}$\\
+\midrule
+1 & 0,0033 & 95,5766 & 0,2125 & 0,0039 & 94,3802 & 0,0817\\
+\addlinespace
+2 & 0,0097 & 95,0160 & 0,1137 & 0,0137 & 95,2099 & 0,0945\\
+\addlinespace
+3 & 0,0029 & 94,3067 & 0,3486 & 0,0207 &	94,0471 & 0,3009\\
+\addlinespace
+4 & 0,0098 & 95,8236 & 0,2339 & 0,0041 & 98,9872 & 0,1407\\
+\addlinespace
+5 & 0,0071 & 91,5199 & 0,2265 & 0,0175 & 95,7748 & 0,3659\\
+\addlinespace
+6 & 0,0140 & 98,6471 & 0,2759 & 0,0113 & 94,0828 & 0,2092\\
+\addlinespace
+7 & 0,0185 & 94,4216 & 0,0609 & 0,0128 & 96,1257 & 0,2855\\
+\addlinespace
+8 & 0,0162 & 96,6491 & 0,1300 & 0,0046 & 97,8639 & 0,3855\\
+\addlinespace
+9 & 0,0150 & 98,2110 & 0,3663 & 0,0122 & 93,6157 & 0,2247\\
+\addlinespace
+10 & 0,0004 & 95,9003 & 0,1371 & 0,0123 & 94,4408 & 0,0623\\
+\bottomrule
+\end{tabular}}
+\caption{10 conjuntos de hiperparámetros para los SAE.}
+\label{table:parameters}
+\end{table}
 
 \paragraph{}
-Para evaluar el desempeño del modelo respecto a la calidad del diagnóstico se emplearan métricas que son habitualmente usadas en problemas de clasificación multiclase. Variadas investigaciones usan la validación cruzada para evaluar el aprendizaje del modelo, sin embargo, en este trabajo solo se efectuaran 30 ejecuciones por \textit{dataset} con el fin evaluar el rendimiento del modelo. A estas ejecuciones se les calculará la exactitud por ejecución, la exactitud (Ecc. \ref{acc}) promedio por clase, el F-score (Ecc. \ref{fscore}) o media armónica por clase y el F-score promedio por ejecución.
+Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por dataset sin esta metodología de prueba. A estas ejecuciones se les calcula la exactitud por ejecución, la exactitud (Ecc. \ref{acc}) promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score promedio por ejecución.
 
 \paragraph{}
-las Ecuaciones \ref{precision}, \ref{sensibilidad}, \ref{fscore} y \ref{acc} son calculadas con: verdaderos positivos (TP), verdaderos negativos (TN), falsos positivos (FP) y falsos negativos (FN) que plasman la calidad de la predicción realizada por el clasificador. La precisión (Ecc. \ref{precision}) representa el ratio o razón entre los correctamente identificados o verdaderos positivos y todos los positivos, mientras que la sensibilidad (Ecc. \ref{sensibilidad}) representa el ratio o razón entre los correctamente identificados y los negativos. El $F_{1}$score es la media armónica de los resultados de clasificación, y se usa este tipo de media en vez de la media aritmética porque es ideal cuando se trabaja con ratios o proporciones.
+Las Ecuaciones \ref{precision}, \ref{sensibilidad}, \ref{fscore} y \ref{acc} son calculadas con: verdaderos positivos (TP), verdaderos negativos (TN), falsos positivos (FP) y falsos negativos (FN), y expresan la calidad del diagnóstico. La precisión (Ecc. \ref{precision}) representa el ratio o razón entre los correctamente identificados o verdaderos positivos y todos los positivos, mientras que la sensibilidad (Ecc. \ref{sensibilidad}) representa el ratio entre los correctamente identificados y los negativos. El $F_{1}$score es la media armónica de los resultados de clasificación, y se usa este tipo de media en vez de la media aritmética porque es ideal cuando se trabaja con proporciones.
 
 \begin{equation}
 \label{precision}
@@ -535,25 +544,8 @@ F_{1}score = \frac{2\cdot{Precisi\acute{o}n}\cdot{Sensibilidad}}{Precisi\acute{o
 Exactitud = \frac{VP+VN}{VP+FP+VN+FN}
 \end{equation} 
 
-\subsection{Resultados}
 \paragraph{}
-Realizando las 30 ejecuciones para cada conjunto de datos, la red neuronal profunda se encargó de aprender complejas relaciones no lineales entre las características que le fueron entregadas. Logrando muy buenos resultados en especial para los dos \textit{datasets} más complicados (A y E) de acuerdo a las gráficas de exactitud y $F_{1}$score. En las pruebas fueron puestas apruebas distintas topologías, distintos tamaños de segmento, diferentes proporciones de entrenamiento y \textit{testing} y distintos valores para los hiperparámetros. Estos últimos corresponden a los términos que penalizan la función de costo de los \textit{sparse} autoencoder: $\lambda$ (weight decay), $\beta$ (spasity regularization) y $\rho$ (sparsity proportion).
-
-\paragraph{}
-Fue realmente complicado encontrar parámetros que mejoraran sustancialmente la exactitud en los \textit{datasets} de mayor interés. A pesar de esto, fue posible hallar un conjunto que diera buenos resultados, para el primer SAE: $\lambda=0.022$, $\beta=0.97$ y $\rho=0.02$ y para el segundo SAE $\lambda=0.0002$, $\beta=0.97$ y $\rho=0.25$. Respecto al tamaño de los segmentos, el mejor resultó en 2048 puntos por segmento tal como se comentaba en la descripción de los \textit{datasets}.
-
-\paragraph{}
-La cantidad óptima de unidades en la primera capa oculta resulto en 102 y para la segunda capa oculta 25, por lo que la red neuronal profunda llevó las características originales desde un espacio de alta dimensión a uno de menor dimensión, omitiendo las variaciones irrelevantes para la detección de patrones. La proporción ideal de muestras para entrenamiento y \textit{testing} fue de 70\% y 30\% respectivamente. Los resultados de las ejecuciones con estas configuraciones pueden ser observados en las gráficas que a continuación se discutirán.
-
-\paragraph{}
-Los resultados fueron muy buenos considerando la complejidad del problema
-Los, el dataset A obtuvo en promedio para las 30 ejecuciones 99.8084\% de exactitud con una desviación estándar pequeña, por lo que el modelo entrega un buen diagnostico incluso en velocidad constante sin carga. Sorprendentemente en el dataset C la red neuronal profunda logra reconocer correctamente el estado de salud del rodamiento en cada una de las ejecuciones, superando a los resultados de diagnostico de \cite{jia} para ese dataset. 
-
-\paragraph{}
-El resultado que mayor satisfacción entrega, es el del dataset E, con un 99.9473 de exactitud promedio casi igualando a los resultados de una investigación a nivel de doctorado como lo es la de \cite{jia}. agregar explicacion
-
-\paragraph{}
-La Fig. \ref{fig:AccG} refleja el comportamiento de la exactitud a través de las ejecuciones revelando las ejecuciones donde baja considerablemente la exactitud y empeora el promedio de la prueba. la Fig. \ref{fig:Acc} detalla la exactitud promedio para las 10 clases, revelando las clases con mayores dificultades para el clasificador, como la clase 2, 3, 7 y 8 que corresponden a la bola y al anillo externo.
+La red neuronal profunda es construida con la \textit{toolkit} de MATLAB versión R2016a, y considera dos \textit{sparse} autoencoder apilados y una capa de neuronas con la función de transferencia softmax. La CPU utilizada para ejecutar estos algoritmos corresponde a un AMD(R) A10-5750M(TM) funcionando con el sistema operativo Windows 10(TM). 
 
 \begin{table}
 \centering
@@ -668,16 +660,14 @@ Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Techno
 
 \bibitem{haykin} Haykin, Simon. (2009). \textit{Neural Networks and Learning Machines} (3rd ed., pp.), Pearson.
 
-\bibitem{ranzato} Marc’Aurelio Ranzato, Y-Lan Boureau \& Yann LeCun (2008). Sparse feature learning for deep belief networks. Adv.NeuralInf.Process.Sys. 1185–1192.
+\bibitem{ranzato} Marc’Aurelio Ranzato, Y-Lan Boureau \& Yann LeCun (2008). Sparse feature learning for deep belief networks. \textit{Advances in Neural Information Processing Systems}, \textit{20}, 1185–1192.
 
-\bibitem {du}Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng y Meiqin Che, \textit{Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification}, IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens. 10 1068–1081, 2017
+\bibitem{du} Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng \& Meiqin Che (2017). Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification. \textit{IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens.}, \textit{10}, 1068–1081.
 
-\bibitem {case}Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 30-08-2017).
+\bibitem{case} Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 30-08-2017).
 
-\bibitem {allen}Jont B. Allen y Lawrence R. Rabiner, \textit{A Unified Approach to Short-Time Fourier Analysis
-and Synthesis}, Proceedings Of The IEEE, VOL. 65, NO. 11, 1977
-
+\bibitem{allen} Jont B. Allen \& Lawrence R. Rabiner (1977). A Unified Approach to Short-Time Fourier Analysis
+and Synthesis. \textit{Proceedings Of The IEEE}, \textit{65}(11), 1548-1564.
 
 \end{thebibliography}
-
 \end{document}
