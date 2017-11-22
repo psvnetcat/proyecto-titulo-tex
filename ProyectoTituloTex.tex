@@ -131,18 +131,17 @@ Los objetivos específicos de este proyecto son los siguientes:
 Este plan de trabajo utiliza los objetivos específicos como una base, debido a que estos explican las tareas que se deben llevar a cabo para cumplir el objetivo general. Esta segunda entrega, contempla la implementación del modelo propuesto y la evaluación del rendimiento de este. Para la próxima entrega se habrá pulido el marco teórico y la redacción de la investigación en general, sobre todo la discusión de resultados y el estado del arte.
 
 \section{Marco Teórico}
+\paragraph{}
+Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las técnicas y herramientas que se utilizarán en el desarrollo de esta investigación. Así, comenzaremos con el empleo de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y luego el sustento matemático de ambos. Finalmente se dará a conocer la descripción del método inteligente de diagnóstico propuesto en esta investigación y todo lo relacionado con funcionamiento de la DNN como clasificador.
 
 \paragraph{}
-Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las técnicas y herramientas que se utilizarán en el desarrollo de esta investigación. Comenzando por el empleo de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y finalmente el sustento matemático de ambos. Finalmente se encuentran la descripción del método inteligente de diagnóstico propuesto en esta investigación y todo lo relacionado al funcionamiento de la DNN como clasificador.
+En la literatura especializada, existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, quien utiliza la transformada de Fourier para extraer características de una señal y usar la energía contenida en el espectro de frecuencias como entrada de 3 clasificadores: una ANN,  una DNN con autoencoders apilados y una máquina de aprendizaje extremo (ELM). Este ejemplo corresponde a un  antecedente idóneo para esta investigación, debido a que implementa la misma técnica de extracción de características y clasificador que este trabajo, con la salvedad que sus autoencoders no incluyen la dispersión de los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
 
 \paragraph{}
-En la literatura especializada existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, que utiliza la transformada de Fourier para extraer características de una señal y usar la energía contenida en el espectro de frecuencias como entrada a 3 clasificadores: una ANN,  una DNN con autoencoders apilados y una máquina de aprendizaje extremo (ELM). Este ejemplo corresponde a un excelente antecedente debido a que implementa la misma técnica de extracción de características y clasificador que este trabajo, con la salvedad que sus autoencoders no incluyen la dispersión de los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
+Otro ejemplo de un antecedente es Gupta et al. (2017) \cite{kanpaj}, quien postula que el análisis espectral es el enfoque más utilizado para detectar fallas en los rodamientos. El principal motivo de lo anterior es que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral, además puede determinar en qué componente del rodamiento se encuentra el desperfecto. El autor también aclara que la transformada rápida de Fourier (FFT) es el algoritmo computacional más eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
 
 \paragraph{}
-Otro ejemplo de un antecedente es Gupta et al. (2017) \cite{kanpaj}, en donde se postula que el análisis espectral es el enfoque más utilizado para detectar fallas en los rodamientos. El principal motivo es que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral además puede determinar en qué componente del rodamiento se encuentra el desperfecto. El autor también aclara que la transformada rápida de Fourier (FFT) es el algoritmo computacionalmente eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
-
-\paragraph{}
-En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, que propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características, y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. El argumento de los autores es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y una gran capacidad de cómputo.
+En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, este autor  propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. Su principal argumento es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y una gran capacidad de cómputo.
 
 \paragraph{}
 A continuación se encuentran los conceptos y definiciones matemáticas de las herramientas que se utilizarán en esta investigación, comenzando por la transformada de Fourier y sus variantes, seguido del \textit{deep learning} (o aprendizaje profundo), los autoencoders y su variante \textit{sparse} autoencoder.
@@ -239,17 +238,16 @@ En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descri
 
 \subsection{Deep learning}
 \paragraph{}
-
-En los años recientes, un nuevo enfoque de \textit{machine learning} denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. El \textit{deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, debido a la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado en gran medida por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
+En los años recientes, un nuevo enfoque de \textit{machine learning}, denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques.\textit{Deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, a causa de la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado, en gran medida, por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
 
 \paragraph{}
-Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. El \textit{deep learning} formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
+Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. Este nuevo enfoque formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
 
 \paragraph{}
 El desarrollo del \textit{deep learning} está relacionado con el uso de técnicas de aprendizaje no supervisado como los diferentes tipos de autoencoder que existen para realizar un pre entrenamiento de las capas ocultas. De acuerdo a Ranzato et al. (2008) \cite{ranzato}, uno de los principales propósitos del aprendizaje no supervisado es producir buenas representaciones de los datos que puedan ser usadas para la detección, reconocimiento, predicción o visualización. Las buenas representaciones eliminan variaciones irrelevantes de los datos de entrada, mientras que se preserva la información que es útil para la tarea a realizar.
 
 \paragraph{}
-El aprendizaje no supervisado tiene la habilidad de crear jerarquías de características profundas (deep features hierarchies) mediante el apilado de módulos no supervisados uno encima de otro, habilidad que es frecuentemente utilizada en el \textit{deep learning}. Un módulo no supervisado de un nivel en la jerarquía se alimenta con los vectores de representación producidos por el nivel inferior. Las representaciones de nivel superior captan las dependencias de alto nivel entre las variables de entrada, mejorando así la capacidad del sistema para capturar las regularidades subyacentes en los datos.
+El aprendizaje no supervisado tiene la habilidad de crear jerarquías de características profundas (deep features hierarchies) mediante el apilado de módulos no supervisados uno encima de otro. Los módulos que se encuentran apilados se alimentan con los vectores de representación producidos por aquellos que se encuentran en un nivel inferior de la pila. Las representaciones producidas en el nivel superior captan las dependencias de alto nivel entre las variables de entrada, mejorando la capacidad de la red para capturar las regularidades subyacentes en los datos de entrada.
 
 \subsubsection{Autoencoders}
 \paragraph{}
@@ -309,7 +307,7 @@ J_{mse}(\theta,\theta')=\frac{1}{2n}\sum_{i=1}^{n}{\|x_{i}-\hat{x}_{i}\|}^2
 \end{equation}
 
 \paragraph{}
-El proceso de aprendizaje del autoencoder puede ser visto como un problema de optimización porque tiene como objetivo encontrar valores que se aproximan al mínimo global de la función de costos. La función que debemos optimizar (Ecc. \ref{fcost}), también llamada función de pérdida, se compone por el error de reconstrucción (Ecc. \ref{xi}) y otro término llamado \textit{weight decay} (Ecc. \ref{weight}). De acuerdo a \cite{haykin}, el término \textit{weight decay} fuerza a algunos de los pesos sinápticos que tienen una pobre capacidad de generalización a tomar valores cercanos a 0,  evitando el sobreentrenamiento de la red.
+El proceso de aprendizaje del autoencoder puede ser visto como un problema de optimización, porque tiene como objetivo encontrar valores que se aproximan al mínimo global de la función de costos. La función que debemos optimizar (Ecc. \ref{fcost}), también llamada función de pérdida, se compone por el error de reconstrucción (Ecc. \ref{xi}) y otro término llamado \textit{weight decay} (Ecc. \ref{weight}). De acuerdo a \cite{haykin}, el término \textit{weight decay} fuerza a algunos de los pesos sinápticos que tienen una pobre capacidad de generalización a tomar valores cercanos a 0,  evitando el sobreentrenamiento de la red.
 
 \begin{equation}
 \label{fcost}
@@ -397,7 +395,7 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \label{sec:training}
 
 \paragraph{}
-En esta sección se dará detalle al proceso de entrenamiento de la red neuronal profunda (DNN) y los elementos que la componen. La red utilizada en este modelo, posee una capa de entrada, dos capas ocultas y una capa de salida con la función de transferencia softmax. Las dos capas ocultas son pre entrenadas con dos \textit{sparse} autoencoder (SAE) respectivamente. Estas redes de tres capas permiten encontrar los parámetros de entrenamiento a la vez que reducen la dimensión de los datos de entrada codificandolos en un espacio de menor dimensión. 
+En esta sección, se dará detalle del proceso de entrenamiento de la red neuronal profunda (DNN) y los elementos que la componen. La red utilizada en este modelo, posee una capa de entrada, dos capas ocultas y una capa de salida con la función de transferencia softmax. Las dos capas ocultas son pre entrenadas con dos \textit{sparse} autoencoder (SAE) respectivamente. Estas redes de tres capas permiten encontrar los parámetros de entrenamiento a la vez que reducen la dimensión de los datos de entrada codificandolos en un espacio de menor dimensión. 
 
 \paragraph{}
 Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus parámetros óptimos $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. Luego el segundo SAE, constituido por la primera y la segunda capa oculta de la DNN, aprende un conjunto de parámetros que inicializa a la segunda capa oculta y los códigos de la segunda capa oculta alimentan a la regresión softmax para que sea entrenada.
@@ -426,19 +424,19 @@ Los datos utilizados en este trabajo corresponden a señales de vibración de un
 \end{figure}
 
 \paragraph{}
-El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctricas que generaron defectos en un único punto, con tres diámetros de falla: 0,007, 0,014 y 0,021 pulgadas. Estos son inducidos bajo las velocidades de rotación 1.730, 1.750 1.772 y 1.792 rpm y 4 diferentes cargas de 0, 1, 2 y 3 hp respectivamente. Por lo que los datos pueden ser organizados en conjuntos de datos separados por velocidad/carga como se detallará en la siguiente sección. La frecuencia de muestreo es de 12 kHz para las cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). 
+El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctricas que generaron defectos en un  punto único, con tres diámetros de falla: 0,007, 0,014 y 0,021 pulgadas. Estas imperfecciones son inducidas bajo las velocidades de rotación 1.730, 1.750 1.772 y 1.792 rpm y 4 diferentes cargas de 0, 1, 2 y 3 hp respectivamente. Por lo anterior es que los datos pueden ser organizados en conjuntos separados por velocidad/carga como se detallará en la siguiente sección. La frecuencia de muestreo es de 12 kHz para las cuatro condiciones de salud: normal (N), falla en el anillo externo (OF), falla en el anillo interno (IF) y falla en la bola (RF). 
 
 \paragraph{}
-El principal motivo para utilizar esta base de datos es que sirve como punto de comparación para este trabajo, permitiendo efectuar el contraste con investigaciones similares que realizan diagnóstico de fallas inteligente a rodamientos. De esta manera, es posible desarrollar conclusiones a cerca del desempeño de la configuración propuesta y de la aplicación del \textit{deep learning} a este tipo de problemas. Además, al tener tipos de fallas con severidades, es posible elevar el grado de complejidad del problema a la vez que se prueba la capacidad de reconocimiento del modelo propuesto.
+El principal motivo para utilizar esta base de datos es que sirve como punto de comparación para este trabajo, permitiendo efectuar el contraste con investigaciones similares que realizan diagnóstico de fallas inteligente en rodamientos. De esta manera, es posible desarrollar conclusiones a cerca del desempeño de la configuración propuesta y de la aplicación del \textit{deep learning} a este tipo de problemas. Además, al tener tipos de fallas con severidades, es posible elevar el grado de complejidad del problema aparte de probar la capacidad de reconocimiento de más estados de salud con del modelo propuesto.
 
 \subsection{Energía de los coeficientes de Fourier}
 \label{sec:datasets}
 
 \paragraph{}
-Cinco conjuntos de datos, ilustrados en la Tabla \ref{table:tdatasets}, serán utilizados en este trabajo para probar el rendimiento del método propuesto. Los \textit{datasets} poseen 10 etiquetas de clasificación que corresponden a los 10 estados de salud del rodamiento, separados bajo las velocidades de eje de 1.797, 1.772, 1.750 y 1.720 rpm y las cargas 0, 1, 2 y 3 hp correspondientemente. El conjunto E es el de mayor tamaño porque reúne las 4 velocidades y es, por lo tanto, el que más se aproxima a una señal de vibración de un rodamiento sometido a carga y velocidad variables.
+Cinco conjuntos de datos, ilustrados en la Tabla \ref{table:tdatasets}, serán utilizados en este trabajo para probar el rendimiento del método propuesto. Los \textit{datasets} poseen 10 etiquetas de clasificación que corresponden a los 10 estados de salud del rodamiento, separados bajo las velocidades de eje de 1.797, 1.772, 1.750 y 1.720 rpm y las cargas 0, 1, 2 y 3 hp correspondientemente. El conjunto E es el de mayor tamaño, porque reúne las 4 velocidades y es, por lo tanto, el que más se aproxima a una señal de vibración de un rodamiento sometido a carga y velocidad variables.
 
 \paragraph{}
-El largo de la señal de vibración bruta es de 120.832 puntos, resultado de 10,06 segundos de medición, y el tamaño de segmentación de las subseñales es de 2.048 puntos (unos 170,6 ms). Este tamaño de segmentación corresponde entre 5,12 a 4,9 veces el periodo de rotación, considerando que este fluctúa entre 400 y 418 puntos de la señal. Con dicho tamaño de segmentación, tal como lo indica la Tabla \ref{table:tdatasets}, la cantidad de muestras que tienen los 4 primeros \textit{datasets} es de 590 y 2.360 en el caso del E.
+El largo de la señal de vibración bruta es de 120.832 puntos, resultado de 10,06 segundos de medición y el tamaño de segmentación de las subseñales es de 2.048 puntos (unos 170,6 ms). Este tamaño de segmentación corresponde entre 5,12 a 4,9 veces el periodo de rotación, considerando que este fluctúa entre 400 y 418 puntos de la señal. Con dicho tamaño de segmentación, tal como lo indica la Tabla \ref{table:tdatasets}, la cantidad de muestras totales que tienen los 4 primeros \textit{datasets} es de 590 y 2.360 en el caso del E.
 
 \begin{table}
 \scalebox{0.9}{
@@ -472,7 +470,7 @@ A/B/C/D/E & 0/1/2/3/0-3 & 59/59/59/59/236 & RF & 0,007 & 1\\
 \end{table}
 
 \paragraph{}
-Luego de obtener las subseñales de 2.048 puntos, se les aplica la transformada rápida de Fourier (FFT) obteniéndose la misma cantidad de componentes de frecuencia. Dado que la transformada tiene la propiedad de simetría, es posible tomar los primeros 1.024 coeficientes de Fourier para cada muestra. A continuación se les aplica valor absoluto y se elevan al cuadrado, obteniéndose el espectro energético de las subseñales.
+Luego de obtener las subseñales de 2.048 puntos, se les aplica la transformada rápida de Fourier (FFT) obteniendo la misma cantidad de componentes de frecuencia. Dado que la transformada tiene la propiedad de simetría, es posible tomar los primeros 1.024 coeficientes de Fourier para cada muestra. A continuación, se les aplica valor absoluto y se elevan al cuadrado, adquiriendo el espectro energético de las subseñales.
 
 \begin{figure}[ht]
   \centering
@@ -506,19 +504,26 @@ Exactitud = \frac{VP+VN}{VP+FP+VN+FN}
 \end{equation} 
 
 \paragraph{}
-Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por dataset sin esta método de prueba. A los resultados de estas 30 pruebas, se les calcula la exactitud media, la exactitud promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score medio.
+Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por dataset sin este método de prueba. A los resultados de estas 30 pruebas, se les calcula la exactitud media, la exactitud promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score medio.
 
 \paragraph{}
-La DNN diseñada está compuesta por 4 capas, el número de unidades de la primera es 1.024, mientras que el de la cuarta capa es de 10, equivalente a la cantidad de clases. La segunda y la tercera corresponden a las capas ocultas, cuyas cantidades óptimas de nodos es extremadamente difícil de encontrar, por lo que en este trabajo fueron determinadas a través de prueba y error. Los mejores valores encontrados para estas cantidades, resultaron en 105 (aproximadamente un décimo de los nodos de la capa de entrada) y 25 (aproximadamente un cuarto de la primera capa oculta).
+La DNN diseñada está compuesta por 4 capas, el número de unidades de la primera es 1.024, mientras que el de la cuarta capa es de 10, equivalente a la cantidad de clases. La segunda y la tercera corresponden a las capas ocultas, cuyas cantidades óptimas de nodos es complejo de encontrar, por lo que en este trabajo fueron determinadas a través de prueba y error. Los mejores valores encontrados para estas cantidades, resultaron en 105 (aproximadamente un décimo de los nodos de la capa de entrada) y 25 (aproximadamente un cuarto de la primera capa oculta) nodos ocultos.
 
 \paragraph{}
-Durante el proceso de entrenamiento del primer SAE, los pesos y \textit{biases} son iniciados de manera aleatoria, mientras que los del segundo SAE son inicializados con los mejores parámetros del primero. El máximo de iteraciones en el entrenamiento de los SAE y la capa de salida es de 200, las funciones de transferencia son la logística sigmoide y la softmax respectivamente.
+Durante el proceso de entrenamiento del primer SAE, los pesos y \textit{biases} son iniciados de manera aleatoria, mientras que los del segundo SAE son inicializados con los mejores parámetros del primero. La función de transferencia de los nodos de la capa oculta de los SAE es la logística sigmoide y la cantidad de iteraciones en el proceso de entrenamiento es de 200. Por su parte, la capa de salida tiene una función softmax y su cantidad de iteraciones en el entrenamiento es el mismo valor mencionado en el SAE. 
 
 \begin{figure}[ht]
   \centering
-    \includegraphics[scale=0.8]{./exgE.eps}
+    \includegraphics[scale=0.9]{./AccGE.eps}
   \caption{Resultados del diagnóstico del dataset E en 30 ejecuciones.}
   \label{fig:accge}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.9]{./AccG.eps}
+  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \label{fig:exg}
 \end{figure}
 
 \begin{table}
@@ -528,25 +533,25 @@ Durante el proceso de entrenamiento del primer SAE, los pesos y \textit{biases} 
 \toprule
 Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & $\rho_{2}$ & Exactitud (\%)\\
 \midrule
-1 & 0,0033 & 95,5766 & 0,2125 & 0,0039 & 94,3802 & 0,0817 & 99,6610 $\pm$ 0,4140\\
+1 & 0,0179 & 0,9226 & 0,2623 & 0,0155 & 0,9450 & 0,1104 & 99,7363 $\pm$ 0,3723\\
 \addlinespace
-2 & 0,0097 & 95,0160 & 0,1137 & 0,0137 & 95,2099 & 0,0945 & 99,5480 $\pm$ 0,3826\\
+2 & 0,0199 & 0,9876 & 0,0143 & 0,0008 & 0,9405 & 0,2718 & 99,9294 $\pm$ 0,0964\\
 \addlinespace
-3 & 0,0029 & 94,3067 & 0,3486 & 0,0207 & 94,0471 & 0,3009 & 99,9153 $\pm$ 0,1724\\
+3 & 0,0029 & 94,3067 & 0,3486 & 0,0207 & 94,0471 & 0,3009 & 99,9718 $\pm$ 0,0938\\
 \addlinespace
-4 & 0,0098 & 95,8236 & 0,2339 & 0,0041 & 98,9872 & 0,1407 & 99,8493 $\pm$ 0,2541\\
+4 & 0,0098 & 95,8236 & 0,2339 & 0,0041 & 98,9872 & 0,1407 & 99,9153 $\pm$ 0,1263\\
 \addlinespace
-5 & 0,0071 & 91,5199 & 0,2265 & 0,0175 & 95,7748 & 0,3659 & 99,8823 $\pm$ 0,1577\\
+5 & 0,0071 & 91,5199 & 0,2265 & 0,0175 & 95,7748 & 0,3659 & 99,9153 $\pm$ 0,1088\\
 \addlinespace
-6 & 0,0140 & 98,6471 & 0,2759 & 0,0113 & 94,0828 & 0,2092 & 99,8917 $\pm$ 0,2216\\
+6 & 0,0140 & 98,6471 & 0,2759 & 0,0113 & 94,0828 & 0,2092 & 99,8729 $\pm$ 0,1868\\
 \addlinespace
-7 & 0,0185 & 94,4216 & 0,0609 & 0,0128 & 96,1257 & 0,2855\\
+7 & 0,0185 & 94,4216 & 0,0609 & 0,0128 & 96,1257 & 0,2855 & 99,9859 $\pm$ 0,0431\\
 \addlinespace
-8 & 0,0162 & 96,6491 & 0,1300 & 0,0046 & 97,8639 & 0,3855 & 99,9670 $\pm$ 0.0608\\
+8 & 0,0162 & 96,6491 & 0,1300 & 0,0046 & 97,8639 & 0,3855 & 99,9670 $\pm$ 0,0712\\
 \addlinespace
-9 & 0,0150 & 98,2110 & 0,3663 & 0,0122 & 93,6157 & 0,2247\\
+9 & 0,0150 & 98,2110 & 0,3663 & 0,0122 & 93,6157 & 0,2247 & 99,8635 $\pm$ 0,2178\\
 \addlinespace
-10 & 0,0004 & 95,9003 & 0,1371 & 0,0123 & 94,4408 & 0,0623\\
+10 & 0,0004 & 95,9003 & 0,1371 & 0,0123 & 94,4408 & 0,0623 & 99,9718 $\pm$ 0,0684\\
 \bottomrule
 \end{tabular}}
 \caption{10 conjuntos de hiperparámetros probados con 30 ejecuciones en el dataset E, el formato de la exactitud es: Exactitud media $\pm$ desviación estándar.}
@@ -558,17 +563,17 @@ Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & 
 \scalebox{0.9}{
 \begin{tabular}[c]{c c c c c c}
 \toprule
-Dataset & Carga (hp) & Exactitud media global & Desviación estándar & Mínimo & Máximo\\
+Dataset & Carga (hp) & Exactitud media (\%) & Desviación estándar & Mínimo (\%) & Máximo (\%)\\
 \midrule
-A & 0 & 99.8084\% & $\pm$0.2756 & 99.4253\% & 100\%\\
+A & 0 & 99,8117 & 0,3089 & 98,8701 & 100\\
 \addlinespace
-B & 1 & 99.9234\% & $\pm$0.2495 & 98.8506\% & 100\%\\
+B & 1 & 99,9623 & 0,1433 & 99,4350 & 100\\
 \addlinespace
-C & 2 & 100\% & $\pm$0 & 100\% & 100\%\\
+C & 2 & 99,9829 & 0,0936 & 99,4872 & 100\\
 \addlinespace
-D & 3 & 99.9425\% & $\pm$0.1754 & 99.4253\% & 100\%\\
+D & 3 & 99,9058 & 0,2142 & 99,4350 & 100\\
 \addlinespace
-E & 0-3 & 99.9473\% & $\pm$0.1222 & 99.4253\% & 100\%\\
+E & 0-3 & 99,9718 & 0,0862 & 99,5763 & 100\\
 \bottomrule
 \end{tabular}}
 \caption{Resultados del testing para cada dataset.}
