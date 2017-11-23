@@ -107,7 +107,7 @@ De acuerdo a Jia et al. (2016) \cite{jia}, los métodos inteligentes de diagnós
 Por lo tanto, es necesario extraer de forma adaptativa características ocultas en las señales de vibración que reflejen las diferentes condiciones de salud de la maquinaria, en lugar de extraer y seleccionar las características de forma manual. Las técnicas de \textit{deep learning} tienen el potencial de superar las deficiencias previamente mencionadas que poseen los métodos inteligentes de diagnóstico de fallas. Gracias a las arquitecturas profundas, las redes neuronales profundas (DNN) pueden capturar de forma adaptativa la información representativa de datos brutos a través de múltiples transformaciones no lineales y aproximar complejas funciones no lineales con un pequeño error.
 
 \paragraph{}
-En función de lo anterior, es que en el presente trabajo se propone un método inteligente de diagnóstico de fallas para rodamientos con la transformada de Fourier como técnica de extracción de características, y una DNN como clasificador. La red neuronal profunda utilizará \textit{sparse} autoencoders apilados para reducir la dimensión de las características a la vez que realizan un pre entrenamiento de las capas ocultas de la red. Además, se propone construir conjuntos de datos separados por velocidad, su respectiva carga, 3 severidades de falla para cada componente y un conjunto con todas las velocidades y cargas juntas.
+En función de lo anterior, en el presente trabajo se propone un método inteligente de diagnóstico de fallas para rodamientos con la transformada de Fourier como técnica de extracción de características, y una DNN como clasificador. La red neuronal profunda utilizará \textit{sparse} autoencoders apilados para reducir la dimensión de las características a la vez que realizan un pre entrenamiento de las capas ocultas de la red. Además, se propone construir conjuntos de datos separados por velocidad, su respectiva carga, 3 severidades de falla para cada componente y un conjunto con todas las velocidades y cargas juntas.
 
 \newpage
 \section{Definición de objetivos}
@@ -472,13 +472,6 @@ A/B/C/D/E & 0/1/2/3/0-3 & 59/59/59/59/236 & RF & 0,007 & 1\\
 \paragraph{}
 Luego de obtener las subseñales de 2.048 puntos, se les aplica la transformada rápida de Fourier (FFT) obteniendo la misma cantidad de componentes de frecuencia. Dado que la transformada tiene la propiedad de simetría, es posible tomar los primeros 1.024 coeficientes de Fourier para cada muestra. A continuación, se les aplica valor absoluto y se elevan al cuadrado, adquiriendo el espectro energético de las subseñales.
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[scale=0.6]{./block.eps}
-  \caption{Diagrama de flujo de los procesos que se llevan a cabo para entrenar y probar el modelo propuesto.}
-  \label{fig:block}
-\end{figure}
-
 \subsection{Proceso de entrenamiento y testing}
 \paragraph{}
 Obtenida la energía de los coeficientes de Fourier, se reordenan de manera aleatoria las nuevas muestras contenidas en los conjuntos de datos y se divide cada uno estos en dos partes: un conjunto de entrenamiento con 413 muestras (70\%) y uno de \textit{testing} con 177 muestras (30\%). El conjunto de entrenamiento tiene como objetivo encontrar los mejores parámetros posibles de las capas ocultas de la DNN (pesos y \textit{biases}). El de \textit{testing} es usado para medir la exactitud (Ecc. \ref{acc}) del modelo propuesto en este trabajo.
@@ -504,7 +497,7 @@ Exactitud = \frac{VP+VN}{VP+FP+VN+FN}
 \end{equation} 
 
 \paragraph{}
-Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por dataset sin este método de prueba. A los resultados de estas 30 pruebas, se les calcula la exactitud media, la exactitud promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score medio.
+Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por \textit{dataset} sin este método de prueba. A los resultados de estas 30 pruebas, se les calcula la exactitud media, la exactitud promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score medio.
 
 \paragraph{}
 La DNN diseñada está compuesta por 4 capas, el número de unidades de la primera es 1.024, mientras que el de la cuarta capa es de 10, equivalente a la cantidad de clases. La segunda y la tercera corresponden a las capas ocultas, cuyas cantidades óptimas de nodos es complejo de encontrar, por lo que en este trabajo fueron determinadas a través de prueba y error. Las mejores cantidades de nodos ocultos encontradas son: 105 (aproximadamente un décimo de los nodos de la capa de entrada) y 25 (aproximadamente un cuarto de la primera capa oculta) unidades.
@@ -579,48 +572,75 @@ E & 0-3 & 99,9718 & 0,0862 & 99,5763 & 100 & 196,268\\
 Como es posible observar en la Tabla \ref{table:results}, la exactitud promedio supera el 99,80\% en todos los \textit{datasets} y todos alcanzan el 100\% en la mayoría de las ejecuciones. El \textit{dataset} A es el que menor homogeneidad presenta en sus resultados, con 21 oportunidades en las que alcanzó el 100\%. El resto de los \textit{datasets} sobrepasa el 99,90\% de exactitud promedio y sus resultados son bastante homogéneos, sobretodo en el C y el E.
 
 \paragraph{}
-Si se presta atención a los resultados del \textit{dataset} E en las Tablas \ref{table:parameters} y \ref{table:results}, se puede apreciar la exactitud media cambia desde un 99,9859\% a un 99,9718\%. Este cambio se debe a que los valores de los pesos y \textit{biases} se inician de manera aleatoria en el primer SAE, haciendo variar la exactitud de cada ejecución. Entonces, la exactitud media de las 30 ejecuciones se vio afectada por esta variación explicada por los valores iniciales del primer SAE.
+Si se presta atención a los resultados del \textit{dataset} E en las Tablas \ref{table:parameters} y \ref{table:results}, se puede apreciar la exactitud media cambia desde un 99,9859\% a un 99,9718\%. Este cambio se debe a que los valores de los pesos y \textit{biases} se inician de manera aleatoria en el primer SAE, haciendo variar la exactitud de cada ejecución. Este efecto de variación influye en todas las pruebas de todos los \textit{datasets} y es responsable en parte, de la heterogeneidad de los resultados del diagnóstico.
 
 \paragraph{}
-En la Figura \ref{fig:accge} es posible distinguir que en 30 procesos de entrenamiento y \textit{testing}, el modelo alcanza el 100\% de exactitud en 26 oportunidades (86,6\%). De aquellas ejecuciones en las que no se consigue el 100\%, la mas baja es de un 99,5763\% provocando un impacto en la exactitud media y en la desviación estándar. Sin embargo, las 4 caídas (13,4\%) en la exactitud son de menor magnitud respecto a las bajas que presentan los demás dataset y que se puede percibir en la Figura \ref{fig:exg}.
+En la Figura \ref{fig:accge} es posible distinguir que en 30 procesos de entrenamiento y \textit{testing}, el modelo alcanza el 100\% de exactitud en 26 oportunidades (86,6\%). De aquellas ejecuciones en las que no se consigue el 100\%, la mas baja es de un 99,5763\%, la cual provoca un impacto en la exactitud media y en la desviación estándar. Sin embargo, las 4 caídas (13,4\%) en la exactitud son de menor magnitud respecto a las bajas que presentan los demás \textit{dataset}, lo cual se puede percibir en la Figura \ref{fig:exg}.
+
+\paragraph{}
+Respecto a los resultados del diagnóstico de los 5 \textit{datasets}, la Figura \ref{fig:exg} presenta las curvas de exactitud a través de las ejecuciones. La Figura deja en evidencia que las caídas de exactitud en los \textit{datasets} con excepción del A, están en torno del 99,4\%, lo que sugiere que los resultados fueron bastante parecidos y que no hay una gran variabilidad. De no ser por la baja de exactitud del \textit{dataset} E en la ejecución número 14, los resultados serían aun más parejos.
+
+\paragraph{}
+La exactitud por etiqueta de clasificación se encuentra contemplada en la Figura \ref{fig:accge}, la cual nos advierte que el modelo propuesto tiene problemas en ciertas clases. Aquellas son las 1, 2 y 3 correspondientes a fallas en las bolas del rodamiento (0,007, 0,014 y 0,021 pulgadas respectivamente), clases que registran sus rendimientos más bajos en el \textit{dataset} A. En este \textit{dataset} el rodamiento no soporta una carga, haciendo que la señal que se genera con el contacto de la falla con otras superficies sea tenue, complicando la tarea de clasificación.
+
+\paragraph{}
+La gráfica del F-score (o media armónica) de las 5 pruebas, materializada en la Figura \ref{fig:fscG}, es bastante parecida a la de la exactitud media, solo que las bajas de exactitud son más acentuadas. En la Figura \ref{fig:fsc} se encuentra el F-score por etiqueta obtenido de las pruebas, en ella se da cuenta de las grandes caídas de exactitud de los \textit{dataset} A y D. Ambas Figuras son parecidas a las de exactitud promedio y por etiqueta, con la diferencia que se ven con mayor énfasis las bajas de exactitud. 
+
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./AccGE.eps}
-  \caption{Resultados del diagnóstico del dataset E en 30 ejecuciones.}
+  \caption{Resultados del diagnóstico en 30 \textit{trials} del \textit{dataset} E.}
   \label{fig:accge}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./AccG.eps}
-  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \caption{Exactitud promedio del diagnóstico en 30 \textit{trials} de los 5 \textit{datasets}.}
   \label{fig:exg}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./Acc.eps}
-  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \caption{Exactitud por clase en 30 \textit{trials} de los 5 \textit{datasets}.}
   \label{fig:exact}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./FscG.eps}
-  \caption{Resultados del diagnóstico en 30 ejecuciones.}
-  \label{fig:fsc}
+  \caption{F-score en 30 \textit{trials} de los 5 \textit{datasets}.}
+  \label{fig:fscG}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./Fsc.eps}
-  \caption{Resultados del diagnóstico en 30 ejecuciones.}
-  \label{fig:fscG}
+  \caption{F-score por clase en 30 \textit{trials} de los 5 \textit{datasets}.}
+  \label{fig:fsc}
 \end{figure}
 
 \paragraph{}
-Con el objetivo de medir la eficiencia del modelo propuesto en este trabajo, se hará la comparación de los resultados obtenidos con dos investigaciones, Rodríguez et al. (2017) \cite{nibaldo} y Jia et al. (2016). El primer autor postula un método de diagnostico inteligente empleando la transformada wavelet estacionaria, la descomposición en valores singulares de los coeficientes wavelet y una máquina de aprendizaje extremo. El segundo propone un método con la amplitud de los coeficientes de Fourier y una DNN con 3 autoencoders apilados.
+Con el objetivo de medir la eficiencia del modelo propuesto en este trabajo, se hará la comparación de los resultados obtenidos con dos investigaciones, Rodríguez et al. (2017) \cite{nibaldo} y Jia et al. (2016) \cite{jia} . El primer autor postula un método de diagnóstico inteligente empleando la transformada wavelet estacionaria, la descomposición en valores singulares de los coeficientes wavelet y una máquina de aprendizaje extremo. El segundo propone un método con la amplitud de los coeficientes de Fourier y una DNN con 3 autoencoders apilados.
+
+\paragraph{}
+Como pudimos observar en los párrafos anteriores, el método propuesto alcanza una exactitud promedio del 99,97\% en 30 ejecuciones o \textit{trials}, y una desviación estándar de 0,0862. Mientras que el método postulado por el autor Rodríguez et al. (2017) \cite{nibaldo}, logra una exactitud del 100\% en 50 \textit{trials} con una desviación estándar muy baja equivalente al 0,008. Esta comparación es en base a los resultados del \textit{dataset} E y deja claro que el \textit{deep learning} presenta desventajas frente a un modelo con técnicas de extracción de características más elaboradas y un clasificador con menos capas ocultas.
+
+\paragraph{}
+Las principales desventajas del modelo propuesto frente a este primer autor, es que no logra igualar la calidad de diagnóstico y la estabilidad de los resultados. La técnica de \textit{deep learning} aplicada en este trabajo requiere grandes tiempos de entrenamiento, mucho mayores que los de la maquina de aprendizaje extremo, y aun así tiene peores resultados. Además, la DNN requiere seleccionar una mayor cantidad de hiperparámetros, los cuales demostraron tener un comportamiento no lineal con respecto a la exactitud del diagnóstico, acrecentando la dificultad de hallar buenos valores para ellos.  
+
+\paragraph{}
+El segundo autor Jia et al. (2016) \cite{jia}, 
+
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.6]{./block.eps}
+  \caption{Diagrama de flujo de los procesos que se llevan a cabo para entrenar y probar el modelo propuesto.}
+  \label{fig:block}
+\end{figure}
 
 \section{Conclusión}
 \paragraph{}
