@@ -632,8 +632,10 @@ Como pudimos observar en los párrafos anteriores, el método propuesto alcanza 
 Las principales desventajas del modelo propuesto frente a este primer autor, es que no logra igualar la calidad de diagnóstico y la estabilidad de los resultados. La técnica de \textit{deep learning} aplicada en este trabajo requiere grandes tiempos de entrenamiento, mucho mayores que los de la maquina de aprendizaje extremo, y aun así tiene peores resultados. Además, la DNN requiere seleccionar una mayor cantidad de hiperparámetros, los cuales demostraron tener un comportamiento no lineal con respecto a la exactitud del diagnóstico, acrecentando la dificultad de hallar buenos valores para ellos.  
 
 \paragraph{}
-El segundo autor Jia et al. (2016) \cite{jia}, 
+El segundo autor Jia et al. (2016) \cite{jia}, consigue los siguientes resultados para los \textit{datasets} de la A la E: 99,95\% 99,61\% 99,74\% 99,68\% y 100\% respectivamente en 20 \textit{trials}. Por lo tanto, el método propuesto en este trabajo supera los resultados de este autor en los \textit{dataset} B, C y D en una mayor cantidad de \textit{trials}, además este trabajo logra una mayor estabilidad en los resultados. Sin embargo, la exactitud promedio del \textit{dataset} E en este trabajo no logra igualar a la que alcanza el autor, siendo la diferencia muy pequeña.
 
+\paragraph{}
+A pesar de que los resultados del diagnóstico en los 5 \textit{datasets} no están al nivel del primer autor, para ser un método en el que casi la totalidad del esfuerzo está concentrado en el clasificador, la exactitud lograda en el \textit{dataset} E se aproxima bastante al 100\%. La capacidad de diagnóstico del modelo propuesto es satisfactoria, no obstante, la cantidad de parámetros y variables que requieren configuración es una gran desventaja a la que hay que enfrentarse al ocupar técnicas de \textit{deep learning}. El uso del ensayo y error para hallar valores de los hiperparámetros es una tarea agotadora, lo que hace pensar que el \textit{deep learning} requiere mayores avances de tecnología para aplicarse satisfactoriamente en el diagnóstico inteligente de fallas en rodamientos.
 
 \begin{figure}[ht]
   \centering
@@ -644,9 +646,22 @@ El segundo autor Jia et al. (2016) \cite{jia},
 
 \section{Conclusión}
 \paragraph{}
-Como conclusión, 
+Al iniciar este trabajo de investigación, el objetivo fue desarrollar un método de diagnóstico inteligente capaz de distinguir severidades de falla en rodamientos bajo velocidades variables. Empleando la transformada de Fourier, implementada con la función FFT, y una técnica de \textit{deep learning} denominada DNN. También fue un objetivo alcanzar resultados parecidos a los de publicaciones que aplicaran técnicas similares y comprender la complejidad del problema subyacente del diagnóstico de fallas en rodamientos.
 
+\paragraph{}
+Investigando sobre el tema del diagnóstico inteligente de fallas en rodamientos y otros elementos mecánicos, me tope con información muy valiosa respecto al fenómeno mecánico detrás de las señales de vibración de un rodamiento. La cantidad de herramientas y técnicas de extracción de características derivadas de la estadística y procesamiento de señales es enorme, por lo que este campo de estudio resulta muy enriquecedor en términos de formación académica. Estudiar un tema tan interesante y complejo como el análisis de vibraciones y populares técnicas de \textit{deep learning}, efectúa un cambio de paradigma en un alumno de pregrado.
 
+\paragraph{}
+Para cumplir con mi objetivo en esta investigación, fue necesario comenzar a estudiar acerca de las necesidades del mantenimiento moderno y de cómo la ingeniería ha propuesto técnicas de \textit{machine learning} para automatizar procesos que hasta hoy en día se hacen a mano. También tuve que entender cómo surgió la aplicación de técnicas de \textit{representation learning}, ampliamente usadas en el reconocimiento de imágenes, en nuevos enfoques de \textit{deep learning} empleados en el diagnóstico de fallas de elementos mecánicos. Además, tuve que aprender a usar y calibrar las funciones del \textit{toolkit} de MATLAB que permiten crear la red con \textit{sparse} autoencoders apilados.
+
+\paragraph{}
+En este trabajo de investigación corroboré la aplicación de técnicas de \textit{deep learning}, como las DNN con SAE's apilados, en problemas de diagnóstico de fallas de rodamientos. La exactitud promedio de 30 \textit{trials} del \textit{dataset} E fue de un 99,97\% y la desviación estándar un 0,0862, lo que indica una buena capacidad de generalización de clasificador y resultados relativamente estables. Sin embargo, los resultados del método propuesto están lejos de acercarse a los de algunas investigaciones como la de Rodríguez et al. (2017) \cite{nibaldo}, en términos de tiempo de ejecución y homogeneidad de los resultados.
+
+\paragraph{}
+Respecto a las limitaciones de este trabajo, las principales dificultades estuvieron relacionadas con la configuración del clasificador. Esto se refiere a hallar valores de hiperparámetros y topologíasde de la red con las que fuera mejorando paulatinamente el desempeño de la red profunda. Otra dificultad no menor, fue comprender la naturaleza subyacente de las vibraciones mecánicas de los rodamientos, y de cómo esta se relaciona con las señales de vibración que son medidas por los sensores. 
+
+\paragraph{}
+En una próxima investigación me gustaría aprender más acerca del fenómeno físico detrás de las vibraciones mecánicas. Lo que me permitiría probar algún método de diagnóstico inteligente una técnica de procesamiento de señales mas avanzada y alguna herramienta de \textit{machine learning} que parezca interesante. Por ahora, el \textit{deep learning} queda descartado de nuevas investigaciones personales de problemas de diagnostico de fallas, debido a sus extenuante proceso de configuración.
 
 \clearpage
 
