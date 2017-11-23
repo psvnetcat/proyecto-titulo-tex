@@ -55,6 +55,7 @@ Noviembre, 2017
 
 \newpage
 \renewcommand{\contentsname}{Índice}
+\renewcommand{\tablename}{Tabla} 
 \tableofcontents
 \renewcommand{\figurename}{Figura}
 \renewcommand{\refname}{Referencias}
@@ -234,11 +235,11 @@ Los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o in
 La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede trasladar la señal original al dominio de la frecuencia. Sin embargo, tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Figura \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente cuando las fallas son distribuidas y la señal tiene un comportamiento no lineal, el espectro de frecuencias varia en el tiempo y la técnica no es capaz de realzar las componentes impulsivas características de la falla.
 
 \paragraph{}
-En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentaran a la capa de entrada del clasificador.
+En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentarán a la capa de entrada del clasificador.
 
 \subsection{Deep learning}
 \paragraph{}
-En los años recientes, un nuevo enfoque de \textit{machine learning}, denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques.\textit{Deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, a causa de la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado, en gran medida, por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
+En los años recientes, un nuevo enfoque de \textit{machine learning}, denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. \textit{Deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, a causa de la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado, en gran medida, por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
 
 \paragraph{}
 Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. Este nuevo enfoque formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
@@ -320,7 +321,7 @@ J_{weight}(\theta,\theta')=\frac{\lambda}{2}\sum_{l=1}^{2}\sum_{i=1}^{s_l}\sum_{
 \end{equation}
 
 \paragraph{}
-Resulta común aplicar el algoritmo \textit{backpropagation}, ampliamente utilizado en \textit{machine learning}, a la función de costos de los autoencoder estándar para encontrar valores mínimos. Este algoritmo calcula el gradiente a la función de costos para encontrar direcciones, las cuales permiten actualizar los pesos y \textit{biases} iniciales, de manera que con cada iteración se acerquen más al mínimo global de la función. Obtenidos los mejores valores posibles, la capa oculta $\textbf{h}$ del autoencoder es capaz de representar a los datos de entrada en una dimensión menor que la original sin perder información relevante para el reconocimiento de patrones.
+Resulta común aplicar el algoritmo \textit{backpropagation}, ampliamente utilizado en \textit{machine learning}, de la función de costos de los autoencoder estándar para encontrar valores mínimos. Este algoritmo calcula el gradiente a la función de costos para encontrar direcciones, las cuales permiten actualizar los pesos y \textit{biases} iniciales, de manera que con cada iteración se acerquen más al mínimo global de la función. Obtenidos los mejores valores posibles, la capa oculta $\textbf{h}$ del autoencoder es capaz de representar a los datos de entrada en una dimensión menor que la original, sin perder información relevante para el reconocimiento de patrones.
 
 \subsubsection{Sparse autoencoders}
 
@@ -403,7 +404,6 @@ Una vez que el primer SAE termina de aprender su representación de los datos a 
 \paragraph{}
 Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \textit{fine tuning} que básicamente es aplicar el algoritmo \textit{backpropagation} a la red entera para mejorar los pesos y \textit{biases} en conjunto. Se utiliza el descenso del gradiente en vez del gradiente conjugado porque los parámetros se encuentran cerca del mínimo global de la función de costos, por lo que no son necesarias demasiadas iteraciones en el proceso.
 
-
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./training.eps}
@@ -481,7 +481,7 @@ Luego de obtener las subseñales de 2.048 puntos, se les aplica la transformada 
 
 \subsection{Proceso de entrenamiento y testing}
 \paragraph{}
-Obtenida la energía de los coeficientes de Fourier, se reordenan de manera aleatoria las nuevas muestras contenidas en los conjuntos de datos y se divide cada uno estos en dos partes: un conjunto de entrenamiento con 413 (70\%) muestras y uno de testing con 177 (30\%) muestras. El conjunto de entrenamiento tiene como objetivo encontrar los mejores parámetros posibles de las capas ocultas de la DNN (pesos y biases). El de testing es usado para medir la exactitud (Ecc. \ref{acc}) del modelo propuesto en este trabajo.
+Obtenida la energía de los coeficientes de Fourier, se reordenan de manera aleatoria las nuevas muestras contenidas en los conjuntos de datos y se divide cada uno estos en dos partes: un conjunto de entrenamiento con 413 muestras (70\%) y uno de \textit{testing} con 177 muestras (30\%). El conjunto de entrenamiento tiene como objetivo encontrar los mejores parámetros posibles de las capas ocultas de la DNN (pesos y \textit{biases}). El de \textit{testing} es usado para medir la exactitud (Ecc. \ref{acc}) del modelo propuesto en este trabajo.
 
 \begin{equation}
 \label{precision}
@@ -507,10 +507,82 @@ Exactitud = \frac{VP+VN}{VP+FP+VN+FN}
 Además de la exactitud, se emplean métricas que son habitualmente usadas en problemas de clasificación multiclase. Resulta común usar la validación cruzada para evaluar el aprendizaje de técnicas de inteligencia artificial, sin embargo, en este trabajo solo se corren 30 ejecuciones aleatorias por dataset sin este método de prueba. A los resultados de estas 30 pruebas, se les calcula la exactitud media, la exactitud promedio por clase, el $F_{1}$score (Ecc. \ref{fscore}) o media armónica por clase y el $F_{1}$score medio.
 
 \paragraph{}
-La DNN diseñada está compuesta por 4 capas, el número de unidades de la primera es 1.024, mientras que el de la cuarta capa es de 10, equivalente a la cantidad de clases. La segunda y la tercera corresponden a las capas ocultas, cuyas cantidades óptimas de nodos es complejo de encontrar, por lo que en este trabajo fueron determinadas a través de prueba y error. Los mejores valores encontrados para estas cantidades, resultaron en 105 (aproximadamente un décimo de los nodos de la capa de entrada) y 25 (aproximadamente un cuarto de la primera capa oculta) nodos ocultos.
+La DNN diseñada está compuesta por 4 capas, el número de unidades de la primera es 1.024, mientras que el de la cuarta capa es de 10, equivalente a la cantidad de clases. La segunda y la tercera corresponden a las capas ocultas, cuyas cantidades óptimas de nodos es complejo de encontrar, por lo que en este trabajo fueron determinadas a través de prueba y error. Las mejores cantidades de nodos ocultos encontradas son: 105 (aproximadamente un décimo de los nodos de la capa de entrada) y 25 (aproximadamente un cuarto de la primera capa oculta) unidades.
+
+\begin{table}
+\centering
+\scalebox{0.9}{
+\begin{tabular}[c]{c c c c c c c c}
+\toprule
+Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & $\rho_{2}$ & Exactitud (\%)\\
+\midrule
+1 & 0,0179 & 0,9226 & 0,2623 & 0,0155 & 0,9450 & 0,1104 & 99,7363 $\pm$ 0,3723\\
+\addlinespace
+2 & 0,0199 & 0,9876 & 0,0143 & 0,0008 & 0,9405 & 0,2718 & 99,9294 $\pm$ 0,0964\\
+\addlinespace
+3 & 0,0029 & 0,9865 & 0,3396 & 0,0062 & 0,9712 & 0,2620 & 99,9718 $\pm$ 0,0938\\
+\addlinespace
+4 & 0,0201 & 0,9488 & 0,3735 & 0,0012 & 0,9736 & 0,0650 & 99,9153 $\pm$ 0,1263\\
+\addlinespace
+5 & 0,0139 & 0,9740 & 0,2715 & 0,0023 & 0,9249 & 0,0476 & 99,9153 $\pm$ 0,1088\\
+\addlinespace
+6 & 0,0023 & 0,9213 & 0,3031 & 0,0181 & 0,9491 & 0,1993 & 99,8729 $\pm$ 0,1868\\
+\addlinespace
+7 & 0,0062 & 0,9437 & 0,2972 & 0,0153 & 0,9456 & 0,3838 & 99,9859 $\pm$ 0,0431\\
+\addlinespace
+8 & 0,0121 & 0,9832 & 0,1569 & 0,0071 & 0,9617 & 0,1361 & 99,9670 $\pm$ 0,0712\\
+\addlinespace
+9 & 0,0210 & 0,9733 & 0,2621 & 0,0209 & 0,9667 & 0,2341 & 99,8635 $\pm$ 0,2178\\
+\addlinespace
+10 & 0,0212 & 0,9867 & 0,0684 & 0,0009 & 0,9703 & 0,0895 & 99,9718 $\pm$ 0,0684\\
+\bottomrule
+\end{tabular}}
+\caption{10 conjuntos de hiperparámetros probados con 30 ejecuciones en el dataset E, el formato de la exactitud es: Exactitud media $\pm$ desviación estándar.}
+\label{table:parameters}
+\end{table}
 
 \paragraph{}
 Durante el proceso de entrenamiento del primer SAE, los pesos y \textit{biases} son iniciados de manera aleatoria, mientras que los del segundo SAE son inicializados con los mejores parámetros del primero. La función de transferencia de los nodos de la capa oculta de los SAE es la logística sigmoide y la cantidad de iteraciones en el proceso de entrenamiento es de 200. Por su parte, la capa de salida tiene una función softmax y su cantidad de iteraciones en el entrenamiento es el mismo valor mencionado en el SAE. 
+
+\paragraph{}
+Los hiperparámetros penalizador de pesos ($\lambda$), penalizador de dispersión ($\beta$) y proporción de dispersión ($\rho$) de los \textit{sparse} autoencoder son complejos de hallar, convirtiendo la búsqueda manual de estos en una tarea difícil. Para encontrar los mejores hiperparámetros, fue necesario construir una grilla con valores aleatorios normalmente distribuidos para los dos SAE y probar el desempeño de estos. La Tabla \ref{table:parameters} muestra las 10 agrupaciones con valores que fueron probados en la DNN con el \textit{dataset} E, y también los resultados de cada agrupación luego de 30 ejecuciones.
+
+\paragraph{}
+Los intervalos para construir la grilla de la Tabla \ref{table:parameters} son los siguientes: [0,0002;0,022], [0,91;0,99] y [0,00002;0,4] para $\lambda$, $\beta$ y $\rho$ respectivamente. Como es posible observar en aquella Tabla, ninguna agrupación de valores obtuvo una exactitud media menor a 99,86\% y la mayoría registró una baja desviación estándar. Como consecuencia de esto, es posible afirmar que la variación de los valores para estos hiperparámetros, dentro los intervalos presentados, no genera grandes diferencias en los resultados.
+
+\paragraph{}
+La séptima agrupación de valores obtuvo la mayor exactitud promedio y la menor desviación estándar, lo que hace pensar que son los mejores candidatos por homogeneidad de resultados y exactitud. Estos valores son empleados para entrenar el modelo con los 5 \textit{datasets}, obteniendo así los resultados de 30 procesos de entrenamiento y \textit{testing} para cada uno de ellos. Dichos resultados se encuentran en la Tabla \ref{table:results}, incluyendo también la exactitud mínima y máxima alcanzada por el modelo en cada \textit{dataset}.
+
+\begin{table}
+\centering
+\scalebox{0.9}{
+\begin{tabular}[c]{c c c c c c c}
+\toprule
+Dataset & Carga (hp) & Exactitud m. (\%) & D. estándar & Mínimo (\%) & Máximo (\%) & Tiempo e. (s)\\
+\midrule
+A & 0 & 99,8117 & 0,3089 & 98,8701 & 100 & 64,860\\
+\addlinespace
+B & 1 & 99,9623 & 0,1433 & 99,4350 & 100 & 59,106\\
+\addlinespace
+C & 2 & 99,9829 & 0,0936 & 99,4872 & 100 & 62,127\\
+\addlinespace
+D & 3 & 99,9058 & 0,2142 & 99,4350 & 100 & 64,101\\
+\addlinespace
+E & 0-3 & 99,9718 & 0,0862 & 99,5763 & 100 & 196,268\\
+\bottomrule
+\end{tabular}}
+\caption{Resultados del diagnóstico de cada \textit{dataset}.}
+\label{table:results}
+\end{table}
+
+\paragraph{}
+Como es posible observar en la Tabla \ref{table:results}, la exactitud promedio supera el 99,80\% en todos los \textit{datasets} y todos alcanzan el 100\% en la mayoría de las ejecuciones. El \textit{dataset} A es el que menor homogeneidad presenta en sus resultados, con 21 oportunidades en las que alcanzó el 100\%. El resto de los \textit{datasets} sobrepasa el 99,90\% de exactitud promedio y sus resultados son bastante homogéneos, sobretodo en el C y el E.
+
+\paragraph{}
+Si se presta atención a los resultados del \textit{dataset} E en las Tablas \ref{table:parameters} y \ref{table:results}, se puede apreciar la exactitud media cambia desde un 99,9859\% a un 99,9718\%. Este cambio se debe a que los valores de los pesos y \textit{biases} se inician de manera aleatoria en el primer SAE, haciendo variar la exactitud de cada ejecución. Entonces, la exactitud media de las 30 ejecuciones se vio afectada por esta variación explicada por los valores iniciales del primer SAE.
+
+\paragraph{}
+En la Figura \ref{fig:accge} es posible distinguir que en 30 procesos de entrenamiento y \textit{testing}, el modelo alcanza el 100\% de exactitud en 26 oportunidades (86,6\%). De aquellas ejecuciones en las que no se consigue el 100\%, la mas baja es de un 99,5763\% provocando un impacto en la exactitud media y en la desviación estándar. Sin embargo, las 4 caídas (13,4\%) en la exactitud son de menor magnitud respecto a las bajas que presentan los demás dataset y que se puede percibir en la Figura \ref{fig:exg}.
 
 \begin{figure}[ht]
   \centering
@@ -526,63 +598,35 @@ Durante el proceso de entrenamiento del primer SAE, los pesos y \textit{biases} 
   \label{fig:exg}
 \end{figure}
 
-\begin{table}
-\centering
-\scalebox{0.9}{
-\begin{tabular}[c]{c c c c c c c c}
-\toprule
-Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & $\rho_{2}$ & Exactitud (\%)\\
-\midrule
-1 & 0,0179 & 0,9226 & 0,2623 & 0,0155 & 0,9450 & 0,1104 & 99,7363 $\pm$ 0,3723\\
-\addlinespace
-2 & 0,0199 & 0,9876 & 0,0143 & 0,0008 & 0,9405 & 0,2718 & 99,9294 $\pm$ 0,0964\\
-\addlinespace
-3 & 0,0029 & 94,3067 & 0,3486 & 0,0207 & 94,0471 & 0,3009 & 99,9718 $\pm$ 0,0938\\
-\addlinespace
-4 & 0,0098 & 95,8236 & 0,2339 & 0,0041 & 98,9872 & 0,1407 & 99,9153 $\pm$ 0,1263\\
-\addlinespace
-5 & 0,0071 & 91,5199 & 0,2265 & 0,0175 & 95,7748 & 0,3659 & 99,9153 $\pm$ 0,1088\\
-\addlinespace
-6 & 0,0140 & 98,6471 & 0,2759 & 0,0113 & 94,0828 & 0,2092 & 99,8729 $\pm$ 0,1868\\
-\addlinespace
-7 & 0,0185 & 94,4216 & 0,0609 & 0,0128 & 96,1257 & 0,2855 & 99,9859 $\pm$ 0,0431\\
-\addlinespace
-8 & 0,0162 & 96,6491 & 0,1300 & 0,0046 & 97,8639 & 0,3855 & 99,9670 $\pm$ 0,0712\\
-\addlinespace
-9 & 0,0150 & 98,2110 & 0,3663 & 0,0122 & 93,6157 & 0,2247 & 99,8635 $\pm$ 0,2178\\
-\addlinespace
-10 & 0,0004 & 95,9003 & 0,1371 & 0,0123 & 94,4408 & 0,0623 & 99,9718 $\pm$ 0,0684\\
-\bottomrule
-\end{tabular}}
-\caption{10 conjuntos de hiperparámetros probados con 30 ejecuciones en el dataset E, el formato de la exactitud es: Exactitud media $\pm$ desviación estándar.}
-\label{table:parameters}
-\end{table}
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.9]{./Acc.eps}
+  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \label{fig:exact}
+\end{figure}
 
-\begin{table}
-\centering
-\scalebox{0.9}{
-\begin{tabular}[c]{c c c c c c}
-\toprule
-Dataset & Carga (hp) & Exactitud media (\%) & Desviación estándar & Mínimo (\%) & Máximo (\%)\\
-\midrule
-A & 0 & 99,8117 & 0,3089 & 98,8701 & 100\\
-\addlinespace
-B & 1 & 99,9623 & 0,1433 & 99,4350 & 100\\
-\addlinespace
-C & 2 & 99,9829 & 0,0936 & 99,4872 & 100\\
-\addlinespace
-D & 3 & 99,9058 & 0,2142 & 99,4350 & 100\\
-\addlinespace
-E & 0-3 & 99,9718 & 0,0862 & 99,5763 & 100\\
-\bottomrule
-\end{tabular}}
-\caption{Resultados del testing para cada dataset.}
-\label{table:results}
-\end{table}
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.9]{./FscG.eps}
+  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \label{fig:fsc}
+\end{figure}
 
-\subsection{Conclusión}
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.9]{./Fsc.eps}
+  \caption{Resultados del diagnóstico en 30 ejecuciones.}
+  \label{fig:fscG}
+\end{figure}
+
 \paragraph{}
-Como conclusión, la red neuronal profunda compuesta por \textit{sparse} autoencoders apilados puede lograr un desempeño asombroso respecto a la exactitud del diagnostico (a nivel de doctorado), siempre que encuentre una buena configuración de hiperparámetros, los porcentajes de entrenamiento y de \textit{testing} y una buena topología de las capas ocultas. Es por esto que las redes neuronales profundas, muy utilizadas en reconocimiento de imágenes, están ganando territorio en otras áreas de investigación, como lo es el diagnostico de fallas en rodamientos mediante su señal de vibración. Sin embargo, este modelo de monitoreo de condiciones tiene la desventaja de un excesivo tiempo de \textit{tuning} de los hiperparámetros, si bien la técnica de extracción de características es rápida computacionalmente; el proceso de encontrar parámetros para los \textit{sparse} autoencoders es lento y engorroso. Por lo que puede resultar poco alentador calibrar el modelo por el tiempo que demanda encontrar las variables que potencian al clasificador. De esta misma manera, los tiempos de ejecución tampoco son los mejores, el algoritmo del gradiente conjugado necesita bastantes iteraciones (menos que el descenso del gradiente) para acercarse al optimo global de la función de costos. Entonces, las redes neuronales profundas son una excelente herramienta de diagnostico de fallas para este problema muy complejo, pero requiere un sacrificio no menor a la hora de buscar parámetros para los SAE.
+Con el objetivo de medir la eficiencia del modelo propuesto en este trabajo, se hará la comparación de los resultados obtenidos con dos investigaciones, Rodríguez et al. (2017) \cite{nibaldo} y Jia et al. (2016). El primer autor postula un método de diagnostico inteligente empleando la transformada wavelet estacionaria, la descomposición en valores singulares de los coeficientes wavelet y una máquina de aprendizaje extremo. El segundo propone un método con la amplitud de los coeficientes de Fourier y una DNN con 3 autoencoders apilados.
+
+\section{Conclusión}
+\paragraph{}
+Como conclusión, 
+
+
 
 \clearpage
 
@@ -651,6 +695,8 @@ Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Techno
 
 \bibitem{allen} Jont B. Allen \& Lawrence R. Rabiner (1977). A Unified Approach to Short-Time Fourier Analysis
 and Synthesis. \textit{Proceedings Of The IEEE}, \textit{65}(11), 1548-1564.
+
+\bibitem{nibaldo} Nibaldo Rodriguez, Carolina Lagos, Enrique Cabrera \& Lucio Cañete (2017). Extreme Learning Machine Based on Stationary Wavelet Singular Values for Bearing Failure Diagnosis. \textit{Studies in Informatics and Control}, \textit{26}(3), 287-294.
 
 \end{thebibliography}
 \end{document}
