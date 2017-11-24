@@ -1,11 +1,10 @@
 
-\documentclass[12pt]{article}%
-\usepackage{amsmath}%
-\usepackage{amsfonts}%
-\usepackage{amssymb}%
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
-%\usepackage{algorithm}
 \usepackage[utf8]{inputenc}
 \usepackage{anysize}
 
@@ -99,7 +98,7 @@ La primera de estas etapas resulta clave en el diagnóstico de fallas para maqui
 Los principales métodos en el dominio de la frecuencia corresponden a: el cálculo del espectro energético de Fourier \cite{jia}, el espectro de potencia \cite{li} y el análisis cepstral. Respecto a las  técnicas de tiempo frecuencia, suelen ser utilizadas la transformada de Fourier de tiempo corto (STFT), la distribución Wigner-Ville (WVD) y la transformada de paquetes wavelet (WPT). También es posible encontrar otros métodos basados en procesamiento de señales como la descomposición modal empírica (EMD) \cite{yu}, funciones modales intrínsecas (IMF), la transformada wavelet discreta (DWT), la transformada wavelet (WT) \cite{chang} y la transformada Hilbert-Huang (HHT) \cite{rai}.
 
 \paragraph{}
-Respecto a las técnicas de inteligencia artificial, aplicadas como clasificador en este contexto, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, sistemas Adaptativos de inferencia neuro difusa (ANFIS) \cite{issam}, redes neuronales wavelet (WNN) \cite{wu} y otros. En la actualidad existe una tendencia en el uso de técnicas de \textit{deep learning}.
+Respecto a las técnicas de inteligencia artificial, aplicadas como clasificador en este contexto, podemos encontrar redes neuronales artificiales (ANN) \cite{ali}, máquinas de vectores de soporte (SVM) \cite{konar}, sistemas Adaptativos de inferencia neuro difusa (ANFIS) \cite{issam}, redes neuronales wavelet (WNN) \cite{wu} y otros. En la actualidad existe una tendencia en el uso de técnicas de \textit{deep learning} y de máquinas de aprendizaje extremo \cite{nibaldo,mao} como clasificadores. Estas últimas han demostrado tener tiempos de entrenamiento muy bajos comparados con las técnicas antes mencionadas, gracias al empleo de un método que permite estimar los pesos de salida de la red.
 
 \paragraph{}
 De acuerdo a Jia et al. (2016) \cite{jia}, los métodos inteligentes de diagnóstico de fallas más comunes emplean ANN's en el segundo paso, dando lugar a dos grandes desventajas. La primera es que la extracción de características depende de la experiencia en procesamiento de señales de los investigadores y se seleccionan según un problema de diagnóstico específico, por lo que probablemente no sean aptas para otros problemas. Y la segunda es que las ANN's utilizadas en estos métodos carecen de arquitecturas profundas, limitando la capacidad de estas para aprender las complejas relaciones no lineales en los problemas de diagnóstico de fallas.
@@ -132,13 +131,13 @@ Los objetivos específicos de este proyecto son los siguientes:
 Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las técnicas y herramientas que se utilizarán en el desarrollo de esta investigación. Así, comenzaremos con el empleo de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y luego el sustento matemático de ambos. Finalmente se dará a conocer la descripción del método inteligente de diagnóstico propuesto en esta investigación y todo lo relacionado con funcionamiento de la DNN como clasificador.
 
 \paragraph{}
-En la literatura especializada, existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, quien utiliza la transformada de Fourier para extraer características de una señal y usar la energía contenida en el espectro de frecuencias como entrada de 3 clasificadores: una ANN,  una DNN con autoencoders apilados y una máquina de aprendizaje extremo (ELM). Este ejemplo corresponde a un  antecedente idóneo para esta investigación, debido a que implementa la misma técnica de extracción de características y clasificador que este trabajo, con la salvedad que sus autoencoders no incluyen la dispersión de los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
+En la literatura especializada, existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, quien propone un método con la amplitud de los coeficientes de Fourier y una máquina de aprendizaje extremo. Este ejemplo corresponde a un  antecedente idóneo para esta investigación, debido a que hace uso de la transformada de Fourier para obtener los coeficientes y compara sus resultados con el mismo clasificador que este trabajo, con la salvedad que sus autoencoders no aplican la penalización dispersión a los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
 
 \paragraph{}
 Otro ejemplo de un antecedente es Gupta et al. (2017) \cite{kanpaj}, quien postula que el análisis espectral es el enfoque más utilizado para detectar fallas en los rodamientos. El principal motivo de lo anterior es que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral, además puede determinar en qué componente del rodamiento se encuentra el desperfecto. El autor también aclara que la transformada rápida de Fourier (FFT) es el algoritmo computacional más eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
 
 \paragraph{}
-En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, este autor  propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. Su principal argumento es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y una gran capacidad de cómputo.
+En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, este autor  propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. Su principal argumento es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y el consumo de una gran capacidad de cómputo.
 
 \paragraph{}
 A continuación se encuentran los conceptos y definiciones matemáticas de las herramientas que se utilizarán en esta investigación, comenzando por la transformada de Fourier y sus variantes, seguido del \textit{deep learning} (o aprendizaje profundo), los autoencoders y su variante \textit{sparse} autoencoder.
@@ -203,18 +202,16 @@ Consideremos una señal $x(t)$ y supongamos que es estacionaria cuando se ve a t
 
 \begin{equation}
 \label{stft}
-X(\tau,\omega)=\int_{-\infty}^{\infty}x(t)w(t-\tau)e^{-j\omega{t}}dt
+X_{\tau}(f)=\int_{-T/2}^{T/2}x(t)w(t-\tau)e^{-j2{\pi}ft}dt
 \end{equation}
 
 \paragraph{}
-Esta transformada mapea la señal desde el dominio del tiempo en un plano de tiempo-frecuencia conjunto $(\tau,f)$. Para la implementación, la versión discreta de la Ecc. \ref{stft} debe utilizarse como:
+Esta transformada mapea la señal desde el dominio del tiempo en un plano de tiempo-frecuencia conjunto $(\tau,f)$. Para la implementación, la versión discreta de la Ecc. \ref{stft} se encuentra en la Ecc \ref{dstft}. En donde $n$ y $k$ $(1{\leq}k{\leq}N)$ son el tiempo discreto y la frecuencia respectivamente, y $N$ es la longitud de la ventana.
 
 \begin{equation}
-X_{n}(e^{jw_{k}})=\sum_{m=-\infty}^{\infty}w(n-m)x(m)e^{-jw_{k}m}
+\label{dstft}
+X_{n}(k)=\sum_{i=n-\frac{N}{2}}^{n+\frac{N}{2}}x(i)w(i-m)e^{-j\frac{2{\pi}k}{N}i}
 \end{equation}
-
-\paragraph{}
-Donde $n$ y $k$ $(1{\leq}k{\leq}N)$ son el tiempo discreto y la frecuencia respectivamente, y $N$ es la longitud de la ventana
 
 \subsection{Señal de vibración}
 \paragraph{}
@@ -223,7 +220,7 @@ Los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o in
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./signalOF.eps}
-  \caption{4 tipos de señal de vibración de un rodamiento, con una carga de 3 hp y 0,54 mm de diámetro de falla.}
+  \caption{Señales de vibración de un rodamiento, con una carga de 3 hp y 0,54 mm de diámetro de falla.}
   \label{fig:senales}
 \end{figure}
 
@@ -238,13 +235,13 @@ En la Fig. \ref{fig:block} se encuentra el diagrama de flujo de los pasos descri
 En los años recientes, un nuevo enfoque de \textit{machine learning}, denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. \textit{Deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, a causa de la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado, en gran medida, por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
 
 \paragraph{}
-Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (deep multilayer perceptron), las redes convolucionales profundas (deep convolutional network) y las redes neuronales recurrentes (recurrent neuronal network) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. Este nuevo enfoque formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
+Esta ola de interés por el \textit{deep learning}, se centra principalmente en los perceptrón multicapa profundo (\textit{deep multilayer perceptron}), las redes convolucionales profundas (\textit{deep convolutional network}) y las redes neuronales recurrentes (\textit{recurrent neuronal network}) \cite{mining}. Sin embargo, la mayoría de los métodos de \textit{deep learning} se basan en el perceptrón multicapa profundo, porque lo utilizan como el bloque esencial de construcción. Este nuevo enfoque formula el problema subyacente como una arquitectura en forma de red, en la que su capa de salida define una función de costos (también llamada función de perdida) que es necesaria para aprender.
 
 \paragraph{}
 El desarrollo del \textit{deep learning} está relacionado con el uso de técnicas de aprendizaje no supervisado como los diferentes tipos de autoencoder que existen para realizar un pre entrenamiento de las capas ocultas. De acuerdo a Ranzato et al. (2008) \cite{ranzato}, uno de los principales propósitos del aprendizaje no supervisado es producir buenas representaciones de los datos que puedan ser usadas para la detección, reconocimiento, predicción o visualización. Las buenas representaciones eliminan variaciones irrelevantes de los datos de entrada, mientras que se preserva la información que es útil para la tarea a realizar.
 
 \paragraph{}
-El aprendizaje no supervisado tiene la habilidad de crear jerarquías de características profundas (deep features hierarchies) mediante el apilado de módulos no supervisados uno encima de otro. Los módulos que se encuentran apilados se alimentan con los vectores de representación producidos por aquellos que se encuentran en un nivel inferior de la pila. Las representaciones producidas en el nivel superior captan las dependencias de alto nivel entre las variables de entrada, mejorando la capacidad de la red para capturar las regularidades subyacentes en los datos de entrada.
+El aprendizaje no supervisado tiene la habilidad de crear jerarquías de características profundas (\textit{deep features hierarchies}) mediante el apilado de módulos no supervisados uno encima de otro. Los módulos que se encuentran apilados se alimentan con los vectores de representación producidos por aquellos que se encuentran en un nivel inferior de la pila. Las representaciones producidas en el nivel superior captan las dependencias de alto nivel entre las variables de entrada, mejorando la capacidad de la red para capturar las regularidades subyacentes en los datos de entrada.
 
 \subsubsection{Autoencoders}
 \paragraph{}
@@ -253,7 +250,7 @@ Un autoencoder (AE) es una red neuronal artificial no supervisada de tres capas 
 \begin{figure}[ht]
   \centering
     \includegraphics{./AE.eps}
-  \caption{Diagrama que ilustra la estructura de un autoencoder formado por la red encoder (lado izquierdo) y la red decoder (lado derecho) con sus respectivos parámetros de entrenamiento.}
+  \caption{Estructura de un autoencoder formado por la red encoder (lado izquierdo) y la red decoder (lado derecho) con sus respectivos parámetros de entrenamiento.}
   \label{fig:ae}
 \end{figure}
 
@@ -392,17 +389,20 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \label{sec:training}
 \paragraph{}
 Este trabajo propone un método de diagnóstico de fallas inteligente en el cual la red neuronal profunda aprende las complejas relaciones no lineales del espectro energético de las señales de vibración, para luego discernir el estado de salud del rodamiento. La energía de los coeficientes de Fourier, conocido como espectro energético de la señal, provee información clara sobre la amplitud de las frecuencias características de falla considerando que las señales observadas son moduladas en amplitud. A continuación se expone el proceso de entrenamiento de los \textit{sparse} autoencoders que hallan los parámetros de las capas ocultas de la DNN.
- 
-\paragraph{}
-Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus parámetros óptimos $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. Luego el segundo SAE, constituido por la primera y la segunda capa oculta de la DNN, aprende un conjunto de parámetros que inicializa a la segunda capa oculta y los códigos de la segunda capa oculta alimentan a la regresión softmax para que sea entrenada.
 
 \paragraph{}
-Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \textit{fine tuning} que básicamente es aplicar el algoritmo \textit{backpropagation} a la red entera para mejorar los pesos y \textit{biases} en conjunto. Se utiliza el descenso del gradiente en vez del gradiente conjugado porque los parámetros se encuentran cerca del mínimo global de la función de costos, por lo que no son necesarias demasiadas iteraciones en el proceso.
+El diagrama de bloques ilustrado en la Figura \ref{fig:block}, explica los pasos que se requieren para finalmente obtener los resultados de diagnóstico de un \textit{dataset}. Tal como se advierte en el diagrama, se aplica la FFT a las señales y gracias a la propiedad de simetría de la transformada, se toman la mitad de coeficientes a los cuales se les calcula su energía. Una vez que se tienen los valores de la energía, se crea la DNN y se procede a entrenar el primer SAE con estos valores.
+
+\paragraph{}
+Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus mejores parámetros $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. A continuación, la primera y segunda capa oculta de la DNN constituyen la red encoder del segundo SAE, el cual aprende un conjunto de parámetros que inicializa a la segunda capa oculta de la DNN. Finalmente, los códigos de la segunda capa oculta alimentan a la capa de salida, la cual se entrena y procede a realizar la clasificación en las clases estipuladas.
+
+\paragraph{}
+Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \textit{fine tuning} que básicamente consiste en aplicar el algoritmo \textit{backpropagation} a la red entera para mejorar los pesos y \textit{biases} en conjunto. Se utiliza el descenso del gradiente en vez del gradiente conjugado porque los parámetros se encuentran cerca del mínimo global de la función de costos, por lo que no son necesarias demasiadas iteraciones en el proceso.
 
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./training.eps}
-  \caption{Diagrama que representa el entrenamiento de los \textit{sparse} autoencoder y la asignación de sus parámetros a la DNN}
+  \caption{Preentrenamiento de las capas ocultas de la DNN con los \textit{sparse} autoencoder.}
   \label{fig:deepnet}
 \end{figure}
 
@@ -525,7 +525,7 @@ Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & 
 10 & 0,0212 & 0,9867 & 0,0684 & 0,0009 & 0,9703 & 0,0895 & 99,9718 $\pm$ 0,0684\\
 \bottomrule
 \end{tabular}}
-\caption{10 conjuntos de hiperparámetros probados con 30 ejecuciones en el dataset E, el formato de la exactitud es: Exactitud media $\pm$ desviación estándar.}
+\caption{10 conjuntos de hiperparámetros probados con 30 ejecuciones en el \textit{dataset} E, el formato de la exactitud es: Exactitud media $\pm$ desviación estándar.}
 \label{table:parameters}
 \end{table}
 
@@ -617,13 +617,6 @@ La gráfica del F-score (o media armónica) de las 5 pruebas, materializada en l
   \label{fig:fsc}
 \end{figure}
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[scale=0.7]{./block.eps}
-  \caption{Diagrama de flujo de los procesos que se llevan a cabo para entrenar y probar el modelo propuesto.}
-  \label{fig:block}
-\end{figure}
-
 \paragraph{}
 Con el objetivo de medir la eficiencia del modelo propuesto en este trabajo, se hará la comparación de los resultados obtenidos con dos investigaciones, Rodríguez et al. (2017) \cite{nibaldo} y Jia et al. (2016) \cite{jia} . El primer autor postula un método de diagnóstico inteligente empleando la transformada wavelet estacionaria, la descomposición en valores singulares de los coeficientes wavelet y una máquina de aprendizaje extremo. El segundo propone un método con la amplitud de los coeficientes de Fourier y una DNN con 3 autoencoders apilados.
 
@@ -639,7 +632,12 @@ El segundo autor Jia et al. (2016) \cite{jia}, consigue los siguientes resultado
 \paragraph{}
 A pesar de que los resultados del diagnóstico en los 5 \textit{datasets} no están al nivel del primer autor, para ser un método en el que casi la totalidad del esfuerzo está concentrado en el clasificador, la exactitud lograda en el \textit{dataset} E se aproxima bastante al 100\%. La capacidad de diagnóstico del modelo propuesto es satisfactoria, no obstante, la cantidad de parámetros y variables que requieren configuración es una gran desventaja a la que hay que enfrentarse al ocupar técnicas de \textit{deep learning}. El uso del ensayo y error para hallar valores de los hiperparámetros es una tarea agotadora, lo que hace pensar que el \textit{deep learning} requiere mayores avances de tecnología para aplicarse satisfactoriamente en el diagnóstico inteligente de fallas en rodamientos.
 
-
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.7]{./block.eps}
+  \caption{Diagrama de flujo con los procesos involucrados en el método de diagnóstico de fallas propuesto en este trabajo.}
+  \label{fig:block}
+\end{figure}
 
 \section{Conclusión}
 \paragraph{}
@@ -687,13 +685,19 @@ on EMD energy entropy and ANN. \textit{Journal of Sound and Vibration}, \textit{
 \bibitem{chang} Changting Wang \& Robert X. Gao (2002). Wavelet Transform with Spectral Post-Processing for
 Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Technology Conference}, \textit{52}(4), 1296-1301.
 
+\bibitem{rai} V.K. Rai \& A.R. Mohanty (2007). Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform. \textit{Mechanical Systems and Signal Processing}, \textit{21}, 2607–2615.
+
 \bibitem{ran} Ran Zhang, Zhen Peng, Lifeng Wu, Beibei Yao \& Yong Guan (2017). Fault Diagnosis from Raw Sensor Data Using Deep Neural Networks Considering Temporal Coherence. \textit{Sensors}, \textit{17}(3), 549-566.
 
 \bibitem{ali} Jaouher Ben Ali, Nader Fnaiech, Lotfi Saidi, Brigitte Chebel-Morello \& Farhat Fnaiech (2015). Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals. \textit{Applied Acoustics}, \textit{89}, 16–27.
 
 \bibitem{wu} Lifeng Wu, Beibei Yao, Zhen Peng \& Yong Guan (2017). Fault Diagnosis of Roller Bearings Based on a Wavelet Neural Network and Manifold Learning. \textit{Applied Science}, \textit{7}, 158-168. 
 
-\bibitem{rai} V.K. Rai \& A.R. Mohanty (2007). Bearing fault diagnosis using FFT of intrinsic mode functions in Hilbert–Huang transform. \textit{Mechanical Systems and Signal Processing}, \textit{21}, 2607–2615.
+\bibitem{nibaldo} Nibaldo Rodríguez, Carolina Lagos, Enrique Cabrera \& Lucio Cañete (2017). Extreme Learning Machine Based on Stationary Wavelet Singular Values for Bearing Failure Diagnosis. \textit{Studies in Informatics and Control}, \textit{26}(3), 287-294.
+
+\bibitem{mao} Wentao Mao, Jianliang He, Yuan Li \& Yunju Yan (2017). Bearing fault diagnosis with auto-encoder extreme learning machine: A comparative study. \textit{Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science}, \textit{231}(8), 1560-1578.
+
+\bibitem{konar} P. Konar \& P. Chattopadhyay (2011). Bearing fault detection of induction motor using wavelet and Support Vector Machines (SVMs). \textit{Applied Soft Computing}, \textit{11}, 4203-4211.
 
 \bibitem{anthony} Wheeler, Anthony J. \& Ganji, Ahmad R. (2009). \textit{Introduction to Engineering Experimentation} (3rd ed., pp. 107-117). New Jersey: Prentice Hall.
 
@@ -709,26 +713,20 @@ Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Techno
 
 \bibitem{chen} Zhiqiang Chen, Shengcai Deng, Xudong Chen, Chuan Li, René-Vinicio Sanchez \& Huafeng Qin (2017). Deep neural networks-based rolling bearing fault diagnosis. \textit{Microelectronics Reliability}, \textit{75}, 327-333.
 
-\bibitem{konar} P. Konar \& P. Chattopadhyay (2011). Bearing fault detection of induction motor using wavelet and Support Vector Machines (SVMs). \textit{Applied Soft Computing}, \textit{11}, 4203-4211.
-
-\bibitem{mao} Wentao Mao, Jianliang He, Yuan Li \& Yunju Yan (2017). Bearing fault diagnosis with auto-encoder extreme learning machine: A comparative study. \textit{Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science}, \textit{231}(8), 1560-1578.
-
 \bibitem{kanpaj} Kanpaj Gupta \& M.K. Pradhan (2017). Fault detection analysis in rolling element bearing: A review, \textit{Materials Today: Proceedings}, \textit{4}, 2085-2094.
 
-\bibitem{mining} Witten, Ian H. \& Frank, Eibe \& Hall, Mark A. \& Pal, Christopher J. (2016). \textit{Data Mining: Practical Machine Learning Tools and Techniques-Morgan Kaufmann} (4th ed., pp. ), Morgan Kaufmann.
+\bibitem{mining} Witten, Ian H. \& Frank, Eibe \& Hall, Mark A. \& Pal, Christopher J. (2016). \textit{Data Mining: Practical Machine Learning Tools and Techniques-Morgan Kaufmann} (4th ed.), Cambridge: Morgan Kaufmann.
 
-\bibitem{haykin} Haykin, Simon. (2009). \textit{Neural Networks and Learning Machines} (3rd ed., pp.), Pearson.
+\bibitem{haykin} Haykin, Simon. (2009). \textit{Neural Networks and Learning Machines} (3rd ed.), New Jersey:Pearson.
 
 \bibitem{ranzato} Marc’Aurelio Ranzato, Y-Lan Boureau \& Yann LeCun (2008). Sparse feature learning for deep belief networks. \textit{Advances in Neural Information Processing Systems}, \textit{20}, 1185–1192.
 
 \bibitem{du} Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng \& Meiqin Che (2017). Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification. \textit{IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens.}, \textit{10}, 1068–1081.
 
-\bibitem{case} Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 30-08-2017).
+\bibitem{case} Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 23-11-2017).
 
 \bibitem{allen} Jont B. Allen \& Lawrence R. Rabiner (1977). A Unified Approach to Short-Time Fourier Analysis
 and Synthesis. \textit{Proceedings Of The IEEE}, \textit{65}(11), 1548-1564.
-
-\bibitem{nibaldo} Nibaldo Rodriguez, Carolina Lagos, Enrique Cabrera \& Lucio Cañete (2017). Extreme Learning Machine Based on Stationary Wavelet Singular Values for Bearing Failure Diagnosis. \textit{Studies in Informatics and Control}, \textit{26}(3), 287-294.
 
 \end{thebibliography}
 \end{document}
