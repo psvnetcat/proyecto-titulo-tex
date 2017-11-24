@@ -5,6 +5,7 @@
 \usepackage{amssymb}%
 \usepackage{graphicx}
 \usepackage{booktabs}
+%\usepackage{algorithm}
 \usepackage[utf8]{inputenc}
 \usepackage{anysize}
 
@@ -45,11 +46,11 @@ Noviembre, 2017
 \Large{\textbf{Resumen}}\\
 
 \normalsize
-\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, la ingeniería ha propuesto algoritmos de \textit{machine learning} que combinados con técnicas de extracción de características; entregan un diagnóstico óptimo sobre el estado de los rodamientos. Para mejorar el rendimiento de estos modelos cuando la dimensión de los datos de entrada es muy alta, se incluyen técnicas de reducción de dimensionalidad o selección de características. En este documento se propone utilizar esta combinación de técnicas de extracción de características y algoritmos de \textit{deep learning} que reducen la dimensionalidad y realizan un diagnostico de la salud del rodamiento. En la etapa de extracción, se aplicará la transformada rápida de Fourier a una señal de vibración; para obtener la magnitud de los coeficientes y emplearlos como características. Posteriormente una red neuronal profunda compuesta por dos sparse autoencoders y una capa de neuronas con la función de activación softmax, se encargarán diagnosticar la salud del rodamiento.
+\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, la ingeniería ha propuesto algoritmos de \textit{machine learning} ,que combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este documento se propone utilizar la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning}, el cual reduce la dimensionalidad de las características y clasifica el estado de salud del rodamiento. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señal de vibración para obtener la energía de los coeficientes y usarlas como características. Posteriormente una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados, se encargarán diagnosticar la salud del rodamiento. Los resultados del método propuesto muestran una alta exactitud promedio bajo velocidades de eje variables.
 \newline
 
 \noindent
-\textbf{Palabras Clave:} rodamientos, diagnóstico, mantenimiento, señal de vibración, deep learning.
+\textbf{Palabras Clave:} Rodamientos, Diagnóstico de fallas, Mantenimiento, Señal de vibración, Deep learning.
 
 %----------------------Tabla de contenidos-----------------------------%
 
@@ -123,13 +124,8 @@ Los objetivos específicos de este proyecto son los siguientes:
 \begin{enumerate}
 \item{Descomponer señales de vibración con la transformada de Fourier discreta.}
 \item{Diseñar e implementar un algoritmo de \textit{deep learning} con sparse autoencoders.}
-\item{Evaluar la exactitud del diagnosticador con 4 estados de salud del rodamiento.}
 \item{Evaluar la exactitud del diagnosticador con 10 estados de salud del rodamiento.}
 \end{enumerate}
-
-\section{Plan de trabajo}
-\paragraph{}
-Este plan de trabajo utiliza los objetivos específicos como una base, debido a que estos explican las tareas que se deben llevar a cabo para cumplir el objetivo general. Esta segunda entrega, contempla la implementación del modelo propuesto y la evaluación del rendimiento de este. Para la próxima entrega se habrá pulido el marco teórico y la redacción de la investigación en general, sobre todo la discusión de resultados y el estado del arte.
 
 \section{Marco Teórico}
 \paragraph{}
@@ -394,10 +390,9 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \end{equation}  
 \subsection{Método de diagnóstico basado en DNN}
 \label{sec:training}
-
 \paragraph{}
-En esta sección, se dará detalle del proceso de entrenamiento de la red neuronal profunda (DNN) y los elementos que la componen. La red utilizada en este modelo, posee una capa de entrada, dos capas ocultas y una capa de salida con la función de transferencia softmax. Las dos capas ocultas son pre entrenadas con dos \textit{sparse} autoencoder (SAE) respectivamente. Estas redes de tres capas permiten encontrar los parámetros de entrenamiento a la vez que reducen la dimensión de los datos de entrada codificandolos en un espacio de menor dimensión. 
-
+Este trabajo propone un método de diagnóstico de fallas inteligente en el cual la red neuronal profunda aprende las complejas relaciones no lineales del espectro energético de las señales de vibración, para luego discernir el estado de salud del rodamiento. La energía de los coeficientes de Fourier, conocido como espectro energético de la señal, provee información clara sobre la amplitud de las frecuencias características de falla considerando que las señales observadas son moduladas en amplitud. A continuación se expone el proceso de entrenamiento de los \textit{sparse} autoencoders que hallan los parámetros de las capas ocultas de la DNN.
+ 
 \paragraph{}
 Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus parámetros óptimos $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. Luego el segundo SAE, constituido por la primera y la segunda capa oculta de la DNN, aprende un conjunto de parámetros que inicializa a la segunda capa oculta y los códigos de la segunda capa oculta alimentan a la regresión softmax para que sea entrenada.
 
@@ -622,6 +617,13 @@ La gráfica del F-score (o media armónica) de las 5 pruebas, materializada en l
   \label{fig:fsc}
 \end{figure}
 
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.7]{./block.eps}
+  \caption{Diagrama de flujo de los procesos que se llevan a cabo para entrenar y probar el modelo propuesto.}
+  \label{fig:block}
+\end{figure}
+
 \paragraph{}
 Con el objetivo de medir la eficiencia del modelo propuesto en este trabajo, se hará la comparación de los resultados obtenidos con dos investigaciones, Rodríguez et al. (2017) \cite{nibaldo} y Jia et al. (2016) \cite{jia} . El primer autor postula un método de diagnóstico inteligente empleando la transformada wavelet estacionaria, la descomposición en valores singulares de los coeficientes wavelet y una máquina de aprendizaje extremo. El segundo propone un método con la amplitud de los coeficientes de Fourier y una DNN con 3 autoencoders apilados.
 
@@ -637,12 +639,7 @@ El segundo autor Jia et al. (2016) \cite{jia}, consigue los siguientes resultado
 \paragraph{}
 A pesar de que los resultados del diagnóstico en los 5 \textit{datasets} no están al nivel del primer autor, para ser un método en el que casi la totalidad del esfuerzo está concentrado en el clasificador, la exactitud lograda en el \textit{dataset} E se aproxima bastante al 100\%. La capacidad de diagnóstico del modelo propuesto es satisfactoria, no obstante, la cantidad de parámetros y variables que requieren configuración es una gran desventaja a la que hay que enfrentarse al ocupar técnicas de \textit{deep learning}. El uso del ensayo y error para hallar valores de los hiperparámetros es una tarea agotadora, lo que hace pensar que el \textit{deep learning} requiere mayores avances de tecnología para aplicarse satisfactoriamente en el diagnóstico inteligente de fallas en rodamientos.
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[scale=0.6]{./block.eps}
-  \caption{Diagrama de flujo de los procesos que se llevan a cabo para entrenar y probar el modelo propuesto.}
-  \label{fig:block}
-\end{figure}
+
 
 \section{Conclusión}
 \paragraph{}
