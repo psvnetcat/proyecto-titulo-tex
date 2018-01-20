@@ -18,7 +18,7 @@ Document=ProyectoTituloTex.tex
 
 [Frame0_View0,0]
 TopLine=42
-Cursor=1189
+Cursor=991
 
 [SessionInfo]
 FrameCount=1
