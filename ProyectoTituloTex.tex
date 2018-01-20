@@ -36,7 +36,7 @@ Profesor co-referente: \textbf{Guillermo Cabrera Guerrero}
 \end{center}
 \vspace{1cm}
 \begin{center} 
-Noviembre, 2017
+Febrero, 2018
 \end{center}
 \newpage
 \pagenumbering{roman}
@@ -45,7 +45,7 @@ Noviembre, 2017
 \Large{\textbf{Resumen}}\\
 
 \normalsize
-\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, la ingeniería ha propuesto algoritmos de \textit{machine learning} ,que combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este documento se propone utilizar la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning}, el cual reduce la dimensionalidad de las características y clasifica el estado de salud del rodamiento. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señal de vibración para obtener la energía de los coeficientes y usarlas como características. Posteriormente una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados, se encargarán diagnosticar la salud del rodamiento. Los resultados del método propuesto muestran una alta exactitud promedio bajo velocidades de eje variables.
+\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, la ingeniería ha propuesto algoritmos de \textit{machine learning}, que combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este documento se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados, se encargará de diagnosticar la salud del rodamiento. Los resultados del método propuesto muestran una alta exactitud promedio bajo velocidades de eje variables.
 \newline
 
 \noindent
@@ -115,7 +115,7 @@ En función de lo anterior, en el presente trabajo se propone un método intelig
 En esta sección se definen los objetivos general y específicos que persigue la ejecución de este proyecto.
 \subsection{Objetivo general}
 \paragraph{}
-Desarrollar un diagnosticador de severidad de fallos de rodamientos, bajo velocidades variables utilizando la transformada de Fourier discreta.
+Desarrollar un diagnosticador de severidad de fallos de rodamientos, bajo velocidades variables utilizando la transformada de Fourier discreta y el algoritmo de aprendizaje apilado sparse autoencoders.
 
 \subsection{Objetivos específicos}
 \paragraph{}
@@ -220,7 +220,7 @@ Los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o in
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./signalOF.eps}
-  \caption{Señales de vibración de un rodamiento, con una carga de 3 hp y 0,54 mm de diámetro de falla.}
+  \caption{Señales de vibración de un rodamiento con una falla en el anillo externo de 0,021 pulgadas sometido a 4 cargas.}
   \label{fig:senales}
 \end{figure}
 
@@ -516,7 +516,7 @@ Nro. & $\lambda_{1}$ & $\beta_{1}$ & $\rho_{1}$ & $\lambda_{2}$ & $\beta_{2}$ & 
 \addlinespace
 6 & 0,0023 & 0,9213 & 0,3031 & 0,0181 & 0,9491 & 0,1993 & 99,8729 $\pm$ 0,1868\\
 \addlinespace
-7 & 0,0062 & 0,9437 & 0,2972 & 0,0153 & 0,9456 & 0,3838 & 99,9859 $\pm$ 0,0431\\
+\textbf{7} & \textbf{0,0062} & \textbf{0,9437} & \textbf{0,2972} & \textbf{0,0153} & \textbf{0,9456} & \textbf{0,3838} & \textbf{99,9859} $\pm$ \textbf{0,0431}\\
 \addlinespace
 8 & 0,0121 & 0,9832 & 0,1569 & 0,0071 & 0,9617 & 0,1361 & 99,9670 $\pm$ 0,0712\\
 \addlinespace
@@ -644,7 +644,7 @@ A pesar de que los resultados del diagnóstico en los 5 \textit{datasets} no est
 Al iniciar este trabajo de investigación, el objetivo fue desarrollar un método de diagnóstico inteligente capaz de distinguir severidades de falla en rodamientos bajo velocidades variables. Empleando la transformada de Fourier, implementada con la función FFT, y una técnica de \textit{deep learning} denominada DNN. También fue un objetivo alcanzar resultados parecidos a los de publicaciones que aplicaran técnicas similares y comprender la complejidad del problema subyacente del diagnóstico de fallas en rodamientos.
 
 \paragraph{}
-Investigando sobre el tema del diagnóstico inteligente de fallas en rodamientos y otros elementos mecánicos, me tope con información muy valiosa respecto al fenómeno mecánico detrás de las señales de vibración de un rodamiento. La cantidad de herramientas y técnicas de extracción de características derivadas de la estadística y procesamiento de señales es enorme, por lo que este campo de estudio resulta muy enriquecedor en términos de formación académica. Estudiar un tema tan interesante y complejo como el análisis de vibraciones y populares técnicas de \textit{deep learning}, efectúa un cambio de paradigma en un alumno de pregrado.
+Investigando sobre el tema del diagnóstico inteligente de fallas en rodamientos y otros elementos mecánicos, me topé con información muy valiosa respecto al fenómeno mecánico detrás de las señales de vibración de un rodamiento. La cantidad de herramientas y técnicas de extracción de características derivadas de la estadística y procesamiento de señales es enorme, por lo que este campo de estudio resulta muy enriquecedor en términos de formación académica. Estudiar un tema tan interesante y complejo como el análisis de vibraciones y populares técnicas de \textit{deep learning}, efectúa un cambio de paradigma en un alumno de pregrado.
 
 \paragraph{}
 Para cumplir con mi objetivo en esta investigación, fue necesario comenzar a estudiar acerca de las necesidades del mantenimiento moderno y de cómo la ingeniería ha propuesto técnicas de \textit{machine learning} para automatizar procesos que hasta hoy en día se hacen a mano. También tuve que entender cómo surgió la aplicación de técnicas de \textit{representation learning}, ampliamente usadas en el reconocimiento de imágenes, en nuevos enfoques de \textit{deep learning} empleados en el diagnóstico de fallas de elementos mecánicos. Además, tuve que aprender a usar y calibrar las funciones del \textit{toolkit} de MATLAB que permiten crear la red con \textit{sparse} autoencoders apilados.
@@ -656,7 +656,7 @@ En este trabajo de investigación corroboré la aplicación de técnicas de \tex
 Respecto a las limitaciones de este trabajo, las principales dificultades estuvieron relacionadas con la configuración del clasificador. Esto se refiere a hallar valores de hiperparámetros y topologíasde de la red con las que fuera mejorando paulatinamente el desempeño de la red profunda. Otra dificultad no menor, fue comprender la naturaleza subyacente de las vibraciones mecánicas de los rodamientos, y de cómo esta se relaciona con las señales de vibración que son medidas por los sensores. 
 
 \paragraph{}
-En una próxima investigación me gustaría aprender más acerca del fenómeno físico detrás de las vibraciones mecánicas. Lo que me permitiría probar algún método de diagnóstico inteligente una técnica de procesamiento de señales mas avanzada y alguna herramienta de \textit{machine learning} que parezca interesante. Por ahora, el \textit{deep learning} queda descartado de nuevas investigaciones personales de problemas de diagnostico de fallas, debido a sus extenuante proceso de configuración.
+En una próxima investigación me gustaría aprender más acerca del fenómeno físico detrás de las vibraciones mecánicas. Lo que me permitiría probar algún método de diagnóstico inteligente una técnica de procesamiento de señales más avanzada y alguna herramienta de \textit{machine learning} que parezca interesante. Por ahora, el \textit{deep learning} queda descartado de nuevas investigaciones personales de problemas de diagnostico de fallas, debido a su extenuante proceso de configuración.
 
 \clearpage
 
