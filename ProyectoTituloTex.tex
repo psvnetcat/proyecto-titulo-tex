@@ -1,5 +1,5 @@
 
-\documentclass[12pt]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -7,6 +7,7 @@
 \usepackage{booktabs}
 \usepackage[utf8]{inputenc}
 \usepackage{anysize}
+\usepackage[english,spanish]{babel}
 
 \marginsize{2cm}{2cm}{2cm}{2cm} 
 \begin{document}
@@ -19,9 +20,7 @@ FACULTAD DE INGENIERÍA\\
 ESCUELA DE INGENIERÍA INFORMÁTICA\\
 
 \vspace{4cm}
-
 \Large{\textbf{Diagnosticador de severidad de fallos de rodamientos bajo velocidades variables utilizando la transformada de Fourier y Deep learning}}
-
 \vspace{3cm}
 
 \normalsize{\textbf{Sebastián Ignacio López Norambuena}}\\
@@ -36,11 +35,13 @@ Profesor co-referente: \textbf{Guillermo Cabrera Guerrero}
 \end{center}
 \vspace{1cm}
 \begin{center} 
-Febrero, 2018
+Marzo, 2018
 \end{center}
 \newpage
+
 \pagenumbering{roman}
 
+\selectlanguage{English}
 
 \begin{abstract}
 \normalsize
@@ -52,34 +53,25 @@ Febrero, 2018
 
 \newpage
 
+\selectlanguage{spanish}
+
 \begin{abstract}
 \normalsize
-\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, la ingeniería ha propuesto algoritmos de \textit{machine learning}, que combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este documento se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados, se encargará de diagnosticar la salud del rodamiento. Los resultados del método propuesto muestran una alta exactitud promedio bajo velocidades de eje variables. 
+\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, investigadores han propuesto algoritmos de \textit{machine learning} que, combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este proyecto se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente, una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados será empleada para diagnosticar la salud del rodamiento. Los resultados experimentales del método propuesto alcanzan un 99,9718\% de exactitud en el diagnóstico correcto de fallas, bajo velocidad de eje variable y en 30 procesos de validación.
 \newline
 \newline
 \textbf{Palabras clave:} Rodamientos, Diagnóstico de fallas, Señal de vibración, Transformada de Fourier, Deep learning.
 \end{abstract}
-%----------------------Tabla de contenidos-----------------------------%
+
 
 \newpage
-\renewcommand{\contentsname}{Índice}
-\renewcommand{\tablename}{Tabla} 
 \tableofcontents
-\renewcommand{\figurename}{Figura}
-\renewcommand{\refname}{Referencias}
-\renewcommand{\listtablename}{Lista de Tablas}
 \newpage
-
-%----------------------Tabla de contenidos-----------------------------%
-
-%-------------------------Tabla de imagenes--------------------------%
 
 \renewcommand{\listfigurename}{Lista de Figuras}
 \listoffigures
 \listoftables
 \newpage
-
-%-------------------------Tabla de imagenes--------------------------%
 
 \pagenumbering{arabic}
 \section{Introducción}
@@ -139,20 +131,20 @@ Los objetivos específicos de este proyecto son los siguientes:
 Esta sección tiene como objetivo presentar antecedentes, conceptos, definiciones y la importancia de las técnicas y herramientas que se utilizarán en el desarrollo de esta investigación. Así, comenzaremos con el empleo de enfoques en el dominio de la frecuencia, seguido del aprendizaje profundo y luego el sustento matemático de ambos. Finalmente se dará a conocer la descripción del método inteligente de diagnóstico propuesto en esta investigación y todo lo relacionado con funcionamiento de la DNN como clasificador.
 
 \paragraph{}
-En la literatura especializada, existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, quien propone un método con la amplitud de los coeficientes de Fourier y una máquina de aprendizaje extremo. Este ejemplo corresponde a un  antecedente idóneo para esta investigación, debido a que hace uso de la transformada de Fourier para obtener los coeficientes y compara sus resultados con el mismo clasificador que este trabajo, con la salvedad que sus autoencoders no aplican la penalización dispersión a los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
+En la literatura especializada, existen antecedentes que sirven como base para esta investigación, un ejemplo de estos es Mao et al. (2017) \cite{mao}, quien propone un método con la amplitud de los coeficientes de Fourier y una máquina de aprendizaje extremo. Este ejemplo corresponde a un antecedente idóneo para esta investigación, debido a que hace uso de la transformada de Fourier para obtener los coeficientes y compara sus resultados con el mismo clasificador que este trabajo, con la salvedad que sus autoencoders no aplican la penalización dispersión a los nodos en la capa oculta, variación denominada \textit{sparse} autoencoder y que sí es utilizada en esta investigación.
 
 \paragraph{}
 Otro ejemplo de un antecedente es Gupta et al. (2017) \cite{kanpaj}, quien postula que el análisis espectral es el enfoque más utilizado para detectar fallas en los rodamientos. El principal motivo de lo anterior es que los enfoques en el dominio del tiempo solo pueden detectar cuándo ocurre una falla en el rodamiento, mientras que el análisis espectral, además puede determinar en qué componente del rodamiento se encuentra el desperfecto. El autor también aclara que la transformada rápida de Fourier (FFT) es el algoritmo computacional más eficiente para convertir una señal en el dominio del tiempo a componentes de frecuencia discretos.
 
 \paragraph{}
-En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, este autor  propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. Su principal argumento es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y el consumo de una gran capacidad de cómputo.
+En cuanto a las redes neuronales profundas, podemos encontrar a Zhang et al. (2017) \cite{ran}, este autor propone el uso de una DNN cuya función de costos es la entropía cruzada de los valores de salida y el \textit{target}. Los autores no utilizan métodos de extracción de características y solo dividen en segmentos la señal original para entrenar a la red neuronal profunda. Su principal argumento es que se debe mantener la coherencia temporal de la señal, pero la cantidad de datos que recibe la red es enorme, resultando en grandes tiempos de entrenamiento y el consumo de una gran capacidad de cómputo.
 
 \paragraph{}
 A continuación se encuentran los conceptos y definiciones matemáticas de las herramientas que se utilizarán en esta investigación, comenzando por la transformada de Fourier y sus variantes, seguido del \textit{deep learning} (o aprendizaje profundo), los autoencoders y su variante \textit{sparse} autoencoder.
 
 \subsection{Transformada de Fourier}
 \paragraph{}
-La transformada de Fourier es una herramienta matemática poderosa, por lo que es utilizada en diversos campos de la ciencia y la ingeniería. Puede ser vista como la transformación de una señal en un dominio (típicamente tiempo o espacio) a otro dominio, el dominio de la frecuencia. Al aplicar la transformada de Fourier a una señal, se obtienen sus componentes fundamentales en frecuencia que a menudo revelan estructuras ocultas, que en el dominio del tiempo, no son posibles de observar.
+La transformada de Fourier es una herramienta matemática poderosa, por lo que es utilizada en diversos campos de la ciencia y la ingeniería. Puede ser vista como la transformación de una señal en un dominio (típicamente tiempo o espacio) a otro dominio, el dominio de la frecuencia. Al aplicar la transformada de Fourier a una señal, se obtienen sus componentes fundamentales en frecuencia que a menudo revelan estructuras ocultas, que en el dominio del tiempo no son posibles de observar.
 
 \paragraph{}
 Como consecuencia de lo anterior, el análisis de Fourier está en la base de muchas teorías de la ciencia y juega un papel fundamental en el diseño práctico de la ingeniería. El alcance actual de la influencia del análisis de Fourier está indicado por una lista parcial de científicos e ingenieros que la utilizan \cite{robert}:
@@ -263,7 +255,7 @@ Un autoencoder (AE) es una red neuronal artificial no supervisada de tres capas 
 \end{figure}
 
 \paragraph{}
-Es posible identificar dos estructuras en la red autoencoder, por una parte el codificador en el lado izquierdo de la Figura \ref{fig:ae}, que mapea los datos de entrada desde un espacio de alta dimensión en códigos de un espacio de baja dimensión. Por otra parte, que se encuentra al lado derecho de la Figura \ref{fig:ae}, reconstruye los datos de entrada a partir de los códigos obtenidos por la capa oculta llevándolos a su dimensión original \cite{shao}. Ahora que está claro cuál es el encoder y el decoder, podemos definir matemáticamente ambas estructuras.
+Es posible identificar dos estructuras en la red autoencoder, por una parte, el codificador en el lado izquierdo de la Figura \ref{fig:ae}, que mapea los datos de entrada desde un espacio de alta dimensión en códigos de un espacio de baja dimensión. Por otra parte, el decodificador que se encuentra al lado derecho de la Figura \ref{fig:ae}, reconstruye los datos de entrada a partir de los códigos obtenidos por la capa oculta llevándolos a su dimensión original \cite{shao}. Ahora que está claro cuál es el encoder y el decoder, podemos definir matemáticamente ambas estructuras.
 
 \paragraph{}
 Dadas las muestras de entrenamiento $\textbf{x}=(x_{1},x_{2},...,x_{n})$, donde la muestra $x_{n}\in \mathbb{R}^{m}$, se define la red encoder como una función codificadora $f_{\theta}$ (Ecc. \ref{f}) cuya tarea es representar estas muestras en un vector con códigos de menor dimensión denominado $\textbf{h}=(h_{1},h_{2},...,h_{n})$, en donde $h_{n} \in \mathbb{R}^{d}$ y $d<m$. La matriz de pesos sinápticos de la función encoder corresponde a $\textbf{w}^{(1)} = (w_{1}^{(1)},w_{2}^{(1)},...,w_{m}^{(1)})$ con $w_{m}^{(1)}\in \mathbb{R}^{d}$, mientras que $\textbf{b}^{(1)}=(b_{1}^{(1)},b_{2}^{(1)},...,b_{d}^{(1)})^T$ representa el arreglo de \textit{biases} pertenecientes a las neuronas de la capa oculta. Los pesos sinápticos y los \textit{biases} conforman $\theta$, el conjunto de parámetros a minimizar en la función de costos que será detallada más adelante.
@@ -396,7 +388,7 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \subsection{Método de diagnóstico basado en DNN}
 \label{sec:training}
 \paragraph{}
-Este trabajo propone un método de diagnóstico de fallas inteligente en el cual la red neuronal profunda aprende las complejas relaciones no lineales del espectro de potencia de las señales de vibración, para luego discernir el estado de salud del rodamiento. La energía de los coeficientes de Fourier, conocido como espectro de potencia de la señal, provee información clara sobre la amplitud de las frecuencias características de falla considerando que las señales observadas son moduladas en amplitud. A continuación se expone el proceso de entrenamiento de los \textit{sparse} autoencoders que hallan los parámetros de las capas ocultas de la DNN.
+Este proyecto propone un método de diagnóstico de fallas inteligente en el cual la red neuronal profunda aprende las complejas relaciones no lineales del espectro de potencia de las señales de vibración, para luego discernir el estado de salud del rodamiento. La energía de los coeficientes de Fourier, conocido como espectro de potencia de la señal, provee información clara sobre la amplitud de las frecuencias características de falla considerando que las señales observadas son moduladas en amplitud. A continuación, se expone el proceso de entrenamiento de los \textit{sparse} autoencoders que hallan los parámetros de las capas ocultas de la DNN.
 
 \paragraph{}
 El diagrama de bloques ilustrado en la Figura \ref{fig:block}, explica los pasos que se requieren para finalmente obtener los resultados de diagnóstico de un \textit{dataset}. Tal como se advierte en el diagrama, se aplica la FFT a las señales y gracias a la propiedad de simetría de la transformada, se toman la mitad de coeficientes a los cuales se les calcula su energía. Una vez que se tienen los valores de la energía, se crea la DNN y se procede a entrenar el primer SAE con estos valores.
@@ -664,7 +656,7 @@ En este trabajo de investigación corroboré la aplicación de técnicas de \tex
 Respecto a las limitaciones de este trabajo, las principales dificultades estuvieron relacionadas con la configuración del clasificador. Esto se refiere a hallar valores de hiperparámetros y topologíasde de la red con las que fuera mejorando paulatinamente el desempeño de la red profunda. Otra dificultad no menor, fue comprender la naturaleza subyacente de las vibraciones mecánicas de los rodamientos, y de cómo esta se relaciona con las señales de vibración que son medidas por los sensores. 
 
 \paragraph{}
-En una próxima investigación me gustaría aprender más acerca del fenómeno físico detrás de las vibraciones mecánicas. Lo que me permitiría probar algún método de diagnóstico inteligente una técnica de procesamiento de señales más avanzada y alguna herramienta de \textit{machine learning} que parezca interesante. Por ahora, el \textit{deep learning} queda descartado de nuevas investigaciones personales de problemas de diagnostico de fallas, debido a su extenuante proceso de configuración.
+En una próxima investigación me gustaría aprender más acerca del fenómeno físico detrás de las vibraciones mecánicas. Lo que me permitiría probar algún método de diagnóstico inteligente una técnica de procesamiento de señales más avanzada y alguna herramienta de \textit{machine learning} que parezca interesante. Por ahora, el \textit{deep learning} queda descartado de nuevas investigaciones personales de problemas de diagnóstico de fallas, debido a su extenuante proceso de configuración.
 
 \clearpage
 
