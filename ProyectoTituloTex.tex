@@ -41,28 +41,36 @@ Marzo, 2018
 
 \pagenumbering{roman}
 
-\selectlanguage{English}
-
-\begin{abstract}
-\normalsize
-\noindent The rolling bearing is one of the most used components in rotary machinery. The failure of these elements are very common and have a big impact on the production systems. Hence, it is critical to study the bearing fault diagnosis technology and include it in maintenance plans. Vibration signals of rolling bearings carries dynamic information of its health condition; so it can be used to identify and classify faults in their mechanical structure. In order to automate this process, researchers have proposed machine learning algorithms, which combined with feature extraction techniques, provides an accurate fault diagnosis. In this project, a combination of a feature extraction technique and a deep learning algorithm is proposed for rotating machinery fault diagnosis. The fast Fourier transform will be applied to vibration signals as feature extraction technique to obtain the power spectrum. Subsequently, a deep neural network composed of two stacked sparse autoencoders will be employed to identify the fault condition of rolling bearing. Experimental results show that the proposed method reaches 99,9718\% of successful fault detection at variable shaft speed in 30 trials. 
-\newline
-\newline
-\textbf{Keywords:} Rolling bearings, Fault diagnosis, Vibration signal, Fourier Transform, Deep learning.
-\end{abstract}
-
 \newpage
 
 \selectlanguage{spanish}
 
 \begin{abstract}
 \normalsize
-\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, investigadores han propuesto algoritmos de \textit{machine learning} que, combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este proyecto se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente, una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados será empleada para diagnosticar la salud del rodamiento. Los resultados experimentales del método propuesto alcanzan un 99,9718\% de exactitud en el diagnóstico correcto de fallas, bajo velocidad de eje variable y en 30 procesos de validación.
+\noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, investigadores han propuesto algoritmos de \textit{machine learning} que, combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este proyecto se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente, una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados será empleada para diagnosticar la salud del rodamiento. Los resultados experimentales del método propuesto alcanzan un 99,97\% de exactitud en el diagnóstico correcto de fallas, bajo velocidad de eje variable y en 30 ensayos aleatorios.
 \newline
 \newline
 \textbf{Palabras clave:} Rodamientos, Diagnóstico de fallas, Señal de vibración, Transformada de Fourier, Deep learning.
 \end{abstract}
 
+\newpage
+\selectlanguage{English}
+
+\begin{abstract}
+\normalsize
+\noindent The rolling bearing is one of the most used components in rotary machinery. The failure of these elements are very common and have a big impact on the production systems. Hence, it is critical to study the bearing fault diagnosis technology and include it in maintenance plans. Vibration signals of rolling bearings carries dynamic information of its health condition; so it can be used to identify and classify faults in their mechanical structure. In order to automate this process, researchers have proposed machine learning algorithms, which combined with feature extraction techniques, provides an accurate fault diagnosis. In this project, a combination of a feature extraction technique and a deep learning algorithm is proposed for rotating machinery fault diagnosis. The fast Fourier transform will be applied to vibration signals as feature extraction technique to obtain the power spectrum. Subsequently, a deep neural network composed of two stacked sparse autoencoders will be employed to identify the fault condition of rolling bearing. Experimental results show that the proposed method reaches 99,97\% of successful fault detection at variable shaft speed in 30 random trials. 
+\newline
+\newline
+\textbf{Keywords:} Rolling bearings, Fault diagnosis, Vibration signal, Fourier Transform, Deep learning.
+\end{abstract}
+
+\selectlanguage{spanish}
+
+\newpage
+\begin{flushright}
+\textit{Dedicado a \\
+mi familia}
+\end{flushright}
 
 \newpage
 \tableofcontents
@@ -227,9 +235,6 @@ Los rodamientos pueden comenzar a fallar por muchos motivos: un mal diseño o in
 \paragraph{}
 La transformada rápida de Fourier (FFT) fue seleccionada como técnica de extracción de características por ser una herramienta de baja complejidad computacional y porque puede trasladar la señal original al dominio de la frecuencia. Sin embargo, tiene una serie de desventajas en este tipo de problemas en que la señal de vibración (Figura \ref{fig:senales}) es tremendamente compleja. Podríamos decir que la desventaja más importante es que, esta técnica es menos eficiente cuando las fallas son distribuidas y la señal tiene un comportamiento no lineal, el espectro de frecuencias varia en el tiempo y la técnica no es capaz de realzar las componentes impulsivas características de la falla.
 
-\paragraph{}
-En la Figura \ref{fig:block} se encuentra el diagrama de flujo de los pasos descritos en esta sección, que van desde la carga de las señales, hasta el entrenamiento de la red neuronal profunda y las gráficas de las métricas para el diagnóstico. En el primer bloque del diagrama se encuentra la sucesión de pasos para obtener las características que alimentarán a la capa de entrada del clasificador.
-
 \subsection{Deep learning}
 \paragraph{}
 En los años recientes, un nuevo enfoque de \textit{machine learning}, denominado \textit{deep learning}, ha llamado la atención de investigadores de múltiples áreas debido a una serie de ventajas respecto a otros enfoques. \textit{Deep learning} ha tenido un gran impacto en trabajos actuales de reconocimiento de voz, visión artificial y procesamiento del lenguaje natural, a causa de la efectividad empírica de este respecto a enfoques alternativos en estos ámbitos. El desarrollo de esta tecnología fue potenciado, en gran medida, por la creciente capacidad de cómputo de los equipos, y por el uso de los inmensos volúmenes de datos que son generados todos los días por la humanidad.
@@ -388,13 +393,17 @@ r(n+1) = -\nabla{\phi_{SAE}(\Theta(n+1))}
 \subsection{Método de diagnóstico basado en DNN}
 \label{sec:training}
 \paragraph{}
-Este proyecto propone un método de diagnóstico de fallas inteligente en el cual la red neuronal profunda aprende las complejas relaciones no lineales del espectro de potencia de las señales de vibración, para luego discernir el estado de salud del rodamiento. La energía de los coeficientes de Fourier, conocido como espectro de potencia de la señal, provee información clara sobre la amplitud de las frecuencias características de falla considerando que las señales observadas son moduladas en amplitud. A continuación, se expone el proceso de entrenamiento de los \textit{sparse} autoencoders que hallan los parámetros de las capas ocultas de la DNN.
+Este proyecto propone un método de diagnóstico de fallas inteligente que contempla tres etapas, ilustradas en el diagrama de bloques de la Figura \ref{fig:block}. En el primer bloque o proceso se aplica la transformada rápida de Fourier a una señales de vibracion de $n$ puntos, para seleccionar la mitad de las componentes de frecuencia de la señal (más detalles del proceso en la Sección \ref{sec:energy}). En el segundo bloque se calcula el espectro de potencia de las $n/2$ componentes de frecuencia y se utilizan estos valores, la energía de dichas componentes, para entrenar la DNN y obtener el diagnóstico del estado de salud del rodamiento.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[scale=0.7]{./modelo.eps}
+  \caption{Diagrama de bloques con los procesos involucrados en el método de diagnóstico de fallas propuesto.}
+  \label{fig:block}
+\end{figure}
 
 \paragraph{}
-El diagrama de bloques ilustrado en la Figura \ref{fig:block}, explica los pasos que se requieren para finalmente obtener los resultados de diagnóstico de un \textit{dataset}. Tal como se advierte en el diagrama, se aplica la FFT a las señales y gracias a la propiedad de simetría de la transformada, se toman la mitad de coeficientes a los cuales se les calcula su energía. Una vez que se tienen los valores de la energía, se crea la DNN y se procede a entrenar el primer SAE con estos valores.
-
-\paragraph{}
-Una vez que el primer SAE termina de aprender su representación de los datos a través del algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus mejores parámetros $\theta_{1}$ a la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. A continuación, la primera y segunda capa oculta de la DNN constituyen la red encoder del segundo SAE, el cual aprende un conjunto de parámetros que inicializa a la segunda capa oculta de la DNN. Finalmente, los códigos de la segunda capa oculta alimentan a la capa de salida, la cual se entrena y procede a realizar la clasificación en las clases estipuladas.
+Para hacer que el modelo funcione se construye la DNN con cierta topología y se inicia con el pre entrenamiento de sus capas ocultas. Cuando el primer SAE termina de aprender su representación de los datos, aplicando el algoritmo del gradiente conjugado (Ecc. \ref{gradiente}), inicializa con sus mejores parámetros $\theta_{1}$ la primera capa oculta de la DNN como se muestra en la parte izquierda A de la Fig. \ref{fig:deepnet}. A continuación, la primera y segunda capa oculta de la DNN constituyen la red encoder del segundo SAE, el cual aprende un conjunto de parámetros que inicializa a la segunda capa oculta de la DNN. Finalmente, los códigos de la segunda capa oculta alimentan a la capa de salida, la cual se entrena y desarrolla la clasificación en las clases estipuladas.
 
 \paragraph{}
 Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \textit{fine tuning} que básicamente consiste en aplicar el algoritmo \textit{backpropagation} a la red entera para mejorar los pesos y \textit{biases} en conjunto. Se utiliza el descenso del gradiente en vez del gradiente conjugado porque los parámetros se encuentran cerca del mínimo global de la función de costos, por lo que no son necesarias demasiadas iteraciones en el proceso.
@@ -402,7 +411,7 @@ Una vez obtenidos los parámetros de las capas ocultas, la DNN realiza un \texti
 \begin{figure}[ht]
   \centering
     \includegraphics[scale=0.9]{./training.eps}
-  \caption{Preentrenamiento de las capas ocultas de la DNN con los \textit{sparse} autoencoder.}
+  \caption{Pre entrenamiento de las capas ocultas de la DNN con los \textit{sparse} autoencoder.}
   \label{fig:deepnet}
 \end{figure}
 
@@ -425,7 +434,7 @@ El rodamiento ubicado en el \textit{drive end} fue sometido a descargas eléctri
 El principal motivo para utilizar esta base de datos es que sirve como punto de comparación para este trabajo, permitiendo efectuar el contraste con investigaciones similares que realizan diagnóstico de fallas inteligente en rodamientos. De esta manera, es posible desarrollar conclusiones a cerca del desempeño de la configuración propuesta y de la aplicación del \textit{deep learning} a este tipo de problemas. Además, al tener tipos de fallas con severidades, es posible elevar el grado de complejidad del problema aparte de probar la capacidad de reconocimiento de más estados de salud con del modelo propuesto.
 
 \subsection{Energía de los coeficientes de Fourier}
-\label{sec:datasets}
+\label{sec:energy}
 
 \paragraph{}
 Cinco conjuntos de datos, ilustrados en la Tabla \ref{table:tdatasets}, serán utilizados en este trabajo para probar el rendimiento del método propuesto. Los \textit{datasets} poseen 10 etiquetas de clasificación que corresponden a los 10 estados de salud del rodamiento, separados bajo las velocidades de eje de 1.797, 1.772, 1.750 y 1.720 rpm y las cargas 0, 1, 2 y 3 hp correspondientemente. El conjunto E es el de mayor tamaño, porque reúne las 4 velocidades y es, por lo tanto, el que más se aproxima a una señal de vibración de un rodamiento sometido a carga y velocidad variables.
@@ -632,13 +641,6 @@ El segundo autor Jia et al. (2016) \cite{jia}, consigue los siguientes resultado
 \paragraph{}
 A pesar de que los resultados del diagnóstico en los 5 \textit{datasets} no están al nivel del primer autor, para ser un método en el que casi la totalidad del esfuerzo está concentrado en el clasificador, la exactitud lograda en el \textit{dataset} E se aproxima bastante al 100\%. La capacidad de diagnóstico del modelo propuesto es satisfactoria, no obstante, la cantidad de parámetros y variables que requieren configuración es una gran desventaja a la que hay que enfrentarse al ocupar técnicas de \textit{deep learning}. El uso del ensayo y error para hallar valores de los hiperparámetros es una tarea agotadora, lo que hace pensar que el \textit{deep learning} requiere mayores avances de tecnología para aplicarse satisfactoriamente en el diagnóstico inteligente de fallas en rodamientos.
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[scale=0.7]{./block.eps}
-  \caption{Diagrama de flujo con los procesos involucrados en el método de diagnóstico de fallas propuesto.}
-  \label{fig:block}
-\end{figure}
-
 \section{Conclusión}
 \paragraph{}
 Al iniciar este trabajo de investigación, el objetivo fue desarrollar un método de diagnóstico inteligente capaz de distinguir severidades de falla en rodamientos bajo velocidades variables. Empleando la transformada de Fourier, implementada con la función FFT, y una técnica de \textit{deep learning} denominada DNN. También fue un objetivo alcanzar resultados parecidos a los de publicaciones que aplicaran técnicas similares y comprender la complejidad del problema subyacente del diagnóstico de fallas en rodamientos.
@@ -723,7 +725,7 @@ Enhanced Feature Extraction. \textit{IEEE Instrumentation and Measurement Techno
 
 \bibitem{du} Erzhu Li, Peijun Du, Alim Samat, Member, Yaping Meng \& Meiqin Che (2017). Mid-Level Feature Representation via Sparse Autoencoder for Remotely Sensed Scene Classification. \textit{IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens.}, \textit{10}, 1068–1081.
 
-\bibitem{case} Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, (visitado el 23-11-2017).
+\bibitem{case} Case Western Reserve University Bearing Data Center, \textit{Bearing vibration data set}, http://csegroups.case.edu/bearingdatacenter/pages/12k-drive-end-bearing-fault-data, visitado el 23-11-2017.
 
 \bibitem{allen} Jont B. Allen \& Lawrence R. Rabiner (1977). A Unified Approach to Short-Time Fourier Analysis
 and Synthesis. \textit{Proceedings Of The IEEE}, \textit{65}(11), 1548-1564.
