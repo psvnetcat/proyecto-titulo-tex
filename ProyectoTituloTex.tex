@@ -8,6 +8,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{anysize}
 \usepackage[english,spanish]{babel}
+\usepackage[nottoc,numbib]{tocbibind}
 
 \marginsize{2cm}{2cm}{2cm}{2cm} 
 \begin{document}
@@ -44,15 +45,22 @@ Carrera: \textbf{Ingeniería Civil en Informática}
 \begin{center} 
 Diciembre, 2017
 \end{center}
-\newpage
 
 \pagenumbering{roman}
 
+\newpage
+\begin{flushright}
+\null
+\vfill
+\textit{Dedicado a \\
+mi familia}
+\end{flushright}
 \newpage
 
 \selectlanguage{spanish}
 
 \begin{abstract}
+\addcontentsline{toc}{section}{\abstractname}
 \normalsize
 \noindent El rodamiento es uno de los componentes más utilizados en la maquinaria rotativa. Las fallas en estos elementos son muy comunes y tienen un gran impacto en la cadena de producción de una planta. Por lo tanto, es importante estudiar la tecnología de diagnóstico de fallas en rodamientos e incluirla en los planes de mantenimiento. Una señal de vibración perteneciente a un rodamiento, transporta información dinámica sobre el estado de salud de este; así que puede ser utilizada para identificar y clasificar fallas en la estructura de los rodamientos. Para automatizar este proceso, investigadores han propuesto algoritmos de \textit{machine learning} que, combinados con técnicas de extracción de características, entregan un diagnóstico preciso sobre el estado de los rodamientos. En este proyecto se propone la combinación de una técnica de extracción de características y un algoritmo de \textit{deep learning} para efectuar el diagnostico de fallas. En la etapa de extracción, se aplicará la transformada rápida de Fourier a las señales de vibración para obtener el espectro de potencia. Posteriormente, una red neuronal profunda compuesta por dos \textit{sparse} autoencoders apilados será empleada para diagnosticar la salud del rodamiento. Los resultados experimentales del método propuesto alcanzan un 99,97\% de exactitud en el diagnóstico correcto de fallas, bajo velocidad de eje variable y en 30 ensayos aleatorios.
 \newline
@@ -64,6 +72,7 @@ Diciembre, 2017
 \selectlanguage{English}
 
 \begin{abstract}
+\addcontentsline{toc}{section}{\abstractname}
 \normalsize
 \noindent The rolling bearing is one of the most used components in rotary machinery. The failure of these elements are very common and have a big impact on the production systems. Hence, it is critical to study the bearing fault diagnosis technology and include it in maintenance plans. Vibration signals of rolling bearings carries dynamic information of its health condition; so it can be used to identify and classify faults in their mechanical structure. In order to automate this process, researchers have proposed machine learning algorithms, which combined with feature extraction techniques, provides an accurate fault diagnosis. In this project, a combination of a feature extraction technique and a deep learning algorithm is proposed for rotating machinery fault diagnosis. The fast Fourier transform will be applied to vibration signals as feature extraction technique to obtain the power spectrum. Subsequently, a deep neural network composed of two stacked sparse autoencoders will be employed to identify the fault condition of rolling bearing. Experimental results show that the proposed method reaches 99,97\% of successful fault detection at variable shaft speed in 30 random trials. 
 \newline
@@ -74,17 +83,12 @@ Diciembre, 2017
 \selectlanguage{spanish}
 
 \newpage
-\begin{flushright}
-\textit{Dedicado a \\
-mi familia}
-\end{flushright}
-
-\newpage
 \tableofcontents
 \newpage
 
 \renewcommand{\listfigurename}{Lista de Figuras}
 \listoffigures
+\renewcommand{\listtablename}{Lista de Tablas}
 \listoftables
 \newpage
 
